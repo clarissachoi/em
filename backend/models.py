@@ -1,9 +1,11 @@
 """Request/response shapes from API.md. Change API.md first, then this file. Add new models below."""
 
 from datetime import date, datetime
-from typing import Literal
+from typing import Annotated, Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
+Score = Annotated[int, Field(ge=1, le=5)]
 
 
 # ---------- Users ----------
@@ -112,3 +114,52 @@ class RecordRequest(BaseModel):
 class RecordStatusUpdate(BaseModel):
     """Body for PATCH /records/{id}."""
     status: Literal["not_requested", "requested", "received"]
+
+
+# ---------- Home ----------
+
+class CheckinResult(BaseModel):
+    """Structured result of a "How are you doing" check-in."""
+    id: str
+    created_at: datetime
+    transcript: str
+    mood: Score
+    energy: Score
+    stress: Score
+    sleep_quality: Score | None
+    symptoms: list[str]
+    cycle_phase: str | None
+    em_reply: str
+    insight: str | None
+    urgent: bool
+    escalation_message: str | None
+
+
+# ---------- Next steps ----------
+
+class PlanDay(BaseModel):
+    """One day of the adaptive plan."""
+    date: date
+    activity: str
+    duration_min: int
+    intensity: Literal["rest", "easy", "moderate", "hard"]
+    adjusted: bool
+    adjustment_reason: str | None
+
+
+# ---------- Voice ----------
+
+class VoiceSettings(BaseModel):
+    """Per-persona voice preferences."""
+    voice_alerts: bool = True  # read urgent alerts aloud
+
+
+class LogCheckinArgs(BaseModel):
+    """What Em extracts from a live conversation when she calls log_checkin."""
+    mood: Score
+    energy: Score
+    stress: Score
+    sleep_quality: Score | None = None
+    symptoms: list[str] = []
+    em_reply: str
+    insight: str | None = None

@@ -5,6 +5,10 @@
   --muted: #7a6f80;
   --border: #ece4ea;
   --error: #b3261e;
+  --accent: #b5527a;
+  --accent-soft: #f7e6ee;
+  --urgent-bg: #fdecea;
+  --ok: #2e7d5b;
   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
   color: var(--text);
   background: var(--bg);
@@ -21,3 +25,57 @@ body { margin: 0; }
 .persona select { font: inherit; padding: 4px 8px; border-radius: 8px; border: 1px solid var(--border); }
 .muted { color: var(--muted); }
 .error { color: var(--error); font-size: 0.85rem; }
+
+* { box-sizing: border-box; }
+.app > * + * { margin-top: 16px; }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+.voice { display: flex; flex-direction: column; gap: 14px; }
+.voice h2 { font-size: 1.1rem; margin: 0; }
+.voice p { margin: 0; }
+.voice-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.voice-controls { display: flex; align-items: center; gap: 10px; }
+.voice-status { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+.voice-status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+.voice-status.on .dot { background: var(--ok); }
+
+.btn {
+  font: inherit; font-size: 0.85rem; padding: 8px 12px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text); text-decoration: none;
+}
+.btn:disabled { opacity: 0.5; cursor: default; }
+.btn.ghost { background: transparent; }
+.btn.danger { background: var(--error); border-color: var(--error); color: #fff; }
+
+.mic {
+  width: 64px; height: 64px; border-radius: 50%; border: none; cursor: pointer;
+  font: inherit; font-weight: 600; color: #fff; background: var(--accent);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.mic:active { transform: scale(0.96); }
+.mic.live { box-shadow: 0 0 0 6px var(--accent-soft); }
+.mic.speaking { animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 12px var(--accent-soft); } }
+@media (prefers-reduced-motion: reduce) { .mic.speaking { animation: none; } }
+
+.transcript { display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; }
+.bubble { max-width: 85%; padding: 8px 12px; border-radius: 14px; font-size: 0.95rem; line-height: 1.4; }
+.bubble.em { align-self: flex-start; background: var(--accent-soft); }
+.bubble.user { align-self: flex-end; background: var(--bg); border: 1px solid var(--border); }
+
+.actions { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.actions li { font-size: 0.8rem; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+.actions li.changed { color: var(--ok); border-color: var(--ok); }
+
+.checkin { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 12px; background: var(--bg); font-size: 0.9rem; }
+
+.type-row { display: flex; gap: 8px; }
+.type-row input { flex: 1; min-width: 0; font: inherit; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); }
+
+.setting { display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; cursor: pointer; }
+.setting input { margin-top: 3px; accent-color: var(--accent); }
+.hint { font-size: 0.8rem; }
+
+.urgent { background: var(--urgent-bg); border: 1px solid var(--error); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.urgent p { font-weight: 500; line-height: 1.4; }
+.urgent-actions { display: flex; flex-wrap: wrap; gap: 8px; }

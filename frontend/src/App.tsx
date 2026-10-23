@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getHealth, getMe, type UserProfile } from './api/client'
 import PersonaProvider from './components/PersonaProvider'
 import PersonaSwitcher from './components/PersonaSwitcher'
+import VoicePanel from './components/VoicePanel'
 import { usePersona } from './hooks/usePersona'
 
 /** Current persona's profile, re-fetched when the persona changes. */
@@ -34,6 +35,7 @@ function Profile() {
 
 /** App shell: header with persona switcher, then the page. */
 function Shell() {
+  const { persona } = usePersona()
   const [backend, setBackend] = useState('checking...')
 
   useEffect(() => {
@@ -50,6 +52,8 @@ function Shell() {
       </header>
       <main className="app">
         <Profile />
+        {/* key resets the voice session when switching persona */}
+        <VoicePanel key={persona} />
         <p className="muted">Backend: {backend}</p>
       </main>
     </>
