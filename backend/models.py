@@ -93,6 +93,7 @@ class Slot(BaseModel):
     provider: str
     specialty: str
     datetime: datetime
+    description: str | None = None
 
 
 # ---------- Records ----------
