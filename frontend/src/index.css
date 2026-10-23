@@ -270,6 +270,19 @@ body {
 .slot-chip { display: inline-flex; align-items: center; gap: 4px; font: inherit; font-size: 0.75rem; font-weight: 700; padding: 6px 12px; border-radius: 999px; border: 1px solid transparent; background: #f4ecec; color: var(--text); cursor: pointer; }
 .slot-chip.on { border-color: var(--logo); background: var(--accent-soft); }
 .slot-chip.violet { background: var(--violet-soft); color: var(--violet); }
+.sug-row { display: flex; flex-direction: column; gap: 6px; }
+.sug { position: relative; display: inline-flex; }
+.sug-chip { gap: 6px; }
+.sug-pop {
+  position: absolute; z-index: 4; left: 0; top: calc(100% + 8px); width: 260px; max-width: 80vw;
+  display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 14px;
+  background: var(--ink); color: #fff; font-size: 0.8rem; line-height: 1.45; box-shadow: 0 12px 30px rgba(43, 35, 48, 0.2);
+  opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+.sug-pop .eyebrow { color: #f3c9bc; }
+.sug-pop::before { content: ''; position: absolute; top: -5px; left: 18px; width: 10px; height: 10px; background: var(--ink); transform: rotate(45deg); }
+.sug:hover .sug-pop, .sug:focus-within .sug-pop { opacity: 1; visibility: visible; transform: none; }
+@media (prefers-reduced-motion: reduce) { .sug-pop { transition: none; } }
 .book-confirm { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.85rem; }
 .book-confirm span { flex: 1; min-width: 200px; }
 .empty { margin: 0; padding: 18px; border-radius: 14px; background: rgba(255, 255, 255, 0.6); color: var(--muted); font-size: 0.88rem; line-height: 1.5; }

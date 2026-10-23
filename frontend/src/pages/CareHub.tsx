@@ -5,11 +5,13 @@ import {
   getScribeNotes,
   getSlots,
   prepAppointment,
+  refreshSuggestions,
   scribeVisit,
   type Appointment,
   type AppointmentList,
   type ScribeNote,
   type Slot,
+  type SuggestedAppointment,
 } from '../api/client'
 import Icon from '../components/Icon'
 import { usePersona } from '../hooks/usePersona'
@@ -115,10 +117,20 @@ function AppointmentItem({ a, featured, onPrepped }: { a: Appointment; featured:
 }
 
 /** Open slots as quick-book chips, with a confirm step before booking. */
-function BookNext({ slots, onBooked, onAsk }: { slots: Slot[]; onBooked: () => void; onAsk: (prompt?: string) => void }) {
+function BookNext({ slots, suggested, onBooked, onSuggested, onAsk }: {
+  slots: Slot[]
+  suggested: SuggestedAppointment[]
+  onBooked: () => void
+  onSuggested: (s: SuggestedAppointment[]) => void
+  onAsk: (prompt?: string) => void
+}) {
   const [picked, setPicked] = useState<Slot | null>(null)
+  const [filter, setFilter] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const matches = (s: Slot) => !filter || s.specialty.toLowerCase() === filter.toLowerCase()
+  const shown = slots.filter(matches).slice(0, 3)
 
   const book = () => {
     if (!picked) return
@@ -127,10 +139,23 @@ function BookNext({ slots, onBooked, onAsk }: { slots: Slot[]; onBooked: () => v
     bookSlot(picked.id)
       .then(() => {
         setPicked(null)
+        setFilter(null)
         onBooked()
       })
       .catch(() => setError('That time was just taken. Pick another.'))
       .finally(() => setBusy(false))
+  }
+
+  const refresh = () => {
+    setRefreshing(true)
+    setError(null)
+    refreshSuggestions()
+      .then((next) => {
+        onSuggested(next)
+        setFilter(null)
+      })
+      .catch(() => setError('Could not refresh suggestions right now. Showing the saved ones.'))
+      .finally(() => setRefreshing(false))
   }
 
   return (
@@ -138,24 +163,65 @@ function BookNext({ slots, onBooked, onAsk }: { slots: Slot[]; onBooked: () => v
       <div className="book-row">
         <div>
           <strong><Icon name="bolt" /> Book Next Session</strong>
-          <span className="muted small">Open times from your care team and nearby providers</span>
+          <span className="muted small">Visits Em suggests for your goals, and open times nearby</span>
         </div>
+        <button className="btn-pill" onClick={refresh} disabled={refreshing}>
+          <Icon name="refresh" /> {refreshing ? 'Refreshing...' : 'Refresh suggestions'}
+        </button>
+      </div>
+
+      {suggested.length > 0 && (
+        <div className="sug-row">
+          <span className="eyebrow">Suggested for you</span>
+          <div className="slot-chips">
+            {suggested.map((sug, i) => (
+              <span key={sug.specialty} className="sug">
+                <button
+                  className={`slot-chip sug-chip ${filter === sug.specialty ? 'on' : ''}`}
+                  onClick={() => {
+                    setPicked(null)
+                    setFilter(filter === sug.specialty ? null : sug.specialty)
+                  }}
+                  aria-describedby={`sug-why-${i}`}
+                  aria-pressed={filter === sug.specialty}
+                >
+                  {sug.urgency === 'soon' && <span className="dot coral" aria-hidden />}
+                  {sug.specialty}
+                </button>
+                <span className="sug-pop" role="tooltip" id={`sug-why-${i}`}>
+                  <span className="eyebrow">{sug.urgency === 'soon' ? 'Book soon' : 'Routine'} · why it helps</span>
+                  {sug.reason || 'Refresh suggestions to see how this visit supports your goals.'}
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="sug-row">
+        <span className="eyebrow">{filter ? `Open times for ${filter}` : 'Soonest open times'}</span>
         <div className="slot-chips">
-          {slots.slice(0, 3).map((s) => (
+          {shown.map((s) => (
             <button
               key={s.id}
               className={`slot-chip ${picked?.id === s.id ? 'on' : ''}`}
               onClick={() => setPicked(picked?.id === s.id ? null : s)}
               title={`${s.specialty} with ${s.provider}`}
             >
-              {s.specialty} · {fmtShort(s.datetime)}
+              {filter ? s.provider : s.specialty} · {fmtShort(s.datetime)}
             </button>
           ))}
+          {filter && shown.length === 0 && (
+            <button className="slot-chip violet" onClick={() => onAsk(`Help me find a ${filter} appointment.`)}>
+              No open times yet. Ask Em to find one
+            </button>
+          )}
           <button className="slot-chip violet" onClick={() => onAsk('Help me book a visit.')}>
             <Icon name="plus" size={14} /> Schedule Custom Visit
           </button>
         </div>
       </div>
+
       {picked && (
         <div className="book-confirm">
           <span>Book {picked.specialty}{picked.description ? ` (${picked.description})` : ''} with {picked.provider}, {fmtDay(picked.datetime)} at {fmtTime(picked.datetime)}?</span>
@@ -533,7 +599,15 @@ export default function CareHub({ onAsk }: { onAsk: (prompt?: string) => void })
         ) : (
           <p className="empty">{tab === 'upcoming' ? 'No upcoming visits. Book one below.' : 'No past visits yet.'}</p>
         )}
-        {tab === 'upcoming' && <BookNext slots={slots} onBooked={load} onAsk={onAsk} />}
+        {tab === 'upcoming' && (
+          <BookNext
+            slots={slots}
+            suggested={appts.suggested}
+            onBooked={load}
+            onSuggested={(suggested) => setData((d) => d && { ...d, appts: { ...d.appts, suggested } })}
+            onAsk={onAsk}
+          />
+        )}
       </section>
 
       <div className="hub-grid">

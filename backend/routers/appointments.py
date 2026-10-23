@@ -39,7 +39,8 @@ Rules:
 - Look for gaps: overdue routine care (annual physical, dental cleaning every 6 months, eye exam), unfilled roles on her care team checklist, care for family members, and anything her life stage calls for.
 - Care team roles marked done already have a provider. Do not suggest establishing care for those.
 - Use a specialty name exactly as written in the provider directory when one fits, so she can book it.
-- reason: usually an empty string. Only if the specialty alone does not explain it, write one very short sentence (under 12 words) on how it supports her goals. No dates or provider names.
+- reason: always fill it. One or two short sentences (under 30 words total), written to her as "you", on how this kind
+  of care helps her goals or life stage, using her own data (goals, check-ins, labs, care gaps). No dates or provider names.
 - urgency: "soon" if overdue or time sensitive, otherwise "routine".
 - Never diagnose. Do not use em dashes.{pregnancy}
 

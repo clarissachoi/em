@@ -97,7 +97,7 @@ VisitSummary {
 }
 DoctorNote { author: str, written_on: date, reason_for_visit: str, subjective: str, objective: list[str], assessment: list[str], plan: list[str] }
 SuggestedActivity { title: str, detail: str, category: "training" | "nutrition" | "recovery" | "self_care", based_on: str }  # based_on: the doctor's plan line it follows
-SuggestedAppointment { specialty: str, reason: str, urgency: "soon" | "routine" }
+SuggestedAppointment { specialty: str, reason: str, urgency: "soon" | "routine" }  # reason: 1-2 sentences on how this care helps her goals, shown on hover in em.doc
 ```
 
 ### GET /providers?specialty=...
