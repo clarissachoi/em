@@ -35,7 +35,8 @@ router = APIRouter(tags=["appointments"])
 SUGGEST_PROMPT = """Today is {today}. Suggest up to 4 appointments she should book next, most important first.
 
 Rules:
-- Only suggest care she does not already have booked. These specialties already have an upcoming appointment, never suggest them: {booked}.
+- Only suggest care she does not already have booked. These specialties already have an upcoming appointment, never suggest them
+  or another name for the same care (for example Gynecology when OB-GYN is booked, Ophthalmology when Optometry is): {booked}.
 - Look for gaps: overdue routine care (annual physical, dental cleaning every 6 months, eye exam), unfilled roles on her care team checklist, care for family members, and anything her life stage calls for.
 - Care team roles marked done already have a provider. Do not suggest establishing care for those.
 - Use a specialty name exactly as written in the provider directory when one fits, so she can book it.
@@ -91,6 +92,33 @@ def _find_appointment(appts: dict[str, Any], appointment_id: str) -> dict[str, A
     raise HTTPException(404, f"No appointment with id {appointment_id!r}.")
 
 
+# Names that mean the same kind of care, so "Gynecology" counts as booked when "OB-GYN" is
+_CARE_GROUPS = {
+    "primary care": ("primary care", "family medicine", "internal medicine", "general practice", "annual physical"),
+    "ob-gyn": ("ob-gyn", "obgyn", "ob/gyn", "obstetrics", "gynecology", "midwife", "midwifery"),
+    "eye care": ("optometry", "ophthalmology", "eye exam", "eye care", "vision"),
+    "dental": ("dentistry", "dentist", "dental"),
+    "dermatology": ("dermatology", "dermatologist", "skin check"),
+    "pediatrics": ("pediatrics", "pediatrician"),
+    "physical therapy": ("physical therapy", "physiotherapy", "physical therapist"),
+}
+
+
+def _care_key(specialty: str) -> str:
+    """Group a specialty name with its synonyms; unknown names stand alone."""
+    name = specialty.strip().casefold()
+    for key, aliases in _CARE_GROUPS.items():
+        if any(alias in name for alias in aliases):
+            return key
+    return name
+
+
+def _drop_booked(suggested: list[dict[str, Any]], upcoming: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Remove suggestions for any kind of care that already has an upcoming appointment."""
+    booked = {_care_key(a["specialty"]) for a in upcoming}
+    return [s for s in suggested if _care_key(s["specialty"]) not in booked]
+
+
 def _matches(value: str, specialty: str | None) -> bool:
     """True when no specialty filter is given or it matches case-insensitively."""
     return specialty is None or value.casefold() == specialty.strip().casefold()
@@ -117,8 +145,10 @@ def _suggestion_context(user_id: str) -> str:
 
 @router.get("/appointments")
 def list_appointments(user_id: str = Depends(get_user_id)) -> AppointmentList:
-    """Return upcoming, past, and suggested appointments."""
-    return AppointmentList.model_validate(store.get(user_id, "appointments"))
+    """Return upcoming, past, and suggested appointments. Suggestions never repeat booked care."""
+    appts = store.get(user_id, "appointments")
+    appts["suggested"] = _drop_booked(appts.get("suggested", []), appts.get("upcoming", []))
+    return AppointmentList.model_validate(appts)
 
 
 @router.get("/providers")
@@ -149,11 +179,11 @@ def book(body: BookRequest, user_id: str = Depends(get_user_id)) -> Appointment:
 async def refresh_suggestions(user_id: str = Depends(get_user_id)) -> list[SuggestedAppointment]:
     """Ask Gemini for new suggestions, drop any that overlap upcoming bookings, and save them."""
     appts = store.get(user_id, "appointments")
-    booked = {a["specialty"].casefold() for a in appts.get("upcoming", [])}
+    booked = {a["specialty"] for a in appts.get("upcoming", [])}
     pregnant = store.get(user_id, "profile").get("life_stage") == "pregnant"
     prompt = SUGGEST_PROMPT.format(
         today=today(user_id).isoformat(),
-        booked=", ".join(sorted(booked)) or "none",
+        booked=", ".join(sorted(booked, key=str.casefold)) or "none",
         pregnancy=PREGNANCY_NOTE if pregnant else "",
         context=_suggestion_context(user_id),
     )
@@ -165,12 +195,15 @@ async def refresh_suggestions(user_id: str = Depends(get_user_id)) -> list[Sugge
         logger.warning("suggestions failed user=%s err=%s", user_id, exc)
         raise HTTPException(503, "Could not get suggestions right now. Showing the saved ones.") from exc
 
-    # Enforce the no-overlap rule in code, not just in the prompt
-    suggested = [
-        s.model_copy(update={"reason": _no_em_dashes(s.reason)})
-        for s in result.suggested
-        if s.specialty.casefold() not in booked
-    ]
+    # Enforce the no-overlap rule in code, not just in the prompt, and drop repeats of one kind of care
+    seen: set[str] = set()
+    suggested = []
+    for s in result.suggested:
+        key = _care_key(s.specialty)
+        if key in seen or not _drop_booked([s.model_dump()], appts.get("upcoming", [])):
+            continue
+        seen.add(key)
+        suggested.append(s.model_copy(update={"reason": _no_em_dashes(s.reason)}))
     appts["suggested"] = [s.model_dump() for s in suggested]
     store.save(user_id, "appointments", appts)
     return suggested

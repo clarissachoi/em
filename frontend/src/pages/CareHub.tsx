@@ -117,8 +117,9 @@ function AppointmentItem({ a, featured, onPrepped }: { a: Appointment; featured:
 }
 
 /** Open slots as quick-book chips, with a confirm step before booking. */
-function BookNext({ slots, suggested, onBooked, onSuggested, onAsk }: {
+function BookNext({ slots, booked, suggested, onBooked, onSuggested, onAsk }: {
   slots: Slot[]
+  booked: string[]
   suggested: SuggestedAppointment[]
   onBooked: () => void
   onSuggested: (s: SuggestedAppointment[]) => void
@@ -129,7 +130,14 @@ function BookNext({ slots, suggested, onBooked, onSuggested, onAsk }: {
   const [busy, setBusy] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const matches = (s: Slot) => !filter || s.specialty.toLowerCase() === filter.toLowerCase()
+  // Open times only for suggested categories, and never for care she already has booked
+  const bookedSet = new Set(booked.map((b) => b.toLowerCase()))
+  const suggestedSet = new Set(suggested.map((s) => s.specialty.toLowerCase()))
+  const matches = (s: Slot) => {
+    const specialty = s.specialty.toLowerCase()
+    if (bookedSet.has(specialty)) return false
+    return filter ? specialty === filter.toLowerCase() : suggestedSet.has(specialty)
+  }
   const shown = slots.filter(matches).slice(0, 3)
 
   const book = () => {
@@ -199,7 +207,7 @@ function BookNext({ slots, suggested, onBooked, onSuggested, onAsk }: {
       )}
 
       <div className="sug-row">
-        <span className="eyebrow">{filter ? `Open times for ${filter}` : 'Soonest open times'}</span>
+        <span className="eyebrow">{filter ? `Open times for ${filter}` : 'Open times for suggested visits'}</span>
         <div className="slot-chips">
           {shown.map((s) => (
             <button
@@ -211,8 +219,11 @@ function BookNext({ slots, suggested, onBooked, onSuggested, onAsk }: {
               {filter ? s.provider : s.specialty} · {fmtShort(s.datetime)}
             </button>
           ))}
-          {filter && shown.length === 0 && (
-            <button className="slot-chip violet" onClick={() => onAsk(`Help me find a ${filter} appointment.`)}>
+          {shown.length === 0 && (
+            <button
+              className="slot-chip violet"
+              onClick={() => onAsk(filter ? `Help me find a ${filter} appointment.` : 'Help me find times for my suggested visits.')}
+            >
               No open times yet. Ask Em to find one
             </button>
           )}
@@ -602,6 +613,7 @@ export default function CareHub({ onAsk }: { onAsk: (prompt?: string) => void })
         {tab === 'upcoming' && (
           <BookNext
             slots={slots}
+            booked={upcoming.map((a) => a.specialty)}
             suggested={appts.suggested}
             onBooked={load}
             onSuggested={(suggested) => setData((d) => d && { ...d, appts: { ...d.appts, suggested } })}
