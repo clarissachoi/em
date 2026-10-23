@@ -1,0 +1,791 @@
+{
+  "as_of": "2026-10-26",
+  "summary": {
+    "id": "jasmine",
+    "name": "Jasmine",
+    "age": 34,
+    "tagline": "20 weeks pregnant, rebuilding her care team after a move"
+  },
+  "profile": {
+    "id": "jasmine",
+    "name": "Jasmine",
+    "age": 34,
+    "life_stage": "pregnant",
+    "pregnancy": {
+      "week": 20,
+      "due_date": "2027-03-15",
+      "pregnancy_number": 2
+    },
+    "primary_goal": "Care transition",
+    "connections": [
+      {
+        "source": "Oura",
+        "kind": "wearable",
+        "connected": true
+      },
+      {
+        "source": "Pregnancy app",
+        "kind": "pregnancy",
+        "connected": true
+      },
+      {
+        "source": "Google Calendar",
+        "kind": "calendar",
+        "connected": true
+      },
+      {
+        "source": "Previous providers",
+        "kind": "records",
+        "connected": true
+      }
+    ],
+    "home_location": "White Plains, NY",
+    "previous_location": "Astoria, Queens, NY",
+    "moved_on": "2026-09-18",
+    "work": "Remote IT assistant, 9 to 5",
+    "prior_pregnancies": [
+      {
+        "year": 2023,
+        "outcome": "Full-term vaginal delivery",
+        "notes": "Uncomplicated. Mild anemia in third trimester."
+      }
+    ],
+    "family": [
+      {
+        "id": "toddler",
+        "name": "Leo",
+        "relation": "son",
+        "age": 3
+      }
+    ],
+    "usage": "Laptop on work breaks, phone in the evening after bedtime. Prefers simple and reassuring."
+  },
+  "goals": {
+    "primary_goal": "Care transition",
+    "focus_areas": [
+      "care transition",
+      "sleep",
+      "walking",
+      "healthy pregnancy"
+    ],
+    "target_date": "2027-03-15",
+    "dietary_prefs": [
+      "pregnancy-safe",
+      "iron-rich",
+      "easy family meals"
+    ],
+    "activity_level": "low",
+    "notes": "Second pregnancy. Moved from the city about 5 weeks ago. Toddler wakes at night."
+  },
+  "pregnancy_tracker": {
+    "source": "Pregnancy app",
+    "week": 20,
+    "day": 0,
+    "trimester": 2,
+    "due_date": "2027-03-15",
+    "baby_size": "banana",
+    "prenatal_schedule": [
+      {
+        "weeks": "20",
+        "item": "Anatomy ultrasound",
+        "status": "due"
+      },
+      {
+        "weeks": "24-28",
+        "item": "Glucose screening",
+        "status": "upcoming"
+      },
+      {
+        "weeks": "28",
+        "item": "Tdap vaccine, hemoglobin recheck",
+        "status": "upcoming"
+      },
+      {
+        "weeks": "28-36",
+        "item": "Prenatal visits every 2 weeks",
+        "status": "upcoming"
+      },
+      {
+        "weeks": "36",
+        "item": "Group B strep test",
+        "status": "upcoming"
+      },
+      {
+        "weeks": "36-40",
+        "item": "Weekly prenatal visits",
+        "status": "upcoming"
+      }
+    ]
+  },
+  "wearable": [
+    {
+      "date": "2026-10-12",
+      "source": "Oura",
+      "sleep_hours": 6.8,
+      "sleep_score": 74,
+      "night_wakings": 2,
+      "hrv_ms": 38,
+      "resting_hr": 74,
+      "steps": 7900,
+      "walk_minutes": 35
+    },
+    {
+      "date": "2026-10-13",
+      "source": "Oura",
+      "sleep_hours": 5.6,
+      "sleep_score": 61,
+      "night_wakings": 4,
+      "hrv_ms": 33,
+      "resting_hr": 77,
+      "steps": 3600,
+      "walk_minutes": 10
+    },
+    {
+      "date": "2026-10-14",
+      "source": "Oura",
+      "sleep_hours": 5.4,
+      "sleep_score": 59,
+      "night_wakings": 4,
+      "hrv_ms": 32,
+      "resting_hr": 78,
+      "steps": 4100,
+      "walk_minutes": 12
+    },
+    {
+      "date": "2026-10-15",
+      "source": "Oura",
+      "sleep_hours": 6.9,
+      "sleep_score": 75,
+      "night_wakings": 2,
+      "hrv_ms": 37,
+      "resting_hr": 75,
+      "steps": 8400,
+      "walk_minutes": 40
+    },
+    {
+      "date": "2026-10-16",
+      "source": "Oura",
+      "sleep_hours": 7.0,
+      "sleep_score": 77,
+      "night_wakings": 2,
+      "hrv_ms": 39,
+      "resting_hr": 74,
+      "steps": 8800,
+      "walk_minutes": 42
+    },
+    {
+      "date": "2026-10-17",
+      "source": "Oura",
+      "sleep_hours": 5.8,
+      "sleep_score": 63,
+      "night_wakings": 3,
+      "hrv_ms": 34,
+      "resting_hr": 76,
+      "steps": 4700,
+      "walk_minutes": 15
+    },
+    {
+      "date": "2026-10-18",
+      "source": "Oura",
+      "sleep_hours": 6.7,
+      "sleep_score": 72,
+      "night_wakings": 2,
+      "hrv_ms": 37,
+      "resting_hr": 75,
+      "steps": 7600,
+      "walk_minutes": 32
+    },
+    {
+      "date": "2026-10-19",
+      "source": "Oura",
+      "sleep_hours": 5.2,
+      "sleep_score": 56,
+      "night_wakings": 5,
+      "hrv_ms": 31,
+      "resting_hr": 79,
+      "steps": 3200,
+      "walk_minutes": 0
+    },
+    {
+      "date": "2026-10-20",
+      "source": "Oura",
+      "sleep_hours": 5.5,
+      "sleep_score": 60,
+      "night_wakings": 4,
+      "hrv_ms": 33,
+      "resting_hr": 78,
+      "steps": 4400,
+      "walk_minutes": 14
+    },
+    {
+      "date": "2026-10-21",
+      "source": "Oura",
+      "sleep_hours": 6.9,
+      "sleep_score": 76,
+      "night_wakings": 2,
+      "hrv_ms": 38,
+      "resting_hr": 75,
+      "steps": 8100,
+      "walk_minutes": 36
+    },
+    {
+      "date": "2026-10-22",
+      "source": "Oura",
+      "sleep_hours": 6.6,
+      "sleep_score": 71,
+      "night_wakings": 3,
+      "hrv_ms": 36,
+      "resting_hr": 75,
+      "steps": 7400,
+      "walk_minutes": 31
+    },
+    {
+      "date": "2026-10-23",
+      "source": "Oura",
+      "sleep_hours": 5.7,
+      "sleep_score": 62,
+      "night_wakings": 4,
+      "hrv_ms": 33,
+      "resting_hr": 77,
+      "steps": 4900,
+      "walk_minutes": 18
+    },
+    {
+      "date": "2026-10-24",
+      "source": "Oura",
+      "sleep_hours": 5.3,
+      "sleep_score": 58,
+      "night_wakings": 5,
+      "hrv_ms": 32,
+      "resting_hr": 78,
+      "steps": 3900,
+      "walk_minutes": 8
+    },
+    {
+      "date": "2026-10-25",
+      "source": "Oura",
+      "sleep_hours": 6.8,
+      "sleep_score": 74,
+      "night_wakings": 2,
+      "hrv_ms": 37,
+      "resting_hr": 76,
+      "steps": 8600,
+      "walk_minutes": 38
+    }
+  ],
+  "calendar": {
+    "events": [
+      {
+        "title": "Work",
+        "type": "work",
+        "start": "09:00",
+        "end": "17:00",
+        "days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "location": "Home",
+        "detail": null
+      },
+      {
+        "title": "Leo daycare drop-off",
+        "type": "family",
+        "start": "08:15",
+        "end": "08:45",
+        "days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "location": "Little Oaks Daycare",
+        "detail": null
+      },
+      {
+        "title": "First visit, Dr. Elena Ortiz (OB)",
+        "type": "appointment",
+        "start": "2026-11-02T12:15:00",
+        "end": "2026-11-02T13:15:00",
+        "location": "Westchester Women's Health",
+        "detail": null
+      }
+    ],
+    "free_windows": [
+      {
+        "days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "start": "12:00",
+        "end": "13:00",
+        "note": "Lunch break"
+      },
+      {
+        "days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "start": "17:15",
+        "end": "18:00",
+        "note": "Before dinner"
+      },
+      {
+        "days": [
+          "Sat"
+        ],
+        "start": "09:00",
+        "end": "12:00",
+        "note": "Partner has Leo"
+      }
+    ]
+  },
+  "care_team": [
+    {
+      "role": "OB-GYN",
+      "provider": "Dr. Elena Ortiz, Westchester Women's Health",
+      "done": true
+    },
+    {
+      "role": "Primary care",
+      "provider": "Dr. Samuel Brooks, Maple Avenue Family Medicine",
+      "done": true
+    },
+    {
+      "role": "Pediatrician (Leo)",
+      "provider": null,
+      "done": false
+    },
+    {
+      "role": "Dentist",
+      "provider": null,
+      "done": false
+    }
+  ],
+  "plan": [
+    {
+      "date": "2026-10-26",
+      "activity": "30 min neighborhood walk",
+      "duration_min": 30,
+      "intensity": "easy",
+      "adjusted": false,
+      "adjustment_reason": null
+    },
+    {
+      "date": "2026-10-27",
+      "activity": "25 min walk + 10 min prenatal stretches",
+      "duration_min": 35,
+      "intensity": "easy",
+      "adjusted": false,
+      "adjustment_reason": null
+    },
+    {
+      "date": "2026-10-28",
+      "activity": "30 min walk (Saxon Woods loop)",
+      "duration_min": 30,
+      "intensity": "easy",
+      "adjusted": false,
+      "adjustment_reason": null
+    },
+    {
+      "date": "2026-10-29",
+      "activity": "Gentle strength: wall push-ups, squats to chair, side-lying leg lifts",
+      "duration_min": 20,
+      "intensity": "easy",
+      "adjusted": false,
+      "adjustment_reason": null
+    },
+    {
+      "date": "2026-10-30",
+      "activity": "30 min walk",
+      "duration_min": 30,
+      "intensity": "easy",
+      "adjusted": false,
+      "adjustment_reason": null
+    },
+    {
+      "date": "2026-10-31",
+      "activity": "Family stroller walk",
+      "duration_min": 40,
+      "intensity": "easy",
+      "adjusted": false,
+      "adjustment_reason": null
+    },
+    {
+      "date": "2026-11-01",
+      "activity": "Rest + 10 min prenatal stretches",
+      "duration_min": 10,
+      "intensity": "rest",
+      "adjusted": false,
+      "adjustment_reason": null
+    }
+  ],
+  "walking_routes": [
+    {
+      "name": "Saxon Woods loop",
+      "distance_mi": 1.4,
+      "minutes": 30,
+      "terrain": "Flat paved path, benches along the way"
+    },
+    {
+      "name": "Mamaroneck Ave to the park",
+      "distance_mi": 1.0,
+      "minutes": 22,
+      "terrain": "Sidewalk, stroller friendly"
+    },
+    {
+      "name": "Bronx River Pathway, north section",
+      "distance_mi": 2.0,
+      "minutes": 45,
+      "terrain": "Flat, shaded, restrooms at trailhead"
+    }
+  ],
+  "sleep": {
+    "target_bedtime": "22:00",
+    "wind_down_reminder": "21:30",
+    "notes": "Wakes for Leo 1 to 2 times a night. Hip discomfort when side sleeping."
+  },
+  "labs": {
+    "panels": [],
+    "locked_panels": [
+      {
+        "unlocked_by_record": "rec_j3",
+        "panel": {
+          "id": "jas_panel_prenatal_1",
+          "date": "2026-08-10",
+          "source": "Astoria OB-GYN Associates",
+          "results": [
+            {
+              "marker": "Hemoglobin",
+              "value": 11.3,
+              "unit": "g/dL",
+              "ref_low": 11.0,
+              "ref_high": 15.0,
+              "flag": "normal"
+            },
+            {
+              "marker": "Ferritin",
+              "value": 24,
+              "unit": "ng/mL",
+              "ref_low": 15,
+              "ref_high": 150,
+              "flag": "normal"
+            },
+            {
+              "marker": "TSH",
+              "value": 2.1,
+              "unit": "mIU/L",
+              "ref_low": 0.1,
+              "ref_high": 2.5,
+              "flag": "normal"
+            },
+            {
+              "marker": "Fasting glucose",
+              "value": 84,
+              "unit": "mg/dL",
+              "ref_low": 70,
+              "ref_high": 92,
+              "flag": "normal"
+            },
+            {
+              "marker": "Platelets",
+              "value": 245,
+              "unit": "K/uL",
+              "ref_low": 150,
+              "ref_high": 400,
+              "flag": "normal"
+            }
+          ]
+        }
+      }
+    ],
+    "upcoming": [
+      "Glucose screening at 24 to 28 weeks",
+      "Hemoglobin recheck around 28 weeks"
+    ]
+  },
+  "appointments": {
+    "upcoming": [
+      {
+        "id": "jas_appt_ob_first",
+        "for_person": "self",
+        "provider": "Dr. Elena Ortiz",
+        "specialty": "OB-GYN",
+        "datetime": "2026-11-02T12:15:00",
+        "location": "Westchester Women's Health, 210 Westchester Ave, White Plains, NY",
+        "status": "upcoming",
+        "prep_questions": [],
+        "visit_summary": null
+      }
+    ],
+    "past": [
+      {
+        "id": "jas_appt_old_ob",
+        "for_person": "self",
+        "provider": "Dr. Nadia Petrova",
+        "specialty": "OB-GYN",
+        "datetime": "2026-09-14T10:00:00",
+        "location": "Astoria OB-GYN Associates, Astoria, NY",
+        "status": "completed",
+        "prep_questions": [],
+        "visit_summary": {
+          "summary": "14 week prenatal visit. Heartbeat strong, everything on track.",
+          "action_items": [
+            "Schedule anatomy ultrasound around 20 weeks",
+            "Transfer care after the move"
+          ],
+          "follow_up": "Next visit at 18 to 20 weeks with new OB"
+        }
+      }
+    ],
+    "suggested": [
+      {
+        "specialty": "Pediatrics",
+        "for_person": "toddler",
+        "reason": "Leo needs a new pediatrician and is due for his 3 year well visit.",
+        "urgency": "soon"
+      },
+      {
+        "specialty": "Maternal-fetal ultrasound",
+        "for_person": "self",
+        "reason": "Anatomy scan is usually done around 20 weeks. Ask Dr. Ortiz to order it.",
+        "urgency": "soon"
+      },
+      {
+        "specialty": "Dentistry",
+        "for_person": "self",
+        "reason": "A cleaning during pregnancy is safe and recommended, and you do not have a local dentist yet.",
+        "urgency": "routine"
+      }
+    ]
+  },
+  "providers": [
+    {
+      "id": "prov_j1",
+      "name": "Dr. Elena Ortiz",
+      "specialty": "OB-GYN",
+      "distance_mi": 2.1,
+      "in_network": true,
+      "rating": 4.9
+    },
+    {
+      "id": "prov_j2",
+      "name": "Dr. Samuel Brooks",
+      "specialty": "Primary care",
+      "distance_mi": 1.3,
+      "in_network": true,
+      "rating": 4.7
+    },
+    {
+      "id": "prov_j3",
+      "name": "Dr. Aisha Grant",
+      "specialty": "Pediatrics",
+      "distance_mi": 1.8,
+      "in_network": true,
+      "rating": 4.8
+    },
+    {
+      "id": "prov_j4",
+      "name": "Little Steps Pediatrics",
+      "specialty": "Pediatrics",
+      "distance_mi": 3.2,
+      "in_network": true,
+      "rating": 4.6
+    },
+    {
+      "id": "prov_j5",
+      "name": "Dr. Kevin Liu",
+      "specialty": "Pediatrics",
+      "distance_mi": 2.5,
+      "in_network": false,
+      "rating": 4.9
+    },
+    {
+      "id": "prov_j6",
+      "name": "Bright Smile Dental",
+      "specialty": "Dentistry",
+      "distance_mi": 1.0,
+      "in_network": true,
+      "rating": 4.5
+    },
+    {
+      "id": "prov_j7",
+      "name": "Westchester Imaging Center",
+      "specialty": "Maternal-fetal ultrasound",
+      "distance_mi": 2.4,
+      "in_network": true,
+      "rating": 4.6
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot_j1",
+      "provider": "Dr. Aisha Grant",
+      "specialty": "Pediatrics",
+      "datetime": "2026-10-29T17:15:00"
+    },
+    {
+      "id": "slot_j2",
+      "provider": "Dr. Aisha Grant",
+      "specialty": "Pediatrics",
+      "datetime": "2026-11-07T09:30:00"
+    },
+    {
+      "id": "slot_j3",
+      "provider": "Little Steps Pediatrics",
+      "specialty": "Pediatrics",
+      "datetime": "2026-10-31T10:00:00"
+    },
+    {
+      "id": "slot_j4",
+      "provider": "Westchester Imaging Center",
+      "specialty": "Maternal-fetal ultrasound",
+      "datetime": "2026-11-04T12:00:00"
+    },
+    {
+      "id": "slot_j5",
+      "provider": "Bright Smile Dental",
+      "specialty": "Dentistry",
+      "datetime": "2026-11-14T09:00:00"
+    },
+    {
+      "id": "slot_j6",
+      "provider": "Dr. Elena Ortiz",
+      "specialty": "Glucose screening",
+      "datetime": "2026-11-30T08:00:00"
+    },
+    {
+      "id": "slot_j7",
+      "provider": "Dr. Elena Ortiz",
+      "specialty": "Glucose screening",
+      "datetime": "2026-12-02T12:00:00"
+    }
+  ],
+  "records": [
+    {
+      "id": "rec_j1",
+      "item": "Prenatal records",
+      "from_provider": "Astoria OB-GYN Associates",
+      "status": "requested",
+      "requested_on": "2026-10-05",
+      "needed_by": "2026-10-31",
+      "overdue": true
+    },
+    {
+      "id": "rec_j2",
+      "item": "Vaccine history (Leo)",
+      "from_provider": "Queens Kids Pediatrics",
+      "status": "received",
+      "requested_on": "2026-09-26",
+      "needed_by": null,
+      "overdue": false
+    },
+    {
+      "id": "rec_j3",
+      "item": "Prenatal lab results",
+      "from_provider": "Astoria OB-GYN Associates",
+      "status": "not_requested",
+      "requested_on": null,
+      "needed_by": "2026-10-31",
+      "overdue": false
+    }
+  ],
+  "checkins": [
+    {
+      "id": "ci_j1",
+      "created_at": "2026-10-13T21:00:00",
+      "transcript": "Leo was up three times last night and my hips ache. Barely slept.",
+      "mood": 3,
+      "energy": 2,
+      "stress": 3,
+      "sleep_quality": 1,
+      "symptoms": [
+        "hip discomfort",
+        "fatigue"
+      ],
+      "cycle_phase": null,
+      "em_reply": "That sounds exhausting. A short walk at lunch might help tonight's sleep, even 15 minutes.",
+      "insight": null,
+      "urgent": false,
+      "escalation_message": null
+    },
+    {
+      "id": "ci_j2",
+      "created_at": "2026-10-16T21:00:00",
+      "transcript": "Better day. Did a long walk around the new neighborhood. Feet a little puffy tonight.",
+      "mood": 4,
+      "energy": 3,
+      "stress": 2,
+      "sleep_quality": 4,
+      "symptoms": [
+        "mild swelling"
+      ],
+      "cycle_phase": null,
+      "em_reply": "Love that you got out. Putting your feet up for a bit tonight can help with the puffiness.",
+      "insight": "You slept better after your longer walk.",
+      "urgent": false,
+      "escalation_message": null
+    },
+    {
+      "id": "ci_j3",
+      "created_at": "2026-10-19T22:00:00",
+      "transcript": "Stressed about finding a pediatrician and the old OB office still has not sent anything. Tired.",
+      "mood": 2,
+      "energy": 2,
+      "stress": 4,
+      "sleep_quality": 2,
+      "symptoms": [
+        "fatigue"
+      ],
+      "cycle_phase": null,
+      "em_reply": "That is a lot to hold while growing a baby. Let's take it one step at a time. I can help you follow up with your old OB.",
+      "insight": null,
+      "urgent": false,
+      "escalation_message": null
+    },
+    {
+      "id": "ci_j4",
+      "created_at": "2026-10-22T21:00:00",
+      "transcript": "Okay day. Walked 30 minutes. Ankles a bit swollen by evening.",
+      "mood": 3,
+      "energy": 3,
+      "stress": 3,
+      "sleep_quality": 3,
+      "symptoms": [
+        "mild swelling"
+      ],
+      "cycle_phase": null,
+      "em_reply": "Nice work on the walk. Mild evening swelling is common, but mention it to Dr. Ortiz at your visit.",
+      "insight": null,
+      "urgent": false,
+      "escalation_message": null
+    },
+    {
+      "id": "ci_j5",
+      "created_at": "2026-10-24T22:00:00",
+      "transcript": "Rough night again, and work was busy. Feeling a little overwhelmed with the move and everything.",
+      "mood": 2,
+      "energy": 2,
+      "stress": 4,
+      "sleep_quality": 2,
+      "symptoms": [
+        "fatigue",
+        "mild swelling"
+      ],
+      "cycle_phase": null,
+      "em_reply": "Thank you for sharing that. Feeling overwhelmed is really understandable right now. If it keeps up, you can always reach support from the app.",
+      "insight": "Your sleep is better on days you walk 30+ minutes.",
+      "urgent": false,
+      "escalation_message": null
+    }
+  ]
+}
