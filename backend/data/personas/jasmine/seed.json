@@ -115,7 +115,33 @@
         "item": "Weekly prenatal visits",
         "status": "upcoming"
       }
-    ]
+    ],
+    "milestones": [
+      {
+        "week": 20,
+        "label": "Halfway there"
+      },
+      {
+        "week": 28,
+        "label": "Third trimester begins"
+      },
+      {
+        "week": 37,
+        "label": "Full term"
+      },
+      {
+        "week": 40,
+        "label": "Due date"
+      }
+    ],
+    "baby_size_by_week": {
+      "20": "banana",
+      "24": "ear of corn",
+      "28": "eggplant",
+      "32": "squash",
+      "36": "honeydew melon",
+      "40": "small watermelon"
+    }
   },
   "wearable": [
     {

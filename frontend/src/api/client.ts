@@ -362,3 +362,23 @@ export interface DataSettings { model_training: boolean; third_party_sharing: bo
 export const getDataSettings = () => request<DataSettings>('/data-settings')
 export const putDataSettings = (s: Pick<DataSettings, 'model_training' | 'third_party_sharing'>) =>
   request<DataSettings>('/data-settings', { method: 'PUT', body: JSON.stringify(s) })
+
+// ---------- Calendar ----------
+
+export interface CalendarEvent {
+  id: string
+  title: string
+  kind: 'appointment' | 'travel' | 'work' | 'family' | 'routine' | 'plan' | 'period' | 'ovulation' | 'pregnancy' | 'prenatal'
+  start_date: string
+  end_date: string
+  start_time: string | null
+  end_time: string | null
+  location: string | null
+  detail: string | null
+  recurring: boolean
+  predicted: boolean
+}
+
+/** Events between two YYYY-MM-DD dates, inclusive. */
+export const getCalendar = (start: string, end: string) =>
+  request<CalendarEvent[]>(`/calendar?start=${start}&end=${end}`)
