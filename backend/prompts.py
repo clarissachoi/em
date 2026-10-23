@@ -111,6 +111,48 @@ def lab_disclaimer(pregnant: bool) -> str:
     return f"This is general information, not a diagnosis. Review these results with {who} before making any changes."
 
 
+VISIT_SUMMARY_PROMPT = """Rewrite one clinician's visit note as a short, plain-language summary for the patient.
+
+Rules:
+- Two to four sentences. Say why the visit happened, what was checked or measured, and what the clinician found.
+- Facts only, taken from the note. Do not add anything that is not in the note.
+- Neutral and factual. No emotional or reassuring language (no "great news", "don't worry", "unfortunately").
+- Never diagnose. Repeat findings as the note states them, and do not name a condition the note does not name.
+- Do not mention medications or supplements unless the note does, and never add advice about them.
+- Do not list the plan items; those are shown separately.
+- Write to the patient as "you", in the past tense. Never say "today"; the visit may be months old.
+- Do not use em dashes.
+
+Visit note (JSON):
+{note}
+"""
+
+VISIT_ACTIVITIES_PROMPT = """Today is {today}. {name} had this visit on {visit_date}. Suggest up to 4 activities she can do
+in the next week that follow her clinician's plan and fit how she has been feeling lately.
+
+Rules:
+- Each activity must follow one line of the clinician's plan. Copy that line exactly into based_on.
+- Skip plan lines about warning signs, when to call, booking visits, tests, or records. Those are shown elsewhere.
+- Adapt to her recent check-ins: on low energy, poor sleep, or high stress, suggest lighter options and rest.
+- category: "training" for workouts, "nutrition" for food, "recovery" for rest and sleep, "self_care" for stress and mood.
+- title: short and concrete (e.g. "Easy 30 min walk"). detail: one or two sentences, specific to her.
+- Never diagnose. Never suggest starting, stopping, or changing any medication or supplement.
+- Do not repeat the clinician's plan word for word in title or detail; turn it into something she can do this week.
+- If her mood has been low, include one gentle self_care activity and mention she can reach support in the app.
+{pregnancy_rules}- Do not use em dashes.
+
+Visit (JSON):
+{visit}
+
+Her recent check-ins and goals (JSON):
+{context}
+"""
+
+VISIT_PREGNANCY_RULES = """- She is pregnant. Every activity must be pregnancy-safe: no lying flat on her back, no contact sports,
+  no hot yoga, no heavy lifting, no high-intensity intervals. Say to check with her OB before anything new.
+"""
+
+
 WELLNESS_PROMPT = """Suggest today's and this week's wellness ideas for {name} for the em.well page, using her context below.
 
 Return exactly: {counts}.

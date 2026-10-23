@@ -178,7 +178,7 @@ export default function Home({ onAsk, onOpenWellness }: { onAsk: (prompt?: strin
       </div>
 
       <nav className="shortcuts" aria-label="Other sections">
-        <span className="shortcut" aria-disabled title="Coming soon"><Icon name="chat" /> Doctor Buddy</span>
+        <span className="shortcut" aria-disabled title="Coming soon"><Icon name="chat" /> em.doc</span>
         <span className="divider" aria-hidden />
         <button className="shortcut link" onClick={onOpenWellness}><Icon name="globe" /> em.well</button>
         <button className="ask-send coral" onClick={onOpenWellness} aria-label="Open em.well"><Icon name="arrow" size={16} /></button>

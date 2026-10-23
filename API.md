@@ -87,8 +87,16 @@ Appointment {
   status: "upcoming" | "completed"
   prep_questions: list[str]
   visit_summary: VisitSummary | null
+  doctor_notes: DoctorNote | null  # completed visits only, from seed (mocked records)
 }
-VisitSummary { summary: str, action_items: list[str], follow_up: str | null }
+VisitSummary {
+  summary: str                         # plain-language, factual recap of the doctor's notes. Generated once by Gemini, stored in seed
+  action_items: list[str]              # set in seed from the doctor's plan, never model-written
+  follow_up: str | null                # set in seed from the doctor's plan, never model-written
+  suggested_activities: list[SuggestedActivity]  # Em's ideas, generated live by POST /appointments/{id}/activities. Default []
+}
+DoctorNote { author: str, written_on: date, reason_for_visit: str, subjective: str, objective: list[str], assessment: list[str], plan: list[str] }
+SuggestedActivity { title: str, detail: str, category: "training" | "nutrition" | "recovery" | "self_care", based_on: str }  # based_on: the doctor's plan line it follows
 SuggestedAppointment { specialty: str, reason: str, urgency: "soon" | "routine" }
 ```
 
@@ -105,10 +113,35 @@ Body `{ slot_id: str, for_person: str = "self" }` returns `Appointment`. Removes
 Asks Gemini for fresh suggestions from the profile, care team, appointments, providers, open slots, and records. Never suggests a specialty that already has an upcoming appointment. Saves and returns `list[SuggestedAppointment]`; `GET /appointments` returns the saved list after that. 503 if Gemini fails (saved suggestions are kept).
 
 ### POST /appointments/{id}/prep
-"Come with me" before the visit. Questions from recent check-ins, labs, and missing records. Returns `Appointment`.
+"Come with me" before the visit. Gemini writes up to 5 short questions to ask, from recent check-ins, flagged labs, goals, and missing records. Never diagnoses or suggests medication changes. Saves to `prep_questions` and returns `Appointment`. 404 unknown id, 503 if Gemini fails.
 
 ### POST /appointments/{id}/note
 Post-appointment quick note. Multipart `audio` (optional) and/or `text`. Returns `Appointment` with `visit_summary` filled and any follow-ups added as alerts.
+
+### POST /appointments/{id}/activities
+"Appointment buddy" after a completed visit. Gemini suggests up to 4 activities that follow the doctor's plan and fit her recent check-ins (mood, energy, stress, sleep, symptoms). Never diagnoses, never suggests medication or supplement changes, pregnancy-safe for pregnant users. Empty list if her latest check-in was urgent. Saves to `visit_summary.suggested_activities` and returns `Appointment`. 404 unknown id, 409 if the visit has no doctor notes, 503 if Gemini fails.
+
+### POST /appointments/{id}/scribe
+Ambient scribe. Multipart `audio` (the recording of the visit, webm/ogg/mp4/wav, max 19 MB) and optional `duration_sec` (int). Gemini transcribes and writes the note. Only records what was said at the visit; adds no advice of its own. Saves to the `scribe_notes` section and returns `ScribeNote`. 404 unknown id, 413 audio too large, 503 if Gemini fails.
+```
+ScribeNote {
+  id: str
+  appointment_id: str
+  provider: str
+  specialty: str
+  created_at: datetime
+  duration_sec: int | null
+  summary: str                    # plain-language recap of the visit
+  key_points: list[str]           # findings and topics discussed
+  doctor_instructions: list[str]  # what the clinician said to do, close to their words
+  follow_ups: list[str]           # tests, referrals, next visits mentioned
+  transcript: str                 # speaker-labeled ("Doctor:", "Patient:")
+  disclaimer: str                 # fixed "review with your doctor" text, never model-written
+}
+```
+
+### GET /scribe-notes
+`list[ScribeNote]`, newest first.
 
 ### GET /labs
 ```

@@ -1,4 +1,4 @@
-// Small stroke icons used across the Home screen.
+// Small stroke icons used across the app.
 
 const PATHS: Record<string, string> = {
   mic: 'M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z M5 11a7 7 0 0 0 14 0 M12 18v3',
@@ -20,6 +20,12 @@ const PATHS: Record<string, string> = {
   clock: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z M12 7v5l3 2',
   plus: 'M12 5v14 M5 12h14',
   spark: 'M12 3v4 M12 17v4 M3 12h4 M17 12h4 M6 6l2.5 2.5 M15.5 15.5 18 18 M6 18l2.5-2.5 M15.5 8.5 18 6',
+  bolt: 'M13 3 5 14h6l-1 7 8-11h-6z',
+  sparkle: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z',
+  clipboard: 'M9 4h6v3H9z M7 5H5v16h14V5h-2 M8 12h8 M8 16h5',
+  ear: 'M7 9a5 5 0 0 1 10 0c0 3-3 4-3 7a3 3 0 0 1-6 0 M10 9a2 2 0 0 1 4 0',
+  stop: 'M7 7h10v10H7z',
+  wave: 'M4 10v4 M8 7v10 M12 4v16 M16 7v10 M20 10v4',
 }
 
 /** Inline SVG icon by name. Decorative unless a label is given. */
