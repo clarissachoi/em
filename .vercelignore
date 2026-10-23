@@ -1,0 +1,11 @@
+# Never upload local secrets or machine-only files
+.env
+.env.*
+.venv
+**/node_modules
+**/__pycache__
+**/dist
+.DS_Store
+backend/data/state.json
+Images
+Mock*
