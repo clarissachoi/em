@@ -409,6 +409,23 @@ class Insight(BaseModel):
     evidence: str
 
 
+# ---------- Calendar ----------
+
+class CalendarEvent(BaseModel):
+    """One item on the calendar popover."""
+    id: str
+    title: str
+    kind: Literal["appointment", "travel", "work", "family", "routine", "plan", "period", "ovulation", "pregnancy", "prenatal"]
+    start_date: date
+    end_date: date
+    start_time: str | None
+    end_time: str | None
+    location: str | None
+    detail: str | None
+    recurring: bool
+    predicted: bool
+
+
 # ---------- Voice ----------
 
 class VoiceSettings(BaseModel):

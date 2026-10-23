@@ -345,6 +345,28 @@ VoiceSettings { voice_alerts: bool }   # read urgent alerts aloud, default true
 ### GET /voice/urgent-audio
 `audio/wav` of `URGENT_ESCALATION` read aloud (cached after first call). 503 if speech generation fails; the client then falls back to the browser's speech synthesis.
 
+## Calendar
+
+### GET /calendar?start=YYYY-MM-DD&end=YYYY-MM-DD
+Everything on her calendar between `start` and `end` (inclusive), merged from seed data: trips and work blocks, appointments (including new bookings), the daily plan, recurring routines (expanded per day), Maya's cycle (logged and predicted periods, estimated ovulation), and Jasmine's pregnancy timeline (week starts, milestones, prenatal schedule). Defaults to the month of her `as_of` date. Computed, no Gemini.
+```
+CalendarEvent {
+  id: str
+  title: str
+  kind: "appointment" | "travel" | "work" | "family" | "routine" | "plan" | "period" | "ovulation" | "pregnancy" | "prenatal"
+  start_date: date
+  end_date: date              # inclusive; same as start_date for one-day events
+  start_time: str | null      # "18:00", null for all-day
+  end_time: str | null
+  location: str | null
+  detail: str | null
+  recurring: bool             # expanded from a weekly routine (e.g. work 9 to 5)
+  predicted: bool             # estimated from cycle or due date, not logged
+}
+Response: list[CalendarEvent], sorted by start
+```
+Later: export to a phone calendar (.ics).
+
 ## Health
 
 ### GET /health
