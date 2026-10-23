@@ -1,8 +1,23 @@
 :root {
+  --bg: #fdfaf7;
+  --surface: #ffffff;
+  --text: #2b2330;
+  --muted: #7a6f80;
+  --border: #ece4ea;
+  --error: #b3261e;
   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-  color: #2b2330;
-  background: #fdfaf7;
+  color: var(--text);
+  background: var(--bg);
 }
 
 body { margin: 0; }
 .app { max-width: 720px; margin: 0 auto; padding: 16px; }
+.header {
+  position: sticky; top: 0; z-index: 1;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 12px 16px; background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.persona { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.persona select { font: inherit; padding: 4px 8px; border-radius: 8px; border: 1px solid var(--border); }
+.muted { color: var(--muted); }
+.error { color: var(--error); font-size: 0.85rem; }
