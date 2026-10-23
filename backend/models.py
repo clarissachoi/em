@@ -137,6 +137,16 @@ class CheckinResult(BaseModel):
 
 # ---------- Next steps ----------
 
+class Goals(BaseModel):
+    """User goals, also set during onboarding."""
+    primary_goal: str
+    focus_areas: list[str]
+    target_date: date | None
+    dietary_prefs: list[str]
+    activity_level: Literal["low", "medium", "high"]
+    notes: str | None
+
+
 class PlanDay(BaseModel):
     """One day of the adaptive plan."""
     date: date
