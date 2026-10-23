@@ -24,6 +24,7 @@ class Settings(BaseSettings):
     LIVE_FALLBACK_MODEL: str = "gemini-2.5-flash-native-audio-latest"
     TTS_MODEL: str = "gemini-3.8-flash-tts"
     TTS_FALLBACK_MODEL: str = "gemini-2.5-flash-preview-tts"
+    IMAGE_MODEL: str = "gemini-3.1-flash-image"  # one-off scripts only, never called at runtime
     EM_VOICE: str = "Aoede"  # prebuilt Gemini voice used for Em, live and TTS
     CORS_ORIGINS: list[str] = ["http://localhost:5173"]
 
