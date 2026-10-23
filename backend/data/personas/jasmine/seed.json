@@ -660,13 +660,15 @@
     {
       "id": "slot_j6",
       "provider": "Dr. Elena Ortiz",
-      "specialty": "Glucose screening",
+      "specialty": "OB-GYN",
+      "description": "Glucose screening",
       "datetime": "2026-11-27T08:00:00"
     },
     {
       "id": "slot_j7",
       "provider": "Dr. Elena Ortiz",
-      "specialty": "Glucose screening",
+      "specialty": "OB-GYN",
+      "description": "Glucose screening",
       "datetime": "2026-11-29T12:00:00"
     }
   ],

@@ -3,7 +3,7 @@
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import goals, plan, users
+from routers import appointments, goals, plan, records, users
 
 app = FastAPI(title="EmCare API")
 
@@ -25,5 +25,7 @@ def health() -> dict[str, bool]:
 
 app.include_router(api)
 app.include_router(users.router, prefix="/api")
+app.include_router(records.router, prefix="/api")
+app.include_router(appointments.router, prefix="/api")
 app.include_router(goals.router, prefix="/api")
 app.include_router(plan.router, prefix="/api")
