@@ -72,6 +72,12 @@ def _clock(hhmm: str) -> str:
     return datetime.strptime(hhmm, "%H:%M").strftime("%-I:%M %p")
 
 
+def _day(when: datetime, today: date) -> str:
+    """'today', 'tomorrow', or 'Fri Oct 30'."""
+    delta = (when.date() - today).days
+    return "today" if delta == 0 else "tomorrow" if delta == 1 else f"{when:%a %b %-d}"
+
+
 def _free_window_start(calendar: dict[str, Any], today: date) -> str | None:
     """Start of the first free calendar window today, e.g. '6:30 AM'."""
     weekday = today.strftime("%a")
@@ -106,7 +112,7 @@ def _alerts(data: dict[str, Any], today: date, flagged: list[dict[str, Any]], pr
     for a in data.get("appointments", {}).get("upcoming", []):
         when = datetime.fromisoformat(a["datetime"])
         if today <= when.date() <= week_end:
-            alerts.append(Alert(type="appointment", title=f"{a['specialty']} visit {when:%a %b %-d} at {when:%-I:%M %p}",
+            alerts.append(Alert(type="appointment", title=f"{a['specialty']} visit {_day(when, today)} at {when:%-I:%M %p}",
                                 detail=a["provider"], severity="info"))
     for r in flagged:
         who = "your OB" if pregnant else "your doctor"
@@ -143,7 +149,7 @@ def _focus(data: dict[str, Any], today: date, flagged: list[dict[str, Any]], pre
     elif upcoming and datetime.fromisoformat(upcoming[0]["datetime"]).date() <= today + timedelta(days=7):
         a = upcoming[0]
         when = datetime.fromisoformat(a["datetime"])
-        items.append(FocusItem(kind="appointment", title=f"{a['specialty']} visit {when:%a %b %-d}",
+        items.append(FocusItem(kind="appointment", title=f"{a['specialty']} visit {_day(when, today)}",
                                detail=a["provider"], time=f"{when:%-I:%M %p}"))
     elif soon:
         items.append(FocusItem(kind="appointment", title=f"Book {soon['specialty'].lower()}", detail=soon["reason"], time=None))
