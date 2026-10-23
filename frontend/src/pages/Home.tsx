@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { getHome, type FocusItem, type HomeData } from '../api/client'
 import EmNoticed from '../components/EmNoticed'
 import Icon, { MoodFace } from '../components/Icon'
@@ -9,6 +9,8 @@ const FOCUS_ICON: Record<FocusItem['kind'], string> = {
   workout: 'run', nutrition: 'food', appointment: 'calendar', records: 'doc', lab: 'lab', checkin: 'chat',
 }
 const MOODS = ['Low', 'Okay', 'Good', 'Great']
+/** Pause after picking a mood so the choice shows before Em opens. */
+const MOOD_OPEN_DELAY_MS = 700
 
 /** 1-5 check-in mood to one of the 4 faces. */
 const moodLevel = (mood: number) => (mood <= 2 ? 0 : mood - 2)
@@ -31,6 +33,8 @@ export default function Home({
   const [done, setDone] = useState<Set<number>>(new Set())
   const [draft, setDraft] = useState('')
   const [now, setNow] = useState(() => new Date())
+  const [pickedMood, setPickedMood] = useState<number | null>(null)
+  const moodTimer = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     let cancelled = false
@@ -39,6 +43,7 @@ export default function Home({
         if (cancelled) return
         setHome({ persona, data })
         setDone(new Set())
+        setPickedMood(null)
         setError(null)
       })
       .catch((err: unknown) => !cancelled && setError(String(err)))
@@ -51,6 +56,8 @@ export default function Home({
     const id = window.setInterval(() => setNow(new Date()), 30_000)
     return () => window.clearInterval(id)
   }, [])
+
+  useEffect(() => () => window.clearTimeout(moodTimer.current), [])
 
   if (error) return <p className="error page-msg">Could not load Home. {error}</p>
   if (home?.persona !== persona) return <p className="muted page-msg">Loading...</p>
@@ -68,6 +75,12 @@ export default function Home({
       else next.add(i)
       return next
     })
+  const pickMood = (i: number) => {
+    setPickedMood(i)
+    window.clearTimeout(moodTimer.current)
+    moodTimer.current = window.setTimeout(() => onAsk(`I'm feeling ${MOODS[i].toLowerCase()} today.`), MOOD_OPEN_DELAY_MS)
+  }
+  const selectedMood = pickedMood ?? (d.mood != null ? moodLevel(d.mood) : null)
   const remaining = d.focus.length - done.size
   // Viewer's own clock, not the server's (Vercel runs on UTC)
   const hour = now.getHours()
@@ -79,15 +92,21 @@ export default function Home({
         <span className="pill">
           <Icon name="sun" size={14} /> {daypart} · {now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
         </span>
-        {d.mood != null && (
-          <span className="pill moods" role="img" aria-label={`Latest check-in mood: ${MOODS[moodLevel(d.mood)]}`}>
-            {MOODS.map((label, i) => (
-              <span key={label} className={`mood ${i === moodLevel(d.mood!) ? 'on' : ''}`} title={label}>
-                <MoodFace level={i} />
-              </span>
-            ))}
-          </span>
-        )}
+        <span className="pill moods" role="group" aria-label="How are you feeling? Tap to check in with Em">
+          {MOODS.map((label, i) => (
+            <button
+              key={label}
+              type="button"
+              className={`mood mood-${i} ${i === selectedMood ? 'on' : ''}`}
+              title={label}
+              aria-label={`Feeling ${label.toLowerCase()}, check in with Em`}
+              aria-pressed={i === selectedMood}
+              onClick={() => pickMood(i)}
+            >
+              <MoodFace level={i} />
+            </button>
+          ))}
+        </span>
         {d.readiness && (
           <span className="pill">
             Readiness {d.readiness.score} · <span className="accent-text">{d.readiness.label}</span>
