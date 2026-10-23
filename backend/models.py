@@ -372,3 +372,108 @@ class LogCheckinArgs(BaseModel):
     symptoms: list[str] = []
     em_reply: str
     insight: str | None = None
+
+
+# ---------- Coverage ----------
+
+class InsurancePlan(BaseModel):
+    """The persona's health plan through her employer."""
+    insurer: str
+    name: str
+    type: str
+    employer: str
+    member_id: str
+    group_number: str
+    plan_year: int
+    resets_on: date
+    covers: list[str]
+    medical: bool
+    dental: bool
+    vision: bool
+
+
+class VisitCost(BaseModel):
+    """Estimated out-of-pocket cost for one upcoming appointment."""
+    appointment_id: str
+    title: str
+    specialty: str
+    provider: str
+    for_person: str
+    for_name: str | None
+    datetime: datetime
+    cost: float | None
+    cost_label: str
+    plan: Literal["medical", "dental", "vision"] | None
+    in_network: bool
+    pay_with: Literal["FSA", "HSA"] | None
+
+
+class CoverageTip(BaseModel):
+    """A short money-saving or heads-up note."""
+    title: str
+    text: str
+
+
+class SpendCategory(BaseModel):
+    """Out-of-pocket spend for one category this plan year."""
+    category: Literal["copay", "deductible", "coinsurance", "prescription"]
+    label: str
+    amount: float
+
+
+class YearTotal(BaseModel):
+    """Out-of-pocket total for one year."""
+    year: int
+    total: float
+
+
+class Progress(BaseModel):
+    """How much of a limit is used."""
+    used: float
+    limit: float
+
+
+class Spending(BaseModel):
+    """What she has paid out of pocket, by category and by year."""
+    year: int
+    total: float
+    by_category: list[SpendCategory]
+    by_year: list[YearTotal]
+    premiums: float
+    deductible: Progress
+    out_of_pocket: Progress
+
+
+class BenefitAccount(BaseModel):
+    """An FSA or HSA."""
+    type: Literal["health_fsa", "dependent_care_fsa", "hsa"]
+    name: str
+    balance: float
+    elected: float | None = None
+    spent: float | None = None
+    use_by: date | None = None
+    grace_until: date | None = None
+    contributed_you: float | None = None
+    contributed_employer: float | None = None
+    annual_limit: float | None = None
+    note: str
+
+
+class EmployerBenefit(BaseModel):
+    """A perk offered through her employer."""
+    name: str
+    detail: str
+    status: Literal["available", "in_use", "not_started", "plan_ahead"]
+    status_label: str
+
+
+class Coverage(BaseModel):
+    """GET /insurance response."""
+    plan: InsurancePlan
+    upcoming: list[VisitCost]
+    tips: list[CoverageTip]
+    spending: Spending
+    accounts: list[BenefitAccount]
+    employer_benefits: list[EmployerBenefit]
+    ask_suggestions: list[str]
+    disclaimer: str

@@ -217,6 +217,65 @@ Suggestion { title: str, description: str, reason: str, duration_min: int | null
 Cross-data patterns. `list[Insight]`, Insight { text: str, evidence: str }
 e.g. "You sleep better on days you walk 30+ minutes" / "Energy dips on heavy travel weeks".
 
+## Coverage (insurance, FSA/HSA, employer benefits)
+
+### GET /insurance
+Computed from the persona's `insurance` seed section plus her appointments and providers. No Gemini. Costs are estimates; the screen always shows `disclaimer`.
+```
+Coverage {
+  plan: InsurancePlan
+  upcoming: list[VisitCost]          # one per upcoming appointment, soonest first
+  tips: list[CoverageTip]            # up to 2, from suggested appointments (in vs out of network, free preventive care)
+  spending: Spending
+  accounts: list[BenefitAccount]     # FSA / HSA
+  employer_benefits: list[EmployerBenefit]
+  ask_suggestions: list[str]         # "Ask Em" chips
+  disclaimer: str                    # fixed text
+}
+InsurancePlan { insurer: str, name: str, type: str, employer: str, member_id: str, group_number: str, plan_year: int, resets_on: date, covers: list[str], medical: bool, dental: bool, vision: bool }
+VisitCost {
+  appointment_id: str
+  title: str                         # e.g. "Eye exam"
+  specialty: str
+  provider: str
+  for_person: str                    # "self" or family member id
+  for_name: str | null               # e.g. "Leo"
+  datetime: datetime
+  cost: float | null                 # null when no rule matches
+  cost_label: str                    # e.g. "Office visit copay", "Deductible not met yet"
+  plan: "medical" | "dental" | "vision" | null
+  in_network: bool
+  pay_with: "FSA" | "HSA" | null     # an account that can pay this cost
+}
+CoverageTip { title: str, text: str }
+Spending {
+  year: int
+  total: float                       # out of pocket this plan year
+  by_category: list[SpendCategory]   # SpendCategory { category: "copay" | "deductible" | "coinsurance" | "prescription", label: str, amount: float }
+  by_year: list[YearTotal]           # YearTotal { year: int, total: float }, newest first
+  premiums: float                    # paid from paychecks this plan year, not part of total
+  deductible: Progress               # Progress { used: float, limit: float }
+  out_of_pocket: Progress
+}
+BenefitAccount {
+  type: "health_fsa" | "dependent_care_fsa" | "hsa"
+  name: str
+  balance: float                     # left to spend (FSA) or account balance (HSA)
+  elected: float | null              # FSA yearly election
+  spent: float | null
+  use_by: date | null
+  grace_until: date | null
+  contributed_you: float | null      # HSA, this year
+  contributed_employer: float | null
+  annual_limit: float | null
+  note: str
+}
+EmployerBenefit { name: str, detail: str, status: "available" | "in_use" | "not_started" | "plan_ahead", status_label: str }
+```
+Cost rules: `copay` is a fixed amount, `free` is $0 (preventive), `deductible` is the allowed rate until the deductible is met, then coinsurance. Out-of-network providers use the plan's flat estimate.
+
+Em's voice agent has a `get_coverage` tool that returns this same data.
+
 ## Voice (live Em, Gemini Live API)
 
 The browser never talks to Gemini. It streams audio to our backend, which relays to Gemini Live.
