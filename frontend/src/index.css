@@ -161,8 +161,19 @@ button.avatar-btn:focus-visible { outline: 2px solid var(--accent); outline-offs
 .pill.small { padding: 4px 10px; font-size: 0.7rem; }
 .accent-text { color: var(--accent-text); }
 .moods { gap: 4px; padding: 4px 6px; }
-.mood { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: var(--muted); }
-.mood.on { background: var(--violet-soft); color: var(--violet); }
+.mood {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; padding: 0;
+  border: none; background: none; color: var(--mood-color); opacity: 0.55; cursor: pointer;
+  transition: opacity 0.15s, background 0.15s, transform 0.15s;
+}
+.mood:hover, .mood:focus-visible { opacity: 1; transform: scale(1.1); background: color-mix(in srgb, var(--mood-color) 12%, transparent); }
+.mood:focus-visible { outline: 2px solid var(--mood-color); outline-offset: 1px; }
+.mood.on { opacity: 1; background: color-mix(in srgb, var(--mood-color) 16%, transparent); }
+/* Low to Great: violet to pink */
+.mood-0 { --mood-color: var(--violet); }
+.mood-1 { --mood-color: #9459c9; }
+.mood-2 { --mood-color: #bd57b4; }
+.mood-3 { --mood-color: #e0569b; }
 .greeting { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 5vw, 2.6rem); margin: 20px 0 4px; text-align: center; letter-spacing: -0.01em; }
 .quote { font-family: var(--serif); font-style: italic; color: var(--muted); margin: 0 0 24px; text-align: center; }
 
