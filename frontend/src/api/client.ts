@@ -241,6 +241,82 @@ export function scribeVisit(id: string, audio: Blob, duration_sec: number) {
   return request<ScribeNote>(`/appointments/${id}/scribe`, { method: 'POST', body: form })
 }
 export const getScribeNotes = () => request<ScribeNote[]>('/scribe-notes')
+
+// ---------- Coverage ----------
+
+export interface InsurancePlan {
+  insurer: string
+  name: string
+  type: string
+  employer: string
+  member_id: string
+  group_number: string
+  plan_year: number
+  resets_on: string
+  covers: string[]
+  medical: boolean
+  dental: boolean
+  vision: boolean
+}
+export interface VisitCost {
+  appointment_id: string
+  title: string
+  specialty: string
+  provider: string
+  for_person: string
+  for_name: string | null
+  datetime: string
+  cost: number | null
+  cost_label: string
+  plan: 'medical' | 'dental' | 'vision' | null
+  in_network: boolean
+  pay_with: 'FSA' | 'HSA' | null
+}
+export interface CoverageTip { title: string; text: string }
+export interface SpendCategory { category: 'copay' | 'deductible' | 'coinsurance' | 'prescription'; label: string; amount: number }
+export interface YearTotal { year: number; total: number }
+export interface Progress { used: number; limit: number }
+export interface Spending {
+  year: number
+  total: number
+  by_category: SpendCategory[]
+  by_year: YearTotal[]
+  premiums: number
+  deductible: Progress
+  out_of_pocket: Progress
+}
+export interface BenefitAccount {
+  type: 'health_fsa' | 'dependent_care_fsa' | 'hsa'
+  name: string
+  balance: number
+  elected: number | null
+  spent: number | null
+  use_by: string | null
+  grace_until: string | null
+  contributed_you: number | null
+  contributed_employer: number | null
+  annual_limit: number | null
+  note: string
+}
+export interface EmployerBenefit {
+  name: string
+  detail: string
+  status: 'available' | 'in_use' | 'not_started' | 'plan_ahead'
+  status_label: string
+}
+export interface Coverage {
+  plan: InsurancePlan
+  upcoming: VisitCost[]
+  tips: CoverageTip[]
+  spending: Spending
+  accounts: BenefitAccount[]
+  employer_benefits: EmployerBenefit[]
+  ask_suggestions: string[]
+  disclaimer: string
+}
+
+export const getInsurance = () => request<Coverage>('/insurance')
+
 /** Calls Gemini on the backend for fresh suggestions; a few seconds. 503 keeps the saved ones. */
 export const refreshSuggestions = () => request<SuggestedAppointment[]>('/appointments/suggestions', { method: 'POST' })
 

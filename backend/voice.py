@@ -18,6 +18,7 @@ from config import settings
 from data import store
 from models import Appointment, CheckinResult, LogCheckinArgs, PlanDay, RecordRequest
 from prompts import EM_VOICE_PROMPT, PREGNANCY_VOICE_RULES, URGENT_ESCALATION, is_urgent
+from routers.insurance import DISCLAIMER, build_coverage, service_costs
 
 logger = logging.getLogger("emcare.voice")
 
@@ -267,6 +268,16 @@ def tool_adjust_plan_day(user_id: str, args: dict[str, Any]) -> ToolOutcome:
     return ToolOutcome({"updated": day}, f"Changed {datetime.fromisoformat(day['date']):%a %b %-d} to {day['activity']}", True)
 
 
+def tool_get_coverage(user_id: str, args: dict[str, Any]) -> ToolOutcome:
+    """Her plan, visit cost estimates, spending, FSA/HSA, and employer benefits."""
+    if store.get(user_id, "insurance", None) is None:
+        raise ToolError("No insurance on file for her.")
+    coverage = build_coverage(user_id).model_dump(mode="json", exclude={"ask_suggestions"})
+    coverage["costs_by_visit_type"] = service_costs(user_id)
+    coverage["reminder"] = f"Give estimates in plain words and say: {DISCLAIMER}"
+    return ToolOutcome(coverage, "Checked your coverage")
+
+
 ToolFn = Callable[[str, dict[str, Any]], ToolOutcome]
 
 TOOLS: dict[str, ToolFn] = {
@@ -278,6 +289,7 @@ TOOLS: dict[str, ToolFn] = {
     "get_labs": tool_get_labs,
     "get_plan": tool_get_plan,
     "adjust_plan_day": tool_adjust_plan_day,
+    "get_coverage": tool_get_coverage,
 }
 
 _SCORE = {"type": "integer", "minimum": 1, "maximum": 5}
@@ -316,6 +328,7 @@ TOOL_DECLARATIONS = [
           {"record_id": {"type": "string"}, "status": {"type": "string", "enum": ["not_requested", "requested", "received"]}},
           ["record_id", "status"]),
     _decl("get_labs", "Her lab panels and upcoming labs."),
+    _decl("get_coverage", "Her insurance: what visits cost, upcoming visit estimates, what she has paid this year and last, FSA or HSA balance, and employer benefits."),
     _decl("get_plan", "Her activity or training plan from today.", {"days": {"type": "integer", "minimum": 1, "maximum": 21}}),
     _decl("adjust_plan_day", "Replace one day of her plan, e.g. swap a tempo run for an easy run. Only after she confirms. Pregnancy-safe if pregnant.",
           {"date": {"type": "string", "description": "YYYY-MM-DD"},

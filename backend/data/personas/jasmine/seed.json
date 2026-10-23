@@ -901,5 +901,419 @@
       "urgent": false,
       "escalation_message": null
     }
-  ]
+  ],
+  "insurance": {
+    "plan": {
+      "insurer": "Willowmere Health",
+      "name": "Willowmere Family PPO",
+      "type": "PPO",
+      "employer": "Brightpath IT Services",
+      "member_id": "WMH-4471-0921",
+      "group_number": "88213",
+      "plan_year": 2026,
+      "resets_on": "2027-01-01",
+      "covered": [
+        "self",
+        "toddler"
+      ],
+      "coverage": {
+        "medical": true,
+        "dental": true,
+        "vision": true
+      },
+      "deductible": 750,
+      "out_of_pocket_max": 4000,
+      "coinsurance_pct": 20,
+      "out_of_network_estimate": 180,
+      "premiums_paid": {
+        "2025": 2592,
+        "2026": 2160
+      }
+    },
+    "cost_rules": [
+      {
+        "services": [
+          "OB-GYN"
+        ],
+        "visit_name": "Prenatal visit",
+        "plan": "medical",
+        "kind": "free",
+        "label": "Prenatal care is covered in full",
+        "preventive": true
+      },
+      {
+        "services": [
+          "Glucose screening"
+        ],
+        "visit_name": "Glucose screening",
+        "plan": "medical",
+        "kind": "free",
+        "label": "Prenatal care is covered in full",
+        "preventive": true
+      },
+      {
+        "services": [
+          "Maternal-fetal ultrasound"
+        ],
+        "visit_name": "Anatomy ultrasound",
+        "plan": "medical",
+        "kind": "free",
+        "label": "Prenatal care is covered in full",
+        "preventive": true
+      },
+      {
+        "services": [
+          "Primary care"
+        ],
+        "visit_name": "Primary care visit",
+        "plan": "medical",
+        "kind": "copay",
+        "amount": 25,
+        "label": "Office visit copay"
+      },
+      {
+        "services": [
+          "Pediatrics"
+        ],
+        "visit_name": "Pediatrician visit",
+        "plan": "medical",
+        "kind": "copay",
+        "amount": 25,
+        "label": "Office visit copay"
+      },
+      {
+        "services": [
+          "Optometry"
+        ],
+        "visit_name": "Eye exam",
+        "plan": "vision",
+        "kind": "copay",
+        "amount": 10,
+        "label": "Vision plan copay"
+      },
+      {
+        "services": [
+          "Dentistry"
+        ],
+        "visit_name": "Dental cleaning",
+        "plan": "dental",
+        "kind": "free",
+        "label": "Preventive dental is free",
+        "preventive": true
+      },
+      {
+        "services": [
+          "Lab work"
+        ],
+        "visit_name": "Lab work",
+        "plan": "medical",
+        "kind": "deductible",
+        "rate": 120,
+        "label": "Deductible applies"
+      }
+    ],
+    "claims": [
+      {
+        "date": "2026-09-11",
+        "provider": "Astoria OB-GYN Associates",
+        "service": "Prenatal lab panel",
+        "for_person": "self",
+        "category": "coinsurance",
+        "you_paid": 60,
+        "plan_paid": 240
+      },
+      {
+        "date": "2026-09-02",
+        "provider": "Queens Kids Pediatrics",
+        "service": "3 year well visit",
+        "for_person": "toddler",
+        "category": "copay",
+        "you_paid": 25,
+        "plan_paid": 160
+      },
+      {
+        "date": "2026-09-01",
+        "provider": "CVS Pharmacy",
+        "service": "Prenatal vitamins, 2 months",
+        "for_person": "self",
+        "category": "prescription",
+        "you_paid": 30,
+        "plan_paid": 20
+      },
+      {
+        "date": "2026-08-10",
+        "provider": "Astoria OB-GYN Associates",
+        "service": "Genetic screening",
+        "for_person": "self",
+        "category": "coinsurance",
+        "you_paid": 150,
+        "plan_paid": 600
+      },
+      {
+        "date": "2026-07-08",
+        "provider": "Astoria OB-GYN Associates",
+        "service": "Early pregnancy ultrasound and labs",
+        "for_person": "self",
+        "category": "deductible",
+        "you_paid": 380,
+        "plan_paid": 0
+      },
+      {
+        "date": "2026-06-09",
+        "provider": "Queens Kids Pediatrics",
+        "service": "Sick visit",
+        "for_person": "toddler",
+        "category": "copay",
+        "you_paid": 25,
+        "plan_paid": 140
+      },
+      {
+        "date": "2026-06-01",
+        "provider": "CVS Pharmacy",
+        "service": "Prenatal vitamins, 3 months",
+        "for_person": "self",
+        "category": "prescription",
+        "you_paid": 45,
+        "plan_paid": 30
+      },
+      {
+        "date": "2026-05-12",
+        "provider": "Willowmere Telehealth",
+        "service": "Video visit",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 15,
+        "plan_paid": 45
+      },
+      {
+        "date": "2026-04-22",
+        "provider": "Quest Diagnostics, Astoria",
+        "service": "Lab work",
+        "for_person": "toddler",
+        "category": "deductible",
+        "you_paid": 220,
+        "plan_paid": 0
+      },
+      {
+        "date": "2026-04-15",
+        "provider": "Astoria Family Medicine",
+        "service": "Office visit",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 25,
+        "plan_paid": 120
+      },
+      {
+        "date": "2026-04-15",
+        "provider": "CVS Pharmacy",
+        "service": "Allergy medicine",
+        "for_person": "self",
+        "category": "prescription",
+        "you_paid": 30,
+        "plan_paid": 20
+      },
+      {
+        "date": "2026-03-20",
+        "provider": "Queens Kids Pediatrics",
+        "service": "Follow-up visit",
+        "for_person": "toddler",
+        "category": "copay",
+        "you_paid": 25,
+        "plan_paid": 110
+      },
+      {
+        "date": "2026-03-06",
+        "provider": "CityMD Astoria",
+        "service": "Urgent care, ear infection",
+        "for_person": "toddler",
+        "category": "copay",
+        "you_paid": 75,
+        "plan_paid": 210
+      },
+      {
+        "date": "2026-03-06",
+        "provider": "CVS Pharmacy",
+        "service": "Antibiotic",
+        "for_person": "toddler",
+        "category": "prescription",
+        "you_paid": 10,
+        "plan_paid": 18
+      },
+      {
+        "date": "2026-02-18",
+        "provider": "Astoria Family Medicine",
+        "service": "Office visit",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 25,
+        "plan_paid": 120
+      },
+      {
+        "date": "2026-02-10",
+        "provider": "Astoria Family Dental",
+        "service": "Filling",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 50,
+        "plan_paid": 190
+      },
+      {
+        "date": "2026-01-27",
+        "provider": "Astoria Dermatology",
+        "service": "Specialist visit",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 50,
+        "plan_paid": 160
+      },
+      {
+        "date": "2026-01-14",
+        "provider": "Queens Kids Pediatrics",
+        "service": "Sick visit",
+        "for_person": "toddler",
+        "category": "copay",
+        "you_paid": 25,
+        "plan_paid": 140
+      },
+      {
+        "date": "2025-10-02",
+        "provider": "Astoria Eye Care",
+        "service": "Eye exam and glasses",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 15,
+        "plan_paid": 160
+      },
+      {
+        "date": "2025-09-15",
+        "provider": "CVS Pharmacy",
+        "service": "Allergy medicine, refills",
+        "for_person": "self",
+        "category": "prescription",
+        "you_paid": 210,
+        "plan_paid": 90
+      },
+      {
+        "date": "2025-08-12",
+        "provider": "CityMD Astoria",
+        "service": "Urgent care visits (2)",
+        "for_person": "toddler",
+        "category": "copay",
+        "you_paid": 150,
+        "plan_paid": 380
+      },
+      {
+        "date": "2025-06-24",
+        "provider": "Astoria Family Dental",
+        "service": "Crown",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 300,
+        "plan_paid": 700
+      },
+      {
+        "date": "2025-05-06",
+        "provider": "Astoria Family Medicine",
+        "service": "Office visits (3)",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 75,
+        "plan_paid": 360
+      },
+      {
+        "date": "2025-04-01",
+        "provider": "CVS Pharmacy",
+        "service": "Eczema cream, refills",
+        "for_person": "toddler",
+        "category": "prescription",
+        "you_paid": 240,
+        "plan_paid": 160
+      },
+      {
+        "date": "2025-03-18",
+        "provider": "Queens Kids Pediatrics",
+        "service": "Office visits (4)",
+        "for_person": "toddler",
+        "category": "copay",
+        "you_paid": 100,
+        "plan_paid": 480
+      },
+      {
+        "date": "2025-02-08",
+        "provider": "Queens Community Hospital",
+        "service": "Emergency room visit",
+        "for_person": "toddler",
+        "category": "deductible",
+        "you_paid": 750,
+        "plan_paid": 0
+      },
+      {
+        "date": "2025-02-08",
+        "provider": "Queens Community Hospital",
+        "service": "Emergency room visit",
+        "for_person": "toddler",
+        "category": "coinsurance",
+        "you_paid": 1100,
+        "plan_paid": 4400
+      }
+    ],
+    "accounts": [
+      {
+        "type": "health_fsa",
+        "name": "Health FSA",
+        "elected": 2000,
+        "spent": 1140,
+        "use_by": "2026-12-31",
+        "grace_until": "2027-03-15",
+        "note": "Use by Dec 31. You have until Mar 15 to spend what is left."
+      },
+      {
+        "type": "dependent_care_fsa",
+        "name": "Dependent care FSA",
+        "elected": 5000,
+        "spent": 2900,
+        "use_by": "2026-12-31",
+        "note": "Pays for Leo's daycare at Little Oaks."
+      }
+    ],
+    "employer_benefits": [
+      {
+        "name": "Paid parental leave",
+        "detail": "12 weeks at full pay",
+        "status": "plan_ahead",
+        "status_text": "Plan with HR"
+      },
+      {
+        "name": "Doula support",
+        "detail": "Up to $1,500 back",
+        "status": "available"
+      },
+      {
+        "name": "Breast pump",
+        "detail": "Covered 100% by your plan",
+        "status": "available"
+      },
+      {
+        "name": "Free counseling",
+        "detail": "6 sessions a year, private",
+        "status": "in_use",
+        "used": 0,
+        "limit": 6,
+        "unit": "sessions"
+      },
+      {
+        "name": "Backup childcare",
+        "detail": "10 days a year",
+        "status": "in_use",
+        "used": 2,
+        "limit": 10,
+        "unit": "days"
+      }
+    ],
+    "ask_suggestions": [
+      "Is my glucose screening covered?",
+      "How much FSA do I have left?",
+      "Which pediatricians are in network?"
+    ]
+  }
 }
