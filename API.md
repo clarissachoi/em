@@ -85,7 +85,7 @@ SuggestedAppointment { specialty: str, reason: str, urgency: "soon" | "routine" 
 `list[Provider]`, Provider { id: str, name: str, specialty: str, distance_mi: float, in_network: bool, rating: float }
 
 ### GET /appointments/slots?specialty=...
-`list[Slot]`, Slot { id: str, provider: str, specialty: str, datetime: datetime }. Prefer slots that fit the user's free calendar windows.
+`list[Slot]`, Slot { id: str, provider: str, specialty: str, datetime: datetime, description: str | null } (description is the visit type, e.g. "Glucose screening", null for a general visit). Prefer slots that fit the user's free calendar windows.
 
 ### POST /appointments/book
 Body `{ slot_id: str, for_person: str = "self" }` returns `Appointment`.
