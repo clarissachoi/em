@@ -5,6 +5,7 @@ import PersonaProvider from './components/PersonaProvider'
 import PersonaSwitcher from './components/PersonaSwitcher'
 import VoicePanel from './components/VoicePanel'
 import { usePersona } from './hooks/usePersona'
+import CalendarMenu from './components/CalendarMenu'
 import AppointmentsDebug from './pages/AppointmentsDebug'
 import CareHub from './pages/CareHub'
 import Coverage from './pages/Coverage'
@@ -94,6 +95,7 @@ function Shell() {
           </a>
         </nav>
         <div className="profile-chip">
+          <CalendarMenu />
           <PersonaSwitcher />
           <DataMenu />
         </div>
