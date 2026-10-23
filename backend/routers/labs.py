@@ -29,14 +29,21 @@ def _visible_panels(user_id: str) -> list[dict[str, Any]]:
 
 
 def _context(user_id: str, panel: dict[str, Any]) -> dict[str, Any]:
-    """The slice of persona data Gemini needs to personalize a lab explanation. Never the whole seed."""
+    """The slice of persona data Gemini needs to personalize a lab explanation, including routine and history
+    that can be linked to out-of-range markers. Never the whole seed."""
     data = store.get_user(user_id)
     profile = data["profile"]
     goals = data.get("goals", {})
     context = {
-        "profile": {k: profile.get(k) for k in ("name", "age", "life_stage", "pregnancy", "primary_goal")},
-        "goals": {k: goals.get(k) for k in ("focus_areas", "activity_level", "target_date")},
+        "profile": {k: profile.get(k) for k in ("name", "age", "life_stage", "pregnancy", "primary_goal", "prior_pregnancies")},
+        "goals": {k: goals.get(k) for k in ("focus_areas", "activity_level", "target_date", "dietary_prefs", "notes")},
         "panel": panel,
+        "cycle": {k: v for k, v in (data.get("cycle") or {}).items() if k in ("cycle_day", "phase", "avg_cycle_length")},
+        "training_this_week": [d["activity"] for d in data.get("plan", [])[:7]],
+        "travel": [
+            {k: e.get(k) for k in ("title", "start", "end")}
+            for e in data.get("calendar", {}).get("events", []) if e.get("type") == "travel"
+        ],
         "recent_runs": [
             {k: r.get(k) for k in ("date", "name", "distance_mi", "perceived_effort", "felt", "note")}
             for r in data.get("strava_runs", [])[-4:]
