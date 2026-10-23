@@ -107,3 +107,29 @@ export const putVoiceSettings = (settings: VoiceSettings) =>
 /** WebSocket URL for live voice. Persona goes in the query since sockets cannot send headers. */
 export const voiceSocketUrl = () => `${BASE.replace(/^http/, 'ws')}/voice?user_id=${encodeURIComponent(currentUserId)}`
 export const urgentAudioUrl = `${BASE}/voice/urgent-audio`
+
+// ---------- Labs ----------
+
+export interface LabResult {
+  marker: string
+  value: number
+  unit: string
+  ref_low: number | null
+  ref_high: number | null
+  flag: 'low' | 'normal' | 'high'
+}
+export interface LabPanel { id: string; date: string; source: string; results: LabResult[] }
+export interface LabsResponse { panels: LabPanel[]; upcoming: string[] }
+export interface LabFlag { marker: string; meaning: string; why_it_matters_for_you: string }
+export interface LabExplanation {
+  plain_summary: string
+  flags: LabFlag[]
+  plan_changes: string[]
+  follow_up: string | null
+  disclaimer: string
+}
+
+export const getLabs = () => request<LabsResponse>('/labs')
+/** Calls Gemini on the backend; takes a few seconds the first time per panel. */
+export const explainLabs = (panel_id: string) =>
+  request<LabExplanation>('/labs/explain', { method: 'POST', body: JSON.stringify({ panel_id }) })

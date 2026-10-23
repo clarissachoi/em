@@ -116,6 +116,53 @@ class RecordStatusUpdate(BaseModel):
     status: Literal["not_requested", "requested", "received"]
 
 
+# ---------- Labs ----------
+
+class LabResult(BaseModel):
+    """One marker in a lab panel."""
+    marker: str
+    value: float
+    unit: str
+    ref_low: float | None
+    ref_high: float | None
+    flag: Literal["low", "normal", "high"]
+
+
+class LabPanel(BaseModel):
+    """A set of lab results from one draw."""
+    id: str
+    date: date
+    source: str
+    results: list[LabResult]
+
+
+class LabsResponse(BaseModel):
+    """Response for GET /labs."""
+    panels: list[LabPanel]
+    upcoming: list[str]
+
+
+class LabExplainRequest(BaseModel):
+    """Body for POST /labs/explain."""
+    panel_id: str
+
+
+class LabFlag(BaseModel):
+    """Plain-language meaning of one flagged marker."""
+    marker: str
+    meaning: str
+    why_it_matters_for_you: str
+
+
+class LabExplanation(BaseModel):
+    """Plain-language lab explanation. The disclaimer always says to review with her doctor."""
+    plain_summary: str
+    flags: list[LabFlag]
+    plan_changes: list[str]
+    follow_up: str | None
+    disclaimer: str
+
+
 # ---------- Home ----------
 
 class CheckinResult(BaseModel):
