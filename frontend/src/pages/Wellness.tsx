@@ -8,9 +8,8 @@ type Load<T> = { persona: string; data?: T; error?: string }
 const SECTIONS: { key: string; title: string; blurb: string; parts: (keyof Omit<Suggestions, 'headline'>)[] }[] = [
   { key: 'move', title: 'Move & Recover', blurb: 'Gentle on your body, built around your week.', parts: ['workouts', 'classes'] },
   { key: 'eat', title: 'Eat Well', blurb: 'Food first. Simple meals that fit your day.', parts: ['nutrition'] },
-  { key: 'rest', title: 'Rest', blurb: 'Small habits for better nights.', parts: ['sleep'] },
 ]
-const ICON: Record<string, string> = { workouts: 'run', classes: 'lotus', nutrition: 'food', sleep: 'moon' }
+const ICON: Record<string, string> = { workouts: 'run', classes: 'lotus', nutrition: 'food' }
 
 /** Fetch for the current persona; results from a previous persona read as loading. */
 function usePersonaLoad<T>(fn: () => Promise<T>, persona: string, attempt: number): Load<T> | null {
@@ -32,19 +31,24 @@ function usePersonaLoad<T>(fn: () => Promise<T>, persona: string, attempt: numbe
 /** One suggestion card. */
 function Card({ s, part, added, onAdd, onAsk }: { s: Suggestion; part: string; added: boolean; onAdd: () => void; onAsk: () => void }) {
   return (
-    <article className={`well-card ${part}`}>
-      <div className="well-art">
+    <article className={`well-card ${part} ${s.source}`}>
+      <div className={`well-art ${s.image ? 'photo' : ''}`}>
+        {s.image ? <img src={s.image} alt="" loading="lazy" /> : <Icon name={ICON[part]} size={40} />}
         <span className="well-tag">{s.tag}</span>
-        <Icon name={ICON[part]} size={40} />
         {s.duration_min != null && (
           <span className="well-dur"><Icon name="clock" size={12} /> {s.duration_min} min</span>
         )}
       </div>
       <div className="well-body">
-        {s.where && <span className="well-where"><Icon name="pin" size={12} /> {s.where}</span>}
+        {s.where && (
+          <span className="well-where">
+            <Icon name="pin" size={12} /> {s.distance_mi != null && `${s.distance_mi} mi · `}{s.where}
+          </span>
+        )}
+        {s.near_tag && <span className="near-tag"><Icon name="pin" size={11} /> {s.near_tag}</span>}
         <h3>{s.title}</h3>
         <p className="well-desc">{s.description}</p>
-        <p className="well-why"><strong>Why for you:</strong> {s.reason}</p>
+        <p className="well-why"><strong>{s.source === 'doctor' ? 'From your doctor:' : 'Why for you:'}</strong> {s.reason}</p>
       </div>
       <footer className="well-foot">
         <div>
@@ -54,7 +58,8 @@ function Card({ s, part, added, onAdd, onAsk }: { s: Suggestion; part: string; a
         <div className="well-actions">
           <button className="tag" onClick={onAsk}>Ask Em</button>
           <button className={`btn-dark small ${added ? 'added' : ''}`} onClick={onAdd} aria-pressed={added}>
-            {added ? 'Added' : 'Add to my day'} <Icon name={added ? 'check' : 'plus'} size={14} />
+            {s.source === 'doctor' ? (added ? 'Taken today' : 'Mark taken') : added ? 'Added' : 'Add to my day'}{' '}
+            <Icon name={added ? 'check' : 'plus'} size={14} />
           </button>
         </div>
       </footer>
@@ -62,7 +67,7 @@ function Card({ s, part, added, onAdd, onAsk }: { s: Suggestion; part: string; a
   )
 }
 
-/** em.well: personalized move, eat, and rest ideas, plus a pattern Em noticed. */
+/** em.well: personalized move and eat ideas, plus a pattern Em noticed. */
 export default function Wellness({ onAsk }: { onAsk: (prompt?: string) => void }) {
   const { persona } = usePersona()
   const [attempt, setAttempt] = useState(0)
@@ -85,7 +90,7 @@ export default function Wellness({ onAsk }: { onAsk: (prompt?: string) => void }
         <div>
           <span className="pill small eyebrow-pill"><span className="dot coral" aria-hidden /> em.well · next steps</span>
           <h1 className="well-title">em.well</h1>
-          <p className="well-sub">Ideas to move, eat, and rest well this week, shaped by your own data.</p>
+          <p className="well-sub">Ideas to move and eat well this week, shaped by your own data.</p>
         </div>
         <div className="well-focus glass">
           <span className="eyebrow">Your focus</span>
@@ -118,7 +123,13 @@ export default function Wellness({ onAsk }: { onAsk: (prompt?: string) => void }
                       part={part}
                       added={added.has(s.title)}
                       onAdd={() => toggle(s.title)}
-                      onAsk={() => onAsk(`Tell me more about "${s.title}". Is it a good fit for me this week?`)}
+                      onAsk={() =>
+                        onAsk(
+                          s.source === 'doctor'
+                            ? `Can you remind me what my doctor said about "${s.title}"?`
+                            : `Tell me more about "${s.title}". Is it a good fit for me this week?`,
+                        )
+                      }
                     />
                   ))}
             </div>

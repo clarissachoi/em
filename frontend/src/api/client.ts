@@ -192,6 +192,11 @@ export interface Suggestion {
   tag: string
   when: string | null
   where: string | null
+  image: string | null
+  distance_mi: number | null
+  near_tag: string | null
+  /** 'doctor' = her clinician's instruction (e.g. prescribed iron), not Em's idea */
+  source: 'em' | 'doctor'
 }
 export interface Suggestions {
   headline: string
