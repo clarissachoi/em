@@ -19,7 +19,7 @@ function initials(name: string) {
 }
 
 /** Home dashboard matching the "Mock screen" design. onAsk opens Em with an optional question. */
-export default function Home({ onAsk }: { onAsk: (prompt?: string) => void }) {
+export default function Home({ onAsk, onOpenWellness }: { onAsk: (prompt?: string) => void; onOpenWellness: () => void }) {
   const { persona } = usePersona()
   const [home, setHome] = useState<{ persona: string; data: HomeData } | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -180,8 +180,8 @@ export default function Home({ onAsk }: { onAsk: (prompt?: string) => void }) {
       <nav className="shortcuts" aria-label="Other sections">
         <span className="shortcut" aria-disabled title="Coming soon"><Icon name="chat" /> Doctor Buddy</span>
         <span className="divider" aria-hidden />
-        <span className="shortcut" aria-disabled title="Coming soon"><Icon name="globe" /> Whole-Body Synthesis</span>
-        <button className="ask-send coral" onClick={() => onAsk()} aria-label="Talk to Em"><Icon name="arrow" size={16} /></button>
+        <button className="shortcut link" onClick={onOpenWellness}><Icon name="globe" /> em.well</button>
+        <button className="ask-send coral" onClick={onOpenWellness} aria-label="Open em.well"><Icon name="arrow" size={16} /></button>
       </nav>
     </div>
   )

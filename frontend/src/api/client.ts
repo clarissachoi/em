@@ -181,3 +181,27 @@ export interface HomeData {
 }
 
 export const getHome = () => request<HomeData>('/home')
+
+// ---------- em.well ----------
+
+export interface Suggestion {
+  title: string
+  description: string
+  reason: string
+  duration_min: number | null
+  tag: string
+  when: string | null
+  where: string | null
+}
+export interface Suggestions {
+  headline: string
+  nutrition: Suggestion[]
+  workouts: Suggestion[]
+  classes: Suggestion[]
+  sleep: Suggestion[]
+}
+export interface Insight { text: string; evidence: string }
+
+/** Calls Gemini on the backend; about 10 seconds the first time, cached after. */
+export const getSuggestions = () => request<Suggestions>('/suggestions')
+export const getInsights = () => request<Insight[]>('/insights')
