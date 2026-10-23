@@ -133,7 +133,7 @@ def _focus(data: dict[str, Any], today: date, flagged: list[dict[str, Any]], pre
     low_iron = any(r["marker"].lower() in IRON_MARKERS and r["flag"] == "low" for r in flagged)
     if low_iron:
         items.append(FocusItem(kind="nutrition", title="Iron-rich lunch",
-                               detail="Pair with vitamin C, keep coffee 2 hours away", time="12:30 PM"))
+                               detail="Pair with vitamin C, skip coffee or tea with it", time="12:30 PM"))
     elif pregnant:
         items.append(FocusItem(kind="nutrition", title="Protein and iron-rich snack",
                                detail="Greek yogurt with berries, or hummus and veggies", time="3:00 PM"))
@@ -160,11 +160,28 @@ def _focus(data: dict[str, Any], today: date, flagged: list[dict[str, Any]], pre
     return items
 
 
-def _care_note(data: dict[str, Any], flagged: list[dict[str, Any]], pregnant: bool) -> CareNote | None:
-    """Latest clinician visit summary; if the latest visit was only a lab draw, Em's note on a flagged result."""
+def recent_doctor_note(data: dict[str, Any], today: date, days: int = 120) -> dict[str, Any] | None:
+    """Newest visit in the last `days` with a doctor's note or (non-lab) visit summary. Older visits are stale."""
+    since = (today - timedelta(days=days)).isoformat()
     past = sorted(data.get("appointments", {}).get("past", []), key=lambda a: a["datetime"], reverse=True)
-    visit = next((a for a in past if a.get("visit_summary") and a.get("specialty") != "Lab work"), None)
-    if visit:
+    return next(
+        (a for a in past if a["datetime"] >= since and (a.get("doctor_notes") or (a.get("visit_summary") and a.get("specialty") != "Lab work"))),
+        None,
+    )
+
+
+ADMIN_PLAN = ("book", "call", "recheck", "discuss", "schedule")
+
+
+def _care_note(data: dict[str, Any], today: date, flagged: list[dict[str, Any]], pregnant: bool) -> CareNote | None:
+    """A line from her doctor's recent plan, else the recent visit summary, else Em's note on a flagged lab."""
+    visit = recent_doctor_note(data, today)
+    if visit and visit.get("doctor_notes"):
+        notes = visit["doctor_notes"]
+        line = next((p for p in notes.get("plan", []) if not p.lower().startswith(ADMIN_PLAN)), None)
+        if line:
+            return CareNote(author=notes["author"].split(",")[0], text=line, source="visit")
+    if visit and visit.get("visit_summary"):
         return CareNote(author=visit["provider"], text=visit["visit_summary"]["summary"], source="visit")
     if flagged:
         r = flagged[0]
@@ -243,6 +260,6 @@ def get_home(user_id: str = Depends(get_user_id)) -> HomeData:
         focus=focus,
         trend=trend,
         metrics=metrics,
-        care_note=_care_note(data, flagged, pregnant),
+        care_note=_care_note(data, today, flagged, pregnant),
         ask_suggestions=_ask_suggestions(data, flagged, pregnant),
     )

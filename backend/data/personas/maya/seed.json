@@ -791,25 +791,6 @@
             "Return for annual physical in 12 months"
           ]
         }
-      },
-      {
-        "id": "maya_appt_sportsmed_review",
-        "for_person": "self",
-        "provider": "Dr. Lauren Becker",
-        "specialty": "Sports medicine",
-        "datetime": "2026-10-21T07:30:00",
-        "location": "Telehealth",
-        "status": "completed",
-        "prep_questions": [],
-        "visit_summary": {
-          "summary": "Ferritin is low for a distance runner. Start gentle iron each morning and keep tempo runs paused while iron rebuilds.",
-          "action_items": [
-            "Take iron bisglycinate 28 mg each morning, 2 hours apart from coffee or tea",
-            "Pause tempo runs for 2 weeks, keep easy runs",
-            "Recheck ferritin in 8 weeks"
-          ],
-          "follow_up": "Recheck ferritin in 8 weeks"
-        }
       }
     ],
     "suggested": [
@@ -1008,16 +989,6 @@
       "escalation_message": null
     }
   ],
-  "medications": [
-    {
-      "name": "Iron bisglycinate",
-      "dose": "28 mg",
-      "schedule": "1 capsule every morning",
-      "timing": "2 hours apart from coffee or tea",
-      "prescribed_by": "Dr. Lauren Becker",
-      "started": "2026-10-22"
-    }
-  ],
   "wellness_cards": [
     {
       "id": "kensho",
@@ -1098,16 +1069,17 @@
       "id": "iron",
       "section": "nutrition",
       "source": "doctor",
-      "title": "Gentle Iron Bisglycinate (28mg)",
-      "description": "1 capsule each morning, 2 hours apart from coffee or tea, as recommended by Dr. Lauren Becker.",
+      "title": null,
+      "description": null,
       "tag": "From your doctor",
       "image": "/wellness/iron.png",
       "where": null,
       "distance_mi": null,
       "distance_from": null,
       "duration_min": null,
-      "when": "Every morning · 9:30 AM",
-      "default_reason": "Dr. Becker recommended this after your ferritin came back low. Recheck in 8 weeks."
+      "when": "Every morning",
+      "default_reason": null,
+      "requires_medication": "iron"
     }
   ]
 }

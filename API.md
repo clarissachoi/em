@@ -62,7 +62,7 @@ HomeData {
   focus: list[FocusItem]       # "Today's Focus"
   trend: list[TrendPoint]      # last 7 days of readiness, oldest first
   metrics: list[Metric]        # 3 tiles under the trend chart
-  care_note: CareNote | null   # latest visit summary, or Em's note on a flagged lab
+  care_note: CareNote | null   # a line from her doctor's plan in the last 120 days, else that visit's summary, else Em's note on a flagged lab
   ask_suggestions: list[str]   # short questions for the "Ask Em" chips
 }
 FocusItem { kind: "workout" | "nutrition" | "appointment" | "records" | "lab" | "checkin", title: str, detail: str, time: str | null }
@@ -227,6 +227,7 @@ Suggestion {
 }
 ```
 If the persona's seed has `wellness_cards` (curated titles, venues, images), those are used and Gemini only writes each `reason`. Otherwise Gemini suggests the cards.
+A curated card with `requires_medication` (e.g. Maya's iron card) only appears once her seed has a matching `medications` entry from her doctor, and its title and copy come from that entry.
 Pregnancy-safe for Jasmine and no supplements are enforced in code as well as in the prompt for anything Em suggests (unsafe items are dropped). Only `source: "doctor"` cards can mention a supplement.
 
 ### GET /insights

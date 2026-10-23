@@ -18,6 +18,7 @@ from data import store
 from deps import get_user_id
 from models import CardReasons, Suggestion, SuggestionDraft, SuggestionIdea, Suggestions
 from prompts import EM_SYSTEM_PROMPT, WELLNESS_PREGNANCY_RULES, WELLNESS_PROMPT, WELLNESS_REASONS_PROMPT
+from routers.home import recent_doctor_note
 from routers.labs import _visible_panels
 
 router = APIRouter(tags=["next steps"])
@@ -72,8 +73,8 @@ def _context(data: dict[str, Any], today: date) -> dict[str, Any]:
     profile, goals = data["profile"], data.get("goals", {})
     week_end = (today + timedelta(days=7)).isoformat()
     panels = sorted(_visible_panels(profile["id"]), key=lambda p: p["date"], reverse=True)
-    past = sorted(data.get("appointments", {}).get("past", []), key=lambda a: a["datetime"], reverse=True)
-    last_visit = next((a for a in past if a.get("visit_summary") and a.get("specialty") != "Lab work"), None)
+    visit = recent_doctor_note(data, today)
+    notes = (visit or {}).get("doctor_notes")
     context = {
         "today": f"{today:%A} {today.isoformat()}",
         "profile": {k: profile.get(k) for k in ("name", "age", "life_stage", "primary_goal", "prior_pregnancies")},
@@ -82,7 +83,8 @@ def _context(data: dict[str, Any], today: date) -> dict[str, Any]:
         "out_of_range_labs": [
             {k: r[k] for k in ("marker", "value", "unit", "flag")} for r in (panels[0]["results"] if panels else []) if r["flag"] != "normal"
         ],
-        "latest_doctor_visit": {"provider": last_visit["provider"], **last_visit["visit_summary"]} if last_visit else None,
+        "latest_doctor_note": {k: notes.get(k) for k in ("author", "written_on", "assessment", "plan")} if notes else None,
+        "medications_from_her_doctor": data.get("medications"),
         "recent_checkins": [
             {k: c.get(k) for k in ("created_at", "transcript", "energy", "stress", "sleep_quality", "symptoms")}
             for c in data.get("checkins", [])[-3:]
@@ -147,6 +149,21 @@ def _clean(items: list[SuggestionIdea], pregnant: bool, section: str) -> list[Su
     return kept
 
 
+def _medication_card(card: dict[str, Any], medications: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """Fill a doctor card from the matching medication record. None until her doctor has actually recommended it."""
+    med = next((m for m in medications if card["requires_medication"].lower() in m.get("name", "").lower()), None)
+    if med is None:
+        return None
+    by = med.get("prescribed_by", "your doctor")
+    return {
+        **card,
+        "title": f"{med['name']} ({med['dose']})" if med.get("dose") else med["name"],
+        "description": ", ".join(x for x in (med.get("schedule"), med.get("timing")) if x) + f", as recommended by {by}.",
+        "default_reason": f"Recommended by {by}. Ask them before changing how you take it.",
+        "when": med.get("when") or card.get("when"),
+    }
+
+
 async def _curated(data: dict[str, Any], today: date, context: dict[str, Any], pregnant: bool) -> dict[str, list[Suggestion]]:
     """Curated cards from the seed. Gemini writes reasons for Em's cards; doctor cards keep fixed copy."""
     cards = data["wellness_cards"]
@@ -169,6 +186,10 @@ async def _curated(data: dict[str, Any], today: date, context: dict[str, Any], p
     events = data.get("calendar", {}).get("events", [])
     out: dict[str, list[Suggestion]] = {s: [] for s in SECTIONS}
     for c in cards:
+        if c.get("requires_medication"):
+            c = _medication_card(c, data.get("medications") or [])
+            if c is None:
+                continue
         if c.get("source") != "doctor":
             text = f"{c['title']} {c['description']}"
             if _unsafe(text, SUPPLEMENT) or (pregnant and _unsafe(text, PREGNANCY_UNSAFE)):
