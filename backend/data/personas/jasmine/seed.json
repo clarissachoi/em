@@ -312,6 +312,22 @@
         "end": "2026-10-30T13:15:00",
         "location": "Westchester Women's Health",
         "detail": null
+      },
+      {
+        "title": "New patient visit, Dr. Samuel Brooks",
+        "type": "appointment",
+        "start": "2026-10-23T17:15:00",
+        "end": "2026-10-23T18:00:00",
+        "location": "Maple Avenue Family Medicine",
+        "detail": null
+      },
+      {
+        "title": "Eye exam, Dr. Rosa Mendez",
+        "type": "appointment",
+        "start": "2026-11-21T09:30:00",
+        "end": "2026-11-21T10:15:00",
+        "location": "White Plains Eye Associates",
+        "detail": null
       }
     ],
     "free_windows": [
@@ -516,12 +532,34 @@
   "appointments": {
     "upcoming": [
       {
+        "id": "jas_appt_pcp_intro",
+        "for_person": "self",
+        "provider": "Dr. Samuel Brooks",
+        "specialty": "Primary care",
+        "datetime": "2026-10-23T17:15:00",
+        "location": "Maple Avenue Family Medicine, 48 Maple Ave, White Plains, NY",
+        "status": "upcoming",
+        "prep_questions": [],
+        "visit_summary": null
+      },
+      {
         "id": "jas_appt_ob_first",
         "for_person": "self",
         "provider": "Dr. Elena Ortiz",
         "specialty": "OB-GYN",
         "datetime": "2026-10-30T12:15:00",
         "location": "Westchester Women's Health, 210 Westchester Ave, White Plains, NY",
+        "status": "upcoming",
+        "prep_questions": [],
+        "visit_summary": null
+      },
+      {
+        "id": "jas_appt_eye",
+        "for_person": "self",
+        "provider": "Dr. Rosa Mendez",
+        "specialty": "Optometry",
+        "datetime": "2026-11-21T09:30:00",
+        "location": "White Plains Eye Associates, 12 Mamaroneck Ave, White Plains, NY",
         "status": "upcoming",
         "prep_questions": [],
         "visit_summary": null

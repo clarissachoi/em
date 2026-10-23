@@ -86,12 +86,17 @@ async def generate_structured(
     parts: list[types.Part] | None = None,
     *,
     system_instruction: str | None = None,
+    thinking_level: str | None = None,
 ) -> T:
-    """Generate JSON parsed into the given Pydantic schema. Extra parts (audio, PDF) go before the prompt."""
+    """Generate JSON parsed into the given Pydantic schema. Extra parts (audio, PDF) go before the prompt.
+
+    Pass thinking_level="low" for faster replies on simple tasks (about 4s instead of 15s).
+    """
     config = types.GenerateContentConfig(
         system_instruction=system_instruction,
         response_mime_type="application/json",
         response_schema=schema,
+        thinking_config=types.ThinkingConfig(thinking_level=thinking_level) if thinking_level else None,
     )
     resp = await _generate([*(parts or []), prompt], config)
     if resp.parsed is None:

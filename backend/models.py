@@ -98,6 +98,17 @@ class Slot(BaseModel):
     description: str | None = None
 
 
+class BookRequest(BaseModel):
+    """Body for POST /appointments/book."""
+    slot_id: str
+    for_person: str = "self"
+
+
+class SuggestedAppointmentList(BaseModel):
+    """Gemini response schema for POST /appointments/suggestions."""
+    suggested: list[SuggestedAppointment]
+
+
 # ---------- Records ----------
 
 class RecordRequest(BaseModel):

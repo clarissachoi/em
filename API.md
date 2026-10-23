@@ -99,7 +99,10 @@ SuggestedAppointment { specialty: str, reason: str, urgency: "soon" | "routine" 
 `list[Slot]`, Slot { id: str, provider: str, specialty: str, datetime: datetime, description: str | null } (description is the visit type, e.g. "Glucose screening", null for a general visit). Prefer slots that fit the user's free calendar windows.
 
 ### POST /appointments/book
-Body `{ slot_id: str, for_person: str = "self" }` returns `Appointment`.
+Body `{ slot_id: str, for_person: str = "self" }` returns `Appointment`. Removes the slot, drops suggestions for that specialty, and ticks the care checklist. 404 if the slot id is unknown.
+
+### POST /appointments/suggestions
+Asks Gemini for fresh suggestions from the profile, care team, appointments, providers, open slots, and records. Never suggests a specialty that already has an upcoming appointment. Saves and returns `list[SuggestedAppointment]`; `GET /appointments` returns the saved list after that. 503 if Gemini fails (saved suggestions are kept).
 
 ### POST /appointments/{id}/prep
 "Come with me" before the visit. Questions from recent check-ins, labs, and missing records. Returns `Appointment`.

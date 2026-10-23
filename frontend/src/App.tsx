@@ -4,6 +4,7 @@ import PersonaProvider from './components/PersonaProvider'
 import PersonaSwitcher from './components/PersonaSwitcher'
 import VoicePanel from './components/VoicePanel'
 import { usePersona } from './hooks/usePersona'
+import AppointmentsDebug from './pages/AppointmentsDebug'
 import Home from './pages/Home'
 
 /** Slide-over drawer holding the live Em voice panel. */
@@ -34,6 +35,7 @@ function EmDrawer({ open, prompt, session, onClose }: { open: boolean; prompt?: 
 /** App shell: header with nav and persona switcher, the page, Em drawer, footer. */
 function Shell() {
   const [em, setEm] = useState<{ open: boolean; prompt?: string; session: number }>({ open: false, session: 0 })
+  const [page, setPage] = useState<'home' | 'appointments-debug'>('home')
   const openEm = (prompt?: string) => setEm((s) => ({ open: true, prompt, session: s.session + 1 }))
   const closeEm = () => setEm((s) => ({ ...s, open: false }))
 
@@ -42,7 +44,17 @@ function Shell() {
       <header className="topbar">
         <span className="logo">EmCare</span>
         <nav className="tabs" aria-label="Main">
-          <a className="tab active" aria-current="page" href="/">Home</a>
+          <a
+            className={`tab ${page === 'home' ? 'active' : ''}`}
+            aria-current={page === 'home' ? 'page' : undefined}
+            href="/"
+            onClick={(e) => {
+              e.preventDefault()
+              setPage('home')
+            }}
+          >
+            Home
+          </a>
           <span className="tab" aria-disabled title="Coming soon">Doctor Buddy</span>
           <span className="tab" aria-disabled title="Coming soon">Wellness Synthesis</span>
         </nav>
@@ -53,12 +65,16 @@ function Shell() {
       </header>
 
       <main className="page">
-        <Home onAsk={openEm} />
+        {page === 'home' ? <Home onAsk={openEm} /> : <AppointmentsDebug />}
       </main>
 
       <footer className="site-footer">
         <span><span className="logo small">EmCare</span> · Mindful Clinical Synthesis</span>
-        <span>© 2026 EmCare Health. Ethereal, compassionate care.</span>
+        <span>
+          {/* Temporary: the appointments test page stays reachable until it has a real screen */}
+          <button className="link-btn" onClick={() => setPage('appointments-debug')}>Appointments (test)</button>
+          {' · '}© 2026 EmCare Health. Ethereal, compassionate care.
+        </span>
       </footer>
 
       <EmDrawer open={em.open} prompt={em.prompt} session={em.session} onClose={closeEm} />
