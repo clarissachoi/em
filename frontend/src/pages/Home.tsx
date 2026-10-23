@@ -69,7 +69,9 @@ export default function Home({
       return next
     })
   const remaining = d.focus.length - done.size
-  const daypart = d.greeting.split(',')[0]
+  // Viewer's own clock, not the server's (Vercel runs on UTC)
+  const hour = now.getHours()
+  const daypart = `Good ${hour < 12 ? 'Morning' : hour < 17 ? 'Afternoon' : 'Evening'}`
 
   return (
     <div className="home">
@@ -93,7 +95,7 @@ export default function Home({
         )}
       </div>
 
-      <h1 className="greeting">{d.greeting}</h1>
+      <h1 className="greeting">{daypart}, {d.user_name}</h1>
       <p className="quote">{d.quote}</p>
 
       <form className="ask" onSubmit={ask}>

@@ -1,7 +1,8 @@
 // Typed client for the EmCare FastAPI backend. Mirrors backend/models.py and API.md.
 // Dates and datetimes arrive as ISO strings. Add new types and endpoint functions below.
 
-const BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8000/api'
+// Local dev talks to uvicorn on :8000; a production build (Vercel) calls /api on its own domain.
+const BASE = import.meta.env.VITE_API_BASE ?? (import.meta.env.DEV ? 'http://localhost:8000/api' : '/api')
 
 // ---------- Transport ----------
 
@@ -105,7 +106,12 @@ export const getVoiceSettings = () => request<VoiceSettings>('/voice/settings')
 export const putVoiceSettings = (settings: VoiceSettings) =>
   request<VoiceSettings>('/voice/settings', { method: 'PUT', body: JSON.stringify(settings) })
 /** WebSocket URL for live voice. Persona goes in the query since sockets cannot send headers. */
-export const voiceSocketUrl = () => `${BASE.replace(/^http/, 'ws')}/voice?user_id=${encodeURIComponent(currentUserId)}`
+export const voiceSocketUrl = () => {
+  const url = new URL(`${BASE}/voice`, window.location.href) // resolves a relative BASE against this page
+  url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:'
+  url.searchParams.set('user_id', currentUserId)
+  return url.toString()
+}
 export const urgentAudioUrl = `${BASE}/voice/urgent-audio`
 
 // ---------- Labs ----------

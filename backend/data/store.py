@@ -7,13 +7,18 @@ to reset the demo.
 
 import copy
 import json
+import os
 import threading
 from pathlib import Path
 from typing import Any
 
 DATA_DIR = Path(__file__).resolve().parent
 PERSONAS_DIR = DATA_DIR / "personas"
-STATE_PATH = DATA_DIR / "state.json"
+# EMCARE_STATE_PATH overrides. On Vercel the code directory is read-only, so state goes to /tmp
+# (per instance and reset on cold start; fine for a demo, swap for Redis/Blob for durable shared state).
+STATE_PATH = Path(
+    os.environ.get("EMCARE_STATE_PATH") or ("/tmp/emcare-state.json" if os.environ.get("VERCEL") else DATA_DIR / "state.json")
+)
 
 _lock = threading.Lock()
 

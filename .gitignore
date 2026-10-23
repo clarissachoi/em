@@ -7,3 +7,6 @@ dist
 
 # Runtime overlay of mutated demo data (delete to reset the demo)
 backend/data/state.json
+.vercel
+.env*
+!.env.example
