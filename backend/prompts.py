@@ -135,3 +135,22 @@ WELLNESS_PREGNANCY_RULES = """- She is pregnant. Every item must be pregnancy-sa
   lying flat on her back after the first trimester, heavy lifting, or raw fish, unpasteurized foods, high-mercury fish,
   or alcohol. Prefer walking, prenatal yoga, gentle strength, and side-lying stretches.
 """
+
+
+WELLNESS_REASONS_PROMPT = """These em.well cards were picked for {name}. For each card, write reason: one warm, plain sentence
+saying why it fits her this week, using only facts in her context (labs, recent runs, check-ins, sleep, travel, plan,
+and her doctor's latest visit). Name the most relevant specific fact for that card, e.g. her low ferritin for
+iron-rich food, her heavy or flat runs for recovery, her Chicago trip for a session near her hotel, or travel nights
+for sleep. Return one entry per card id.
+
+Rules:
+- Never suggest supplements, pills, or doses, and never tell her to start, stop, or change any medication.
+- No medical jargon and no claims about what something does inside the body.
+- Do not use em dashes.
+
+Cards (JSON):
+{cards}
+
+Her context (JSON):
+{context}
+"""

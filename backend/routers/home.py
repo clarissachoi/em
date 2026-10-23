@@ -133,7 +133,7 @@ def _focus(data: dict[str, Any], today: date, flagged: list[dict[str, Any]], pre
     low_iron = any(r["marker"].lower() in IRON_MARKERS and r["flag"] == "low" for r in flagged)
     if low_iron:
         items.append(FocusItem(kind="nutrition", title="Iron-rich lunch",
-                               detail="Pair with vitamin C, keep coffee an hour away", time="12:30 PM"))
+                               detail="Pair with vitamin C, keep coffee 2 hours away", time="12:30 PM"))
     elif pregnant:
         items.append(FocusItem(kind="nutrition", title="Protein and iron-rich snack",
                                detail="Greek yogurt with berries, or hummus and veggies", time="3:00 PM"))

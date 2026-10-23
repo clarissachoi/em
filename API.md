@@ -177,19 +177,24 @@ Suggestions {
   nutrition: list[Suggestion]  # food only, never supplements
   workouts: list[Suggestion]
   classes: list[Suggestion]
-  sleep: list[Suggestion]      # mainly for Jasmine
+  sleep: list[Suggestion]      # not shown on em.well; currently always empty
 }
 Suggestion {
   title: str
   description: str             # plain language
   reason: str                  # why this is for her, from her own data
   duration_min: int | null
-  tag: str                     # short card label, e.g. "Recovery", "Iron-rich", "Pregnancy-safe"
-  when: str | null             # e.g. "Today · 6:30 AM", fits her free calendar windows
-  where: str | null            # generic ("Hotel gym") or a place from her seed data, never invented business names
+  tag: str                     # short card label, e.g. "Recovery", "Iron-rich", "From your doctor"
+  when: str | null             # e.g. "Today · 7:30 PM", "Tomorrow · 9:00 AM", "Walk-in or prebook"
+  where: str | null            # generic ("Hotel gym") or a place from her seed data, never invented by Gemini
+  image: str | null            # e.g. "/wellness/kensho.png", served by the frontend
+  distance_mi: float | null
+  near_tag: str | null         # e.g. "1.4 mi from your Chicago hotel" when the card falls during a trip
+  source: "em" | "doctor"      # "doctor" = her clinician's instruction (e.g. a prescribed iron dose), not Em's idea
 }
 ```
-Pregnancy-safe for Jasmine and no supplements are enforced in code as well as in the prompt (unsafe items are dropped).
+If the persona's seed has `wellness_cards` (curated titles, venues, images), those are used and Gemini only writes each `reason`. Otherwise Gemini suggests the cards.
+Pregnancy-safe for Jasmine and no supplements are enforced in code as well as in the prompt for anything Em suggests (unsafe items are dropped). Only `source: "doctor"` cards can mention a supplement.
 
 ### GET /insights
 Cross-data patterns. `list[Insight]`, Insight { text: str, evidence: str }

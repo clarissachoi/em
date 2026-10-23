@@ -380,7 +380,8 @@
         "start": "2026-10-24T06:00:00",
         "end": "2026-10-26T20:00:00",
         "location": "Chicago, IL",
-        "detail": "Flight out Sat 6:00am, back Mon evening. Client dinner Sun 7:30pm."
+        "detail": "Flight out Sat 6:00am, back Mon evening. Client dinner Sun 7:30pm.",
+        "hotel": "Hotel in the Loop, Chicago"
       },
       {
         "title": "Quarter-end close",
@@ -756,6 +757,25 @@
           ],
           "follow_up": null
         }
+      },
+      {
+        "id": "maya_appt_sportsmed_review",
+        "for_person": "self",
+        "provider": "Dr. Lauren Becker",
+        "specialty": "Sports medicine",
+        "datetime": "2026-10-21T07:30:00",
+        "location": "Telehealth",
+        "status": "completed",
+        "prep_questions": [],
+        "visit_summary": {
+          "summary": "Ferritin is low for a distance runner. Start gentle iron each morning and keep tempo runs paused while iron rebuilds.",
+          "action_items": [
+            "Take iron bisglycinate 28 mg each morning, 2 hours apart from coffee or tea",
+            "Pause tempo runs for 2 weeks, keep easy runs",
+            "Recheck ferritin in 8 weeks"
+          ],
+          "follow_up": "Recheck ferritin in 8 weeks"
+        }
       }
     ],
     "suggested": [
@@ -952,6 +972,108 @@
       "insight": "Three of your last four long runs felt flat.",
       "urgent": false,
       "escalation_message": null
+    }
+  ],
+  "medications": [
+    {
+      "name": "Iron bisglycinate",
+      "dose": "28 mg",
+      "schedule": "1 capsule every morning",
+      "timing": "2 hours apart from coffee or tea",
+      "prescribed_by": "Dr. Lauren Becker",
+      "started": "2026-10-22"
+    }
+  ],
+  "wellness_cards": [
+    {
+      "id": "kensho",
+      "section": "workouts",
+      "source": "em",
+      "title": "Contrast Hydrotherapy & Infrared Sauna",
+      "description": "Alternate warm and cool pools, then unwind in an infrared sauna. A calm way to recover between hard training days.",
+      "tag": "Recovery",
+      "image": "/wellness/kensho.png",
+      "where": "Kenshō Recovery Spa",
+      "distance_mi": 0.8,
+      "distance_from": "office",
+      "duration_min": 45,
+      "when": "2026-10-23T19:30:00",
+      "default_reason": "Your recent long runs felt heavy, and a slow recovery evening fits before tomorrow's early flight."
+    },
+    {
+      "id": "encinitas",
+      "section": "workouts",
+      "source": "em",
+      "title": "Guided Eccentric Hamstring & Mobility Flow",
+      "description": "A one-on-one session of slow, controlled hamstring work and mobility to keep your legs strong as mileage builds.",
+      "tag": "Mobility",
+      "image": "/wellness/encinitas.png",
+      "where": "Encinitas Somatic Performance",
+      "distance_mi": 1.4,
+      "distance_from": "hotel",
+      "duration_min": 45,
+      "when": "2026-10-24T09:00:00",
+      "default_reason": "Keeps your training going while you are in Chicago, without the strain of a hard run."
+    },
+    {
+      "id": "purepulse",
+      "section": "workouts",
+      "source": "em",
+      "title": "Normatec Compression & Lymphatic Flush",
+      "description": "Air-compression boots gently squeeze and release your legs. An easy way to ease stiffness after long runs.",
+      "tag": "Recovery",
+      "image": "/wellness/purepulse.webp",
+      "where": "PurePulse Athletic Hub",
+      "distance_mi": 2.1,
+      "distance_from": "office",
+      "duration_min": 25,
+      "when": "Walk-in or prebook",
+      "default_reason": "Your legs have felt heavy on recent runs, and this is a low-effort way to recover."
+    },
+    {
+      "id": "power_bowl",
+      "section": "nutrition",
+      "source": "em",
+      "title": "Iron-Bioavailability Power Bowl",
+      "description": "Sprouted lentils, tender spinach, and a citrus dressing. The vitamin C helps your body absorb more of the iron.",
+      "tag": "Meal recipe",
+      "image": "/wellness/power-bowl.png",
+      "where": null,
+      "distance_mi": null,
+      "distance_from": null,
+      "duration_min": null,
+      "when": "2026-10-23T12:30:00",
+      "default_reason": "Your ferritin came back low, and iron-rich meals with vitamin C help rebuild it."
+    },
+    {
+      "id": "tart_cherry",
+      "section": "nutrition",
+      "source": "em",
+      "title": "Tart Cherry Recovery Elixir",
+      "description": "Tart cherry juice with sparkling water and a squeeze of lime, about 45 minutes before bed.",
+      "tag": "Sleep support",
+      "image": "/wellness/tart-cherry.png",
+      "where": null,
+      "distance_mi": null,
+      "distance_from": null,
+      "duration_min": null,
+      "when": "2026-10-23T21:30:00",
+      "default_reason": "Your sleep dips on travel nights, and a calm evening routine helps before an early flight."
+    },
+    {
+      "id": "iron",
+      "section": "nutrition",
+      "source": "doctor",
+      "title": "Gentle Iron Bisglycinate (28mg)",
+      "description": "1 capsule each morning, 2 hours apart from coffee or tea, as recommended by Dr. Lauren Becker.",
+      "tag": "From your doctor",
+      "image": "/wellness/iron.png",
+      "where": null,
+      "distance_mi": null,
+      "distance_from": null,
+      "duration_min": null,
+      "when": "Every morning · 9:30 AM",
+      "default_reason": "Dr. Becker recommended this after your ferritin came back low. Recheck in 8 weeks."
     }
   ]
 }
