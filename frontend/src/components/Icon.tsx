@@ -25,6 +25,7 @@ const PATHS: Record<string, string> = {
   clipboard: 'M9 4h6v3H9z M7 5H5v16h14V5h-2 M8 12h8 M8 16h5',
   ear: 'M7 9a5 5 0 0 1 10 0c0 3-3 4-3 7a3 3 0 0 1-6 0 M10 9a2 2 0 0 1 4 0',
   stop: 'M7 7h10v10H7z',
+  refresh: 'M20 12a8 8 0 1 1-2.3-5.7 M20 4v5h-5',
   wave: 'M4 10v4 M8 7v10 M12 4v16 M16 7v10 M20 10v4',
 }
 

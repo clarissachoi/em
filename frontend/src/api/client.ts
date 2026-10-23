@@ -247,6 +247,8 @@ export function scribeVisit(id: string, audio: Blob, duration_sec: number) {
   return request<ScribeNote>(`/appointments/${id}/scribe`, { method: 'POST', body: form })
 }
 export const getScribeNotes = () => request<ScribeNote[]>('/scribe-notes')
+/** Calls Gemini on the backend for fresh suggestions; a few seconds. 503 keeps the saved ones. */
+export const refreshSuggestions = () => request<SuggestedAppointment[]>('/appointments/suggestions', { method: 'POST' })
 
 // ---------- em.well ----------
 
