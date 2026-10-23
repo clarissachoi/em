@@ -1315,5 +1315,97 @@
       "How much FSA do I have left?",
       "Which pediatricians are in network?"
     ]
-  }
+  },
+  "wellness_cards": [
+    {
+      "id": "jas_saxon_walk",
+      "section": "workouts",
+      "source": "em",
+      "title": "Saxon Woods Loop Walk",
+      "description": "A flat, paved 1.4 mile loop with benches along the way. Go at a pace where you can still talk, and rest whenever you like.",
+      "tag": "Walking",
+      "image": "/wellness/jasmine-saxon-walk.png",
+      "where": "Saxon Woods loop",
+      "distance_mi": null,
+      "distance_from": null,
+      "duration_min": 30,
+      "when": "2026-10-24T09:00:00",
+      "default_reason": "Walking is one of your goals, and Saturday morning is your free time while your partner has Leo."
+    },
+    {
+      "id": "jas_stroller_walk",
+      "section": "workouts",
+      "source": "em",
+      "title": "Stroller Walk to the Park with Leo",
+      "description": "A stroller friendly sidewalk route to the park. Fresh air for both of you before dinner.",
+      "tag": "Family",
+      "image": "/wellness/jasmine-stroller-walk.png",
+      "where": "Mamaroneck Ave to the park",
+      "distance_mi": null,
+      "distance_from": null,
+      "duration_min": 22,
+      "when": "2026-10-26T17:15:00",
+      "default_reason": "Fits your before-dinner window and gets you walking without needing a sitter."
+    },
+    {
+      "id": "jas_prenatal_yoga",
+      "section": "classes",
+      "source": "em",
+      "title": "Gentle Prenatal Yoga",
+      "description": "A slow class led by a prenatal instructor, with props, seated stretches, and supported side-lying rests.",
+      "tag": "Prenatal",
+      "image": "/wellness/jasmine-prenatal-yoga.png",
+      "where": "Willow Prenatal Studio",
+      "distance_mi": null,
+      "distance_from": null,
+      "duration_min": 45,
+      "when": "2026-10-24T10:30:00",
+      "default_reason": "A gentle way to move with your pregnancy in mind, during your free Saturday morning."
+    },
+    {
+      "id": "jas_lentil_bowl",
+      "section": "nutrition",
+      "source": "em",
+      "title": "Warm Lentil and Spinach Bowl",
+      "description": "Lentils, wilted spinach, and roasted sweet potato with a squeeze of lemon. Easy to batch for weekday lunches.",
+      "tag": "Iron-rich",
+      "image": "/wellness/jasmine-lentil-bowl.png",
+      "where": null,
+      "distance_mi": null,
+      "distance_from": null,
+      "duration_min": 20,
+      "when": "2026-10-26T12:00:00",
+      "default_reason": "You asked for iron-rich, easy meals, and this one makes lunch simple on workdays."
+    },
+    {
+      "id": "jas_seed_snack",
+      "section": "nutrition",
+      "source": "em",
+      "title": "Pumpkin Seed and Apricot Snack",
+      "description": "A handful of pumpkin seeds with dried apricots and a clementine. Easy to keep in your bag.",
+      "tag": "Quick snack",
+      "image": "/wellness/jasmine-seed-snack.png",
+      "where": null,
+      "distance_mi": null,
+      "distance_from": null,
+      "duration_min": null,
+      "when": "Anytime",
+      "default_reason": "An iron-rich snack that is easy to grab on busy days with Leo."
+    },
+    {
+      "id": "jas_sheet_pan",
+      "section": "nutrition",
+      "source": "em",
+      "title": "Sheet Pan Chicken and Sweet Potatoes",
+      "description": "One pan of well cooked chicken, sweet potatoes, and broccoli. A dinner Leo can eat too.",
+      "tag": "Family meal",
+      "image": "/wellness/jasmine-sheet-pan.png",
+      "where": null,
+      "distance_mi": null,
+      "distance_from": null,
+      "duration_min": 35,
+      "when": "2026-10-23T18:00:00",
+      "default_reason": "An easy family dinner that fits your goal of simple meals everyone can share."
+    }
+  ]
 }
