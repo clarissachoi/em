@@ -576,12 +576,86 @@
         "status": "completed",
         "prep_questions": [],
         "visit_summary": {
-          "summary": "14 week prenatal visit. Heartbeat strong, everything on track.",
+          "summary": "You attended a routine prenatal visit at 14 weeks. The clinician checked your blood pressure, heart rate, weight, urine, and the fetal heart rate. Your vitals and weight gain were within the expected range, the fetal heart rate was 156 beats per minute, and your hemoglobin level was noted to be at the low end of the reference range.",
           "action_items": [
             "Schedule anatomy ultrasound around 20 weeks",
             "Transfer care after the move"
           ],
           "follow_up": "Next visit at 18 to 20 weeks with new OB"
+        },
+        "doctor_notes": {
+          "author": "Dr. Nadia Petrova, MD, OB-GYN",
+          "written_on": "2026-09-11",
+          "reason_for_visit": "Routine prenatal visit at 14 weeks 0 days. Patient relocating to White Plains on 2026-09-15.",
+          "subjective": "Nausea improving since week 12, now occasional in the mornings. Energy improving. Reports mild round ligament discomfort when standing quickly. No bleeding, no cramping, no headaches, no vision changes. Taking prenatal vitamin daily. Walking 20 to 30 minutes most days. Asked about continuing exercise and about transferring care after the move.",
+          "objective": [
+            "BP 112/70, HR 78",
+            "Weight 146 lb (pre-pregnancy 141 lb)",
+            "Fundal height not yet measurable",
+            "Fetal heart rate 156 bpm by Doppler",
+            "Urine dipstick negative for protein and glucose",
+            "First trimester screen (2026-08-28) reported low risk",
+            "Labs 2026-08-07: Hgb 11.3, ferritin 24, TSH 2.1, fasting glucose 84, platelets 245"
+          ],
+          "assessment": [
+            "Intrauterine pregnancy at 14w0d, dating consistent with 8 week ultrasound",
+            "Vitals and weight gain within expected range for gestational age",
+            "Hemoglobin at the low end of the reference range; prior pregnancy (2023) had low hemoglobin in the third trimester",
+            "Round ligament discomfort consistent with normal uterine growth"
+          ],
+          "plan": [
+            "Continue daily prenatal vitamin",
+            "Include iron-rich foods; recheck hemoglobin and ferritin around 28 weeks",
+            "Anatomy ultrasound at 18 to 22 weeks, to be ordered by new OB",
+            "Continue walking and low-impact exercise; avoid contact sports and lying flat on the back for long periods after 20 weeks",
+            "Records release signed; office to send prenatal records and labs to new OB",
+            "Establish care with a new OB in White Plains for the 18 to 20 week visit",
+            "Glucose screening at 24 to 28 weeks",
+            "Call or go to L&D for bleeding, severe headache, vision changes, fluid leaking, or severe abdominal pain"
+          ]
+        }
+      },
+      {
+        "id": "jas_appt_ob_intake",
+        "for_person": "self",
+        "provider": "Dr. Nadia Petrova",
+        "specialty": "OB-GYN",
+        "datetime": "2026-08-07T09:00:00",
+        "location": "Astoria OB-GYN Associates, Astoria, NY",
+        "status": "completed",
+        "prep_questions": [],
+        "visit_summary": {
+          "summary": "You attended a new prenatal intake visit following a positive home pregnancy test. Your blood pressure, heart rate, height, and weight were measured, and prenatal blood work was drawn. A transvaginal ultrasound confirmed a single intrauterine pregnancy at nine weeks, with a fetal heart rate of 168 beats per minute and an estimated due date of March 12, 2027.",
+          "action_items": [
+            "Take a prenatal vitamin with folic acid every day",
+            "Schedule first trimester screening at 11 to 13 weeks"
+          ],
+          "follow_up": "Next prenatal visit at 14 weeks"
+        },
+        "doctor_notes": {
+          "author": "Dr. Nadia Petrova, MD, OB-GYN",
+          "written_on": "2026-08-07",
+          "reason_for_visit": "New prenatal intake. G2P1, LMP 2026-06-05. Positive home pregnancy test 2026-07-10.",
+          "subjective": "Nausea most mornings since week 6, able to keep food and fluids down. Fatigue. No bleeding or cramping. Started over-the-counter prenatal vitamin 3 weeks ago. Prior pregnancy 2023: full-term vaginal delivery, uncomplicated, low hemoglobin noted in third trimester. No chronic conditions. No current medications other than prenatal vitamin. Works remotely, has a 2 year old son. Planning a move to Westchester in September.",
+          "objective": [
+            "BP 110/68, HR 76",
+            "Weight 142 lb, height 5 ft 5 in",
+            "Transvaginal ultrasound: single intrauterine pregnancy, crown-rump length consistent with 9w0d, fetal heart rate 168 bpm",
+            "Prenatal panel drawn today (Hgb, ferritin, TSH, fasting glucose, platelets, blood type, antibody screen, infectious disease screen)"
+          ],
+          "assessment": [
+            "Intrauterine pregnancy at 9w0d by ultrasound, consistent with LMP dating",
+            "Estimated due date 2027-03-12",
+            "Nausea within the typical range for early pregnancy"
+          ],
+          "plan": [
+            "Continue daily prenatal vitamin with folic acid",
+            "Small, frequent meals and fluids for nausea; call if unable to keep fluids down for 24 hours",
+            "First trimester screening at 11 to 13 weeks",
+            "Lab results to be reviewed at next visit",
+            "Continue regular walking; moderate exercise is fine if she feels well",
+            "Return visit at 14 weeks"
+          ]
         }
       }
     ],

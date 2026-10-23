@@ -1,15 +1,31 @@
-"""Appointments, provider directory, open slots, booking, and Gemini suggestions."""
+"""Appointments, provider directory, open slots, booking, Gemini suggestions, visit prep, ambient scribe, and post-visit activities."""
 
 import json
 import logging
+import uuid
+from datetime import datetime
+from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
+from google.genai import types
 
 import gemini
 from data import store
 from deps import get_user_id
-from models import Appointment, AppointmentList, BookRequest, Provider, Slot, SuggestedAppointment, SuggestedAppointmentList
-from prompts import EM_SYSTEM_PROMPT
+from models import (
+    Appointment,
+    AppointmentList,
+    BookRequest,
+    PrepQuestionList,
+    Provider,
+    ScribeNote,
+    ScribeResult,
+    Slot,
+    SuggestedActivityList,
+    SuggestedAppointment,
+    SuggestedAppointmentList,
+)
+from prompts import EM_SYSTEM_PROMPT, VISIT_ACTIVITIES_PROMPT, VISIT_PREGNANCY_RULES
 from voice import ToolError, today, tool_book_slot
 
 logger = logging.getLogger("emcare.appointments")
@@ -31,6 +47,47 @@ Her data:
 {context}"""
 
 PREGNANCY_NOTE = "\n- She is pregnant. Only suggest care that is safe in pregnancy, and say to check timing with her OB where it matters."
+
+
+PREP_PROMPT = """Today is {today}. {name} has this visit coming up: {visit}.
+Write up to 5 short questions she could ask at this visit, most useful first.
+
+Rules:
+- Base them on her data below: recent check-ins (mood, energy, stress, sleep, symptoms), out-of-range labs, goals,
+  and records that are still missing. Only ask about things that fit this specialty.
+- Write each as a question she would say, in first person, under 20 words.
+- Never diagnose. Never suggest starting, stopping, or changing a medication or supplement. Do not use em dashes.{pregnancy}
+
+Her data:
+{context}"""
+
+SCRIBE_PROMPT = """This is an audio recording of {name}'s visit with {provider} ({specialty}).
+Write her visit notes.
+
+Rules:
+- transcript: what was said, labeled "Doctor:" and "Patient:" (use "Other:" for anyone else), one line per turn.
+- summary: 2 to 4 plain-language sentences on what the visit covered.
+- key_points: findings, results, and topics discussed.
+- doctor_instructions: only what the clinician actually said to do, kept close to their words. Include medication
+  instructions exactly as the clinician gave them. Never add advice, doses, or instructions of your own.
+- follow_ups: tests, referrals, and next visits that were mentioned.
+- Only use what is in the recording. If part of it is unclear, leave it out. If there is no clear speech, say so in
+  the summary and leave the lists empty. Never diagnose. Do not use em dashes."""
+
+SCRIBE_DISCLAIMER = (
+    "Em took these notes from the recording of your visit and they may miss things. "
+    "Check anything about medication or treatment with {provider} before acting on it."
+)
+
+MAX_AUDIO_BYTES = 19 * 1024 * 1024  # stay under Gemini's 20 MB inline request limit
+
+
+def _find_appointment(appts: dict[str, Any], appointment_id: str) -> dict[str, Any]:
+    """Return an upcoming or past appointment by id, or raise 404."""
+    for appt in [*appts.get("upcoming", []), *appts.get("past", [])]:
+        if appt["id"] == appointment_id:
+            return appt
+    raise HTTPException(404, f"No appointment with id {appointment_id!r}.")
 
 
 def _matches(value: str, specialty: str | None) -> bool:
@@ -109,10 +166,160 @@ async def refresh_suggestions(user_id: str = Depends(get_user_id)) -> list[Sugge
 
     # Enforce the no-overlap rule in code, not just in the prompt
     suggested = [
-        s.model_copy(update={"reason": s.reason.replace("—", ", ").replace("–", "-")})
+        s.model_copy(update={"reason": _no_em_dashes(s.reason)})
         for s in result.suggested
         if s.specialty.casefold() not in booked
     ]
     appts["suggested"] = [s.model_dump() for s in suggested]
     store.save(user_id, "appointments", appts)
     return suggested
+
+
+def _no_em_dashes(text: str) -> str:
+    """Swap em and en dashes for plain punctuation in model output."""
+    return text.replace("—", ", ").replace("–", "-")
+
+
+@router.post("/appointments/{appointment_id}/activities")
+async def suggest_activities(appointment_id: str, user_id: str = Depends(get_user_id)) -> Appointment:
+    """Ask Gemini for activities that follow the doctor's plan and fit recent check-ins, and save them."""
+    appts = store.get(user_id, "appointments")
+    appt = next((a for a in appts.get("past", []) if a["id"] == appointment_id), None)
+    if appt is None:
+        raise HTTPException(404, f"No completed appointment with id {appointment_id!r}.")
+    if not appt.get("doctor_notes") or not appt.get("visit_summary"):
+        raise HTTPException(409, "This visit has no doctor notes yet.")
+
+    data = store.get_user(user_id)
+    checkins = data.get("checkins", [])[-7:]
+    if checkins and checkins[-1].get("urgent"):
+        activities = []  # urgent check-in: point to care, not workouts
+    else:
+        pregnant = data["profile"].get("life_stage") == "pregnant"
+        visit = {k: appt[k] for k in ("specialty", "provider", "doctor_notes")}
+        context = {
+            "goals": data.get("goals"),
+            "pregnancy_week": (data["profile"].get("pregnancy") or {}).get("week"),
+            "recent_checkins": [
+                {k: c.get(k) for k in ("created_at", "mood", "energy", "stress", "sleep_quality", "symptoms", "transcript")}
+                for c in checkins
+            ],
+        }
+        prompt = VISIT_ACTIVITIES_PROMPT.format(
+            today=today(user_id).isoformat(),
+            name=data["profile"]["name"],
+            visit_date=appt["datetime"][:10],
+            pregnancy_rules=VISIT_PREGNANCY_RULES if pregnant else "",
+            visit=json.dumps(visit, default=str),
+            context=json.dumps(context, default=str),
+        )
+        try:
+            result = await gemini.generate_structured(
+                prompt, SuggestedActivityList, system_instruction=EM_SYSTEM_PROMPT, thinking_level="low"
+            )
+        except Exception as exc:  # keep any saved activities on Gemini failure
+            logger.warning("activities failed user=%s appt=%s err=%s", user_id, appointment_id, exc)
+            raise HTTPException(503, "Could not get activity ideas right now.") from exc
+        activities = [
+            a.model_copy(update={"title": _no_em_dashes(a.title), "detail": _no_em_dashes(a.detail)})
+            for a in result.activities[:4]
+        ]
+
+    appt["visit_summary"]["suggested_activities"] = [a.model_dump() for a in activities]
+    store.save(user_id, "appointments", appts)
+    return Appointment.model_validate(appt)
+
+
+@router.post("/appointments/{appointment_id}/prep")
+async def prep_questions(appointment_id: str, user_id: str = Depends(get_user_id)) -> Appointment:
+    """Ask Gemini for questions to bring to a visit, and save them on the appointment."""
+    appts = store.get(user_id, "appointments")
+    appt = _find_appointment(appts, appointment_id)
+    data = store.get_user(user_id)
+    pregnant = data["profile"].get("life_stage") == "pregnant"
+    context = {
+        "goals": data.get("goals"),
+        "pregnancy": data["profile"].get("pregnancy"),
+        "recent_checkins": [
+            {k: c.get(k) for k in ("created_at", "mood", "energy", "stress", "sleep_quality", "symptoms")}
+            for c in data.get("checkins", [])[-7:]
+        ],
+        "flagged_labs": [
+            {"date": p["date"], **r}
+            for p in data.get("labs", {}).get("panels", [])
+            for r in p["results"]
+            if r["flag"] != "normal"
+        ],
+        "missing_records": [r for r in data.get("records", []) if r.get("status") != "received"],
+    }
+    prompt = PREP_PROMPT.format(
+        today=today(user_id).isoformat(),
+        name=data["profile"]["name"],
+        visit=json.dumps({k: appt[k] for k in ("specialty", "provider", "datetime", "for_person")}, default=str),
+        pregnancy=PREGNANCY_NOTE if pregnant else "",
+        context=json.dumps(context, default=str),
+    )
+    try:
+        result = await gemini.generate_structured(
+            prompt, PrepQuestionList, system_instruction=EM_SYSTEM_PROMPT, thinking_level="low"
+        )
+    except Exception as exc:  # keep any saved questions on Gemini failure
+        logger.warning("prep failed user=%s appt=%s err=%s", user_id, appointment_id, exc)
+        raise HTTPException(503, "Could not get prep questions right now.") from exc
+
+    appt["prep_questions"] = [_no_em_dashes(q) for q in result.questions[:5]]
+    store.save(user_id, "appointments", appts)
+    return Appointment.model_validate(appt)
+
+
+@router.post("/appointments/{appointment_id}/scribe")
+async def scribe_visit(
+    appointment_id: str,
+    audio: UploadFile = File(...),
+    duration_sec: int | None = Form(None),
+    user_id: str = Depends(get_user_id),
+) -> ScribeNote:
+    """Transcribe a visit recording into notes with Gemini and save them."""
+    appt = _find_appointment(store.get(user_id, "appointments"), appointment_id)
+    audio_bytes = await audio.read()
+    if len(audio_bytes) > MAX_AUDIO_BYTES:
+        raise HTTPException(413, "That recording is too long to process. Try one under about an hour.")
+    if not audio_bytes:
+        raise HTTPException(422, "The recording was empty.")
+
+    mime = (audio.content_type or "audio/webm").split(";")[0]
+    name = store.get(user_id, "profile")["name"]
+    prompt = SCRIBE_PROMPT.format(name=name, provider=appt["provider"], specialty=appt["specialty"])
+    try:
+        result = await gemini.generate_structured(
+            prompt, ScribeResult, [types.Part.from_bytes(data=audio_bytes, mime_type=mime)], thinking_level="low"
+        )
+    except Exception as exc:
+        logger.warning("scribe failed user=%s appt=%s err=%s", user_id, appointment_id, exc)
+        raise HTTPException(503, "Could not process the recording right now. Please try again.") from exc
+
+    note = ScribeNote(
+        id=f"scribe_{uuid.uuid4().hex[:8]}",
+        appointment_id=appointment_id,
+        provider=appt["provider"],
+        specialty=appt["specialty"],
+        created_at=datetime.now().replace(microsecond=0),
+        duration_sec=duration_sec,
+        summary=_no_em_dashes(result.summary),
+        key_points=[_no_em_dashes(k) for k in result.key_points],
+        doctor_instructions=[_no_em_dashes(i) for i in result.doctor_instructions],
+        follow_ups=[_no_em_dashes(f) for f in result.follow_ups],
+        transcript=_no_em_dashes(result.transcript),
+        disclaimer=SCRIBE_DISCLAIMER.format(provider=appt["provider"]),
+    )
+    notes = store.get(user_id, "scribe_notes", [])
+    notes.append(note.model_dump(mode="json"))
+    store.save(user_id, "scribe_notes", notes)
+    return note
+
+
+@router.get("/scribe-notes")
+def list_scribe_notes(user_id: str = Depends(get_user_id)) -> list[ScribeNote]:
+    """Return saved scribe notes, newest first."""
+    notes = [ScribeNote.model_validate(n) for n in store.get(user_id, "scribe_notes", [])]
+    return sorted(notes, key=lambda n: n.created_at, reverse=True)
