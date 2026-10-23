@@ -6,6 +6,7 @@ import VoicePanel from './components/VoicePanel'
 import { usePersona } from './hooks/usePersona'
 import AppointmentsDebug from './pages/AppointmentsDebug'
 import CareHub from './pages/CareHub'
+import Coverage from './pages/Coverage'
 import Home from './pages/Home'
 
 /** Slide-over drawer holding the live Em voice panel. */
@@ -36,7 +37,7 @@ function EmDrawer({ open, prompt, session, onClose }: { open: boolean; prompt?: 
 /** App shell: header with nav and persona switcher, the page, Em drawer, footer. */
 function Shell() {
   const [em, setEm] = useState<{ open: boolean; prompt?: string; session: number }>({ open: false, session: 0 })
-  const [page, setPage] = useState<'home' | 'care' | 'appointments-debug'>('home')
+  const [page, setPage] = useState<'home' | 'care' | 'coverage' | 'appointments-debug'>('home')
   const openEm = (prompt?: string) => setEm((s) => ({ open: true, prompt, session: s.session + 1 }))
   const closeEm = () => setEm((s) => ({ ...s, open: false }))
 
@@ -67,6 +68,17 @@ function Shell() {
           >
             em.doc
           </a>
+          <a
+            className={`tab ${page === 'coverage' ? 'active' : ''}`}
+            aria-current={page === 'coverage' ? 'page' : undefined}
+            href="/coverage"
+            onClick={(e) => {
+              e.preventDefault()
+              setPage('coverage')
+            }}
+          >
+            Coverage
+          </a>
           <span className="tab" aria-disabled title="Coming soon">Wellness Synthesis</span>
         </nav>
         <div className="profile-chip">
@@ -76,7 +88,7 @@ function Shell() {
       </header>
 
       <main className="page">
-        {page === 'home' ? <Home onAsk={openEm} /> : page === 'care' ? <CareHub onAsk={openEm} /> : <AppointmentsDebug />}
+        {page === 'home' ? <Home onAsk={openEm} /> : page === 'care' ? <CareHub onAsk={openEm} /> : page === 'coverage' ? <Coverage onAsk={openEm} /> : <AppointmentsDebug />}
       </main>
 
       <footer className="site-footer">
