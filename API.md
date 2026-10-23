@@ -62,7 +62,7 @@ HomeData {
   focus: list[FocusItem]       # "Today's Focus"
   trend: list[TrendPoint]      # last 7 days of readiness, oldest first
   metrics: list[Metric]        # 3 tiles under the trend chart
-  care_note: CareNote | null   # latest visit summary, or Em's note on a flagged lab
+  care_note: CareNote | null   # a line from her doctor's plan in the last 120 days, else that visit's summary, else Em's note on a flagged lab
   ask_suggestions: list[str]   # short questions for the "Ask Em" chips
 }
 FocusItem { kind: "workout" | "nutrition" | "appointment" | "records" | "lab" | "checkin", title: str, detail: str, time: str | null }
@@ -203,15 +203,32 @@ Response: list[PlanDay]
 Re-plans using latest sleep, travel, cycle/pregnancy week, labs, check-ins. Returns `list[PlanDay]` with `adjusted` / `adjustment_reason` set.
 
 ### GET /suggestions
+Powers the em.well page. Gemini, personalized from goals, labs, recent check-ins, plan, calendar, and pregnancy. Cached per persona until her data changes.
 ```
 Suggestions {
-  nutrition: list[Suggestion]
+  headline: str                # focus line from her data, e.g. "Low ferritin · Marathon in 16 weeks" (not model-written)
+  nutrition: list[Suggestion]  # food only, never supplements
   workouts: list[Suggestion]
   classes: list[Suggestion]
-  sleep: list[Suggestion]      # mainly for Jasmine
+  sleep: list[Suggestion]      # not shown on em.well; currently always empty
 }
-Suggestion { title: str, description: str, reason: str, duration_min: int | null }
+Suggestion {
+  title: str
+  description: str             # plain language
+  reason: str                  # why this is for her, from her own data
+  duration_min: int | null
+  tag: str                     # short card label, e.g. "Recovery", "Iron-rich", "From your doctor"
+  when: str | null             # e.g. "Today · 7:30 PM", "Tomorrow · 9:00 AM", "Walk-in or prebook"
+  where: str | null            # generic ("Hotel gym") or a place from her seed data, never invented by Gemini
+  image: str | null            # e.g. "/wellness/kensho.png", served by the frontend
+  distance_mi: float | null
+  near_tag: str | null         # e.g. "1.4 mi from your Chicago hotel" when the card falls during a trip
+  source: "em" | "doctor"      # "doctor" = her clinician's instruction (e.g. a prescribed iron dose), not Em's idea
+}
 ```
+If the persona's seed has `wellness_cards` (curated titles, venues, images), those are used and Gemini only writes each `reason`. Otherwise Gemini suggests the cards.
+A curated card with `requires_medication` (e.g. Maya's iron card) only appears once her seed has a matching `medications` entry from her doctor, and its title and copy come from that entry.
+Pregnancy-safe for Jasmine and no supplements are enforced in code as well as in the prompt for anything Em suggests (unsafe items are dropped). Only `source: "doctor"` cards can mention a supplement.
 
 ### GET /insights
 Cross-data patterns. `list[Insight]`, Insight { text: str, evidence: str }

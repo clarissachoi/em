@@ -64,6 +64,7 @@ def build_system_prompt(user_id: str) -> str:
     context = {
         "profile": {k: profile[k] for k in keep if k in profile},
         "goals": data.get("goals"),
+        "medications_from_her_doctor": data.get("medications"),
         "cycle": data.get("cycle"),
         "pregnancy_tracker": data.get("pregnancy_tracker"),
         "sleep_notes": data.get("sleep"),

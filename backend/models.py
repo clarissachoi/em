@@ -356,6 +356,59 @@ class PlanDay(BaseModel):
     adjustment_reason: str | None
 
 
+class SuggestionIdea(BaseModel):
+    """The part of an em.well card Gemini writes."""
+    title: str
+    description: str
+    reason: str
+    duration_min: int | None
+    tag: str
+    when: str | None
+    where: str | None
+
+
+class Suggestion(SuggestionIdea):
+    """One em.well card. Image, distance, near_tag, and source are filled in code, never by Gemini."""
+    image: str | None = None
+    distance_mi: float | None = None
+    near_tag: str | None = None
+    source: Literal["em", "doctor"] = "em"
+
+
+class SuggestionDraft(BaseModel):
+    """What Gemini returns for GET /suggestions when there are no curated cards."""
+    nutrition: list[SuggestionIdea]
+    workouts: list[SuggestionIdea]
+    classes: list[SuggestionIdea]
+    sleep: list[SuggestionIdea]
+
+
+class CardReason(BaseModel):
+    """Gemini's personal reason for one curated card."""
+    id: str
+    reason: str
+
+
+class CardReasons(BaseModel):
+    """What Gemini returns for curated cards."""
+    reasons: list[CardReason]
+
+
+class Suggestions(BaseModel):
+    """Response for GET /suggestions."""
+    headline: str
+    nutrition: list[Suggestion]
+    workouts: list[Suggestion]
+    classes: list[Suggestion]
+    sleep: list[Suggestion]
+
+
+class Insight(BaseModel):
+    """A cross-data pattern Em noticed."""
+    text: str
+    evidence: str
+
+
 # ---------- Voice ----------
 
 class VoiceSettings(BaseModel):
