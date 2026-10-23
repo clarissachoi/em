@@ -37,9 +37,15 @@ def get_user(user_id: str) -> dict[str, Any]:
     return data
 
 
-def get(user_id: str, section: str) -> Any:
-    """Return one top-level section (e.g. "profile", "records") for a persona."""
-    return get_user(user_id)[section]
+_MISSING = object()
+
+
+def get(user_id: str, section: str, default: Any = _MISSING) -> Any:
+    """Return one top-level section (e.g. "profile", "records") for a persona. Raises KeyError unless a default is given."""
+    data = get_user(user_id)
+    if default is _MISSING:
+        return data[section]
+    return data.get(section, default)
 
 
 def save(user_id: str, section: str, value: Any) -> None:
