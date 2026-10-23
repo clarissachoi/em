@@ -56,7 +56,7 @@ function Shell() {
               setPage('home')
             }}
           >
-            Home
+            home
           </a>
           <a
             className={`tab ${page === 'care' ? 'active' : ''}`}
@@ -78,7 +78,7 @@ function Shell() {
               setPage('coverage')
             }}
           >
-            Coverage
+            em.cover
           </a>
           <a
             className={`tab ${page === 'wellness' ? 'active' : ''}`}
