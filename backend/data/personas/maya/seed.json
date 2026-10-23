@@ -413,6 +413,30 @@
         "end": "2026-10-19T22:00:00",
         "location": "Charlotte, NC",
         "detail": null
+      },
+      {
+        "title": "Dental cleaning, Dr. Priya Shah",
+        "type": "appointment",
+        "start": "2026-10-23T18:00:00",
+        "end": "2026-10-23T19:00:00",
+        "location": "Union Square Dental",
+        "detail": null
+      },
+      {
+        "title": "Eye exam, Dr. Marcus Lee",
+        "type": "appointment",
+        "start": "2026-10-28T07:15:00",
+        "end": "2026-10-28T08:00:00",
+        "location": "Midtown Eye Care",
+        "detail": null
+      },
+      {
+        "title": "Skin check, Dr. Hannah Cho",
+        "type": "appointment",
+        "start": "2026-11-14T10:00:00",
+        "end": "2026-11-14T10:45:00",
+        "location": "Park Slope Dermatology",
+        "detail": null
       }
     ],
     "free_windows": [
@@ -680,7 +704,41 @@
     "upcoming": []
   },
   "appointments": {
-    "upcoming": [],
+    "upcoming": [
+      {
+        "id": "maya_appt_dental",
+        "for_person": "self",
+        "provider": "Dr. Priya Shah",
+        "specialty": "Dentistry",
+        "datetime": "2026-10-23T18:00:00",
+        "location": "Union Square Dental, 33 E 17th St, New York, NY",
+        "status": "upcoming",
+        "prep_questions": [],
+        "visit_summary": null
+      },
+      {
+        "id": "maya_appt_eye",
+        "for_person": "self",
+        "provider": "Dr. Marcus Lee",
+        "specialty": "Optometry",
+        "datetime": "2026-10-28T07:15:00",
+        "location": "Midtown Eye Care, 515 Madison Ave, New York, NY",
+        "status": "upcoming",
+        "prep_questions": [],
+        "visit_summary": null
+      },
+      {
+        "id": "maya_appt_derm",
+        "for_person": "self",
+        "provider": "Dr. Hannah Cho",
+        "specialty": "Dermatology",
+        "datetime": "2026-11-14T10:00:00",
+        "location": "Park Slope Dermatology, 120 7th Ave, Brooklyn, NY",
+        "status": "upcoming",
+        "prep_questions": [],
+        "visit_summary": null
+      }
+    ],
     "past": [
       {
         "id": "maya_appt_bloodwork",
