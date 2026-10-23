@@ -124,12 +124,13 @@ def tool_get_appointments(user_id: str, args: dict[str, Any]) -> ToolOutcome:
 
 
 def tool_find_slots(user_id: str, args: dict[str, Any]) -> ToolOutcome:
-    """Open slots, optionally by specialty, joined with provider details."""
+    """Open slots, optionally by specialty or visit type (Slot.description), joined with provider details."""
     specialty = (args.get("specialty") or "").strip().lower()
     providers = {p["name"]: p for p in store.get(user_id, "providers", [])}
     slots = []
     for s in store.get(user_id, "slots", []):
-        if specialty and specialty not in s["specialty"].lower() and s["specialty"].lower() not in specialty:
+        fields = [s["specialty"].lower(), (s.get("description") or "").lower()]
+        if specialty and not any(f and (specialty in f or f in specialty) for f in fields):
             continue
         p = providers.get(s["provider"], {})
         slots.append({**s, "when": _when(s["datetime"]), **{k: p[k] for k in ("in_network", "rating", "distance_mi") if k in p}})
@@ -185,7 +186,8 @@ def tool_book_slot(user_id: str, args: dict[str, Any]) -> ToolOutcome:
         result["care_checklist"] = f"{sum(c['done'] for c in care)} of {len(care)} providers found"
 
     who = member["name"] if member else "you"
-    return ToolOutcome(result, f"Booked {slot['specialty']} with {slot['provider']} for {who}, {_when(slot['datetime'])}", True)
+    visit = slot.get("description") or slot["specialty"]
+    return ToolOutcome(result, f"Booked {visit} with {slot['provider']} for {who}, {_when(slot['datetime'])}", True)
 
 
 def tool_get_records(user_id: str, args: dict[str, Any]) -> ToolOutcome:
