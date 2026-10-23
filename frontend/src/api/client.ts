@@ -49,3 +49,26 @@ export interface UserProfile {
 
 export const getUsers = () => request<UserSummary[]>('/users')
 export const getMe = () => request<UserProfile>('/me')
+
+// ---------- Next steps ----------
+
+export interface Goals {
+  primary_goal: string
+  focus_areas: string[]
+  target_date: string | null
+  dietary_prefs: string[]
+  activity_level: 'low' | 'medium' | 'high'
+  notes: string | null
+}
+export interface PlanDay {
+  date: string
+  activity: string
+  duration_min: number
+  intensity: 'rest' | 'easy' | 'moderate' | 'hard'
+  adjusted: boolean
+  adjustment_reason: string | null
+}
+
+export const getGoals = () => request<Goals>('/goals')
+export const putGoals = (goals: Goals) => request<Goals>('/goals', { method: 'PUT', body: JSON.stringify(goals) })
+export const getPlan = () => request<PlanDay[]>('/plan')
