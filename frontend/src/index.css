@@ -315,7 +315,8 @@ body {
 .well-error { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; border-radius: 18px; margin-top: 20px; }
 .well-error p { margin: 0; }
 
-.well-noticed { display: flex; align-items: center; gap: 16px; margin-top: 36px; padding: 20px 24px; border-radius: 22px; flex-wrap: wrap; }
+.well-noticed { display: flex; align-items: center; gap: 16px; margin-top: 28px; padding: 20px 24px; border-radius: 22px; flex-wrap: wrap; }
+.home .well-noticed { width: 100%; text-align: left; }
 .noticed-icon { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
 .noticed-text { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 4px; }
 .noticed-text strong { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; }
