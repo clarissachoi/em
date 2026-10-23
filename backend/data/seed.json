@@ -1,0 +1,1903 @@
+{
+  "maya": {
+    "profile": {
+      "id": "maya",
+      "name": "Maya",
+      "age": 27,
+      "tagline": "Finance analyst training for her first marathon",
+      "life_stage": "general",
+      "pregnancy": null,
+      "primary_goal": "Marathon on 2027-02-14",
+      "connections": [
+        {
+          "source": "Garmin",
+          "kind": "wearable",
+          "connected": true
+        },
+        {
+          "source": "Apple Watch",
+          "kind": "wearable",
+          "connected": false
+        },
+        {
+          "source": "Strava",
+          "kind": "fitness",
+          "connected": true
+        },
+        {
+          "source": "Cycle tracker",
+          "kind": "cycle",
+          "connected": true
+        },
+        {
+          "source": "Work calendar",
+          "kind": "calendar",
+          "connected": true
+        },
+        {
+          "source": "Health records",
+          "kind": "records",
+          "connected": false
+        }
+      ],
+      "address": "Midtown Manhattan, New York, NY"
+    },
+    "goals": {
+      "primary_goal": "Marathon on 2027-02-14",
+      "focus_areas": [
+        "marathon",
+        "energy",
+        "injury prevention"
+      ],
+      "target_date": "2027-02-14",
+      "dietary_prefs": [
+        "high protein",
+        "quick meals",
+        "eats out often"
+      ],
+      "activity_level": "high",
+      "notes": "Travels for work 2-3 times a month."
+    },
+    "family": [],
+    "wearables": [
+      {
+        "date": "2026-10-10",
+        "source": "Garmin",
+        "sleep_hours": 7.1,
+        "hrv_ms": 62,
+        "resting_hr": 52,
+        "steps": 11200,
+        "travel": false,
+        "work_hours": 11
+      },
+      {
+        "date": "2026-10-11",
+        "source": "Garmin",
+        "sleep_hours": 6.9,
+        "hrv_ms": 60,
+        "resting_hr": 53,
+        "steps": 9800,
+        "travel": false,
+        "work_hours": 12
+      },
+      {
+        "date": "2026-10-12",
+        "source": "Garmin",
+        "sleep_hours": 7.3,
+        "hrv_ms": 64,
+        "resting_hr": 51,
+        "steps": 12400,
+        "travel": false,
+        "work_hours": 11
+      },
+      {
+        "date": "2026-10-13",
+        "source": "Garmin",
+        "sleep_hours": 5.4,
+        "hrv_ms": 44,
+        "resting_hr": 58,
+        "steps": 6100,
+        "travel": true,
+        "work_hours": 13
+      },
+      {
+        "date": "2026-10-14",
+        "source": "Garmin",
+        "sleep_hours": 5.1,
+        "hrv_ms": 41,
+        "resting_hr": 59,
+        "steps": 5400,
+        "travel": true,
+        "work_hours": 13
+      },
+      {
+        "date": "2026-10-15",
+        "source": "Garmin",
+        "sleep_hours": 5.6,
+        "hrv_ms": 46,
+        "resting_hr": 57,
+        "steps": 6900,
+        "travel": true,
+        "work_hours": 12
+      },
+      {
+        "date": "2026-10-16",
+        "source": "Garmin",
+        "sleep_hours": 6.8,
+        "hrv_ms": 57,
+        "resting_hr": 54,
+        "steps": 8800,
+        "travel": false,
+        "work_hours": 10
+      },
+      {
+        "date": "2026-10-17",
+        "source": "Garmin",
+        "sleep_hours": 7.4,
+        "hrv_ms": 63,
+        "resting_hr": 52,
+        "steps": 14100,
+        "travel": false,
+        "work_hours": 3
+      },
+      {
+        "date": "2026-10-18",
+        "source": "Garmin",
+        "sleep_hours": 7.6,
+        "hrv_ms": 66,
+        "resting_hr": 51,
+        "steps": 18900,
+        "travel": false,
+        "work_hours": 2
+      },
+      {
+        "date": "2026-10-19",
+        "source": "Garmin",
+        "sleep_hours": 6.2,
+        "hrv_ms": 52,
+        "resting_hr": 55,
+        "steps": 9300,
+        "travel": false,
+        "work_hours": 12
+      },
+      {
+        "date": "2026-10-20",
+        "source": "Garmin",
+        "sleep_hours": 6.0,
+        "hrv_ms": 50,
+        "resting_hr": 56,
+        "steps": 8700,
+        "travel": false,
+        "work_hours": 13
+      },
+      {
+        "date": "2026-10-21",
+        "source": "Garmin",
+        "sleep_hours": 6.5,
+        "hrv_ms": 54,
+        "resting_hr": 55,
+        "steps": 10200,
+        "travel": false,
+        "work_hours": 12
+      },
+      {
+        "date": "2026-10-22",
+        "source": "Garmin",
+        "sleep_hours": 6.4,
+        "hrv_ms": 55,
+        "resting_hr": 54,
+        "steps": 9900,
+        "travel": false,
+        "work_hours": 13
+      },
+      {
+        "date": "2026-10-23",
+        "source": "Garmin",
+        "sleep_hours": 6.9,
+        "hrv_ms": 58,
+        "resting_hr": 53,
+        "steps": 10800,
+        "travel": false,
+        "work_hours": 11
+      }
+    ],
+    "runs": [
+      {
+        "id": "strava-1",
+        "date": "2026-10-03",
+        "name": "Easy run",
+        "distance_mi": 5.0,
+        "duration_min": 47,
+        "type": "easy",
+        "felt_flat": false,
+        "note": null
+      },
+      {
+        "id": "strava-2",
+        "date": "2026-10-04",
+        "name": "Long run",
+        "distance_mi": 12.0,
+        "duration_min": 112,
+        "type": "long",
+        "felt_flat": false,
+        "note": null
+      },
+      {
+        "id": "strava-3",
+        "date": "2026-10-06",
+        "name": "Tempo run",
+        "distance_mi": 6.0,
+        "duration_min": 50,
+        "type": "tempo",
+        "felt_flat": false,
+        "note": null
+      },
+      {
+        "id": "strava-4",
+        "date": "2026-10-08",
+        "name": "Easy run",
+        "distance_mi": 4.0,
+        "duration_min": 38,
+        "type": "easy",
+        "felt_flat": false,
+        "note": null
+      },
+      {
+        "id": "strava-5",
+        "date": "2026-10-10",
+        "name": "Easy run",
+        "distance_mi": 5.0,
+        "duration_min": 48,
+        "type": "easy",
+        "felt_flat": false,
+        "note": null
+      },
+      {
+        "id": "strava-6",
+        "date": "2026-10-11",
+        "name": "Long run",
+        "distance_mi": 13.0,
+        "duration_min": 125,
+        "type": "long",
+        "felt_flat": true,
+        "note": "Felt flat from mile 8. Legs heavy."
+      },
+      {
+        "id": "strava-7",
+        "date": "2026-10-13",
+        "name": "Hotel treadmill",
+        "distance_mi": 3.0,
+        "duration_min": 30,
+        "type": "easy",
+        "felt_flat": false,
+        "note": "Short on time, Boston hotel gym."
+      },
+      {
+        "id": "strava-8",
+        "date": "2026-10-17",
+        "name": "Long run",
+        "distance_mi": 14.0,
+        "duration_min": 139,
+        "type": "long",
+        "felt_flat": true,
+        "note": "Low effort score. Felt flat, could not hold pace."
+      },
+      {
+        "id": "strava-9",
+        "date": "2026-10-18",
+        "name": "Recovery jog",
+        "distance_mi": 3.0,
+        "duration_min": 31,
+        "type": "easy",
+        "felt_flat": false,
+        "note": null
+      },
+      {
+        "id": "strava-10",
+        "date": "2026-10-20",
+        "name": "Tempo run",
+        "distance_mi": 6.0,
+        "duration_min": 52,
+        "type": "tempo",
+        "felt_flat": false,
+        "note": null
+      },
+      {
+        "id": "strava-11",
+        "date": "2026-10-22",
+        "name": "Easy run",
+        "distance_mi": 5.0,
+        "duration_min": 49,
+        "type": "easy",
+        "felt_flat": false,
+        "note": "Tired after a late night at work."
+      }
+    ],
+    "calendar": {
+      "trips": [
+        {
+          "city": "Boston",
+          "start": "2026-10-13",
+          "end": "2026-10-15",
+          "status": "past"
+        },
+        {
+          "city": "Chicago",
+          "start": "2026-10-27",
+          "end": "2026-10-29",
+          "status": "upcoming"
+        }
+      ],
+      "free_windows": [
+        "Weekdays 6:30-8:30 AM",
+        "Saturday mornings"
+      ],
+      "busy_weeks": [
+        "2026-10-20"
+      ],
+      "work_location": "Midtown Manhattan"
+    },
+    "cycle": {
+      "phase": "follicular",
+      "cycle_day": 8,
+      "updated": "2026-10-23"
+    },
+    "training_plan": [
+      {
+        "date": "2026-10-23",
+        "activity": "Easy 5 mi run",
+        "duration_min": 50,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-24",
+        "activity": "Long run 15 mi",
+        "duration_min": 150,
+        "intensity": "hard",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-25",
+        "activity": "Rest or mobility",
+        "duration_min": 20,
+        "intensity": "rest",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-26",
+        "activity": "Easy 4 mi run plus strength",
+        "duration_min": 60,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-27",
+        "activity": "Easy 5 mi run",
+        "duration_min": 50,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-28",
+        "activity": "Tempo run 7 mi",
+        "duration_min": 60,
+        "intensity": "hard",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-29",
+        "activity": "Easy 4 mi run",
+        "duration_min": 40,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-30",
+        "activity": "Easy 5 mi run",
+        "duration_min": 50,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-31",
+        "activity": "Long run 16 mi",
+        "duration_min": 160,
+        "intensity": "hard",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-01",
+        "activity": "Rest or mobility",
+        "duration_min": 20,
+        "intensity": "rest",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-02",
+        "activity": "Easy 4 mi run plus strength",
+        "duration_min": 60,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-03",
+        "activity": "Easy 5 mi run",
+        "duration_min": 50,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-04",
+        "activity": "Tempo run 7 mi",
+        "duration_min": 60,
+        "intensity": "hard",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-05",
+        "activity": "Easy 4 mi run",
+        "duration_min": 40,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-06",
+        "activity": "Easy 5 mi run",
+        "duration_min": 50,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-07",
+        "activity": "Long run 17 mi",
+        "duration_min": 170,
+        "intensity": "hard",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-08",
+        "activity": "Rest or mobility",
+        "duration_min": 20,
+        "intensity": "rest",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-09",
+        "activity": "Easy 4 mi run plus strength",
+        "duration_min": 60,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-10",
+        "activity": "Easy 5 mi run",
+        "duration_min": 50,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-11",
+        "activity": "Tempo run 7 mi",
+        "duration_min": 60,
+        "intensity": "hard",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-12",
+        "activity": "Easy 4 mi run",
+        "duration_min": 40,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      }
+    ],
+    "medications": [],
+    "checkins": [
+      {
+        "id": "chk-maya-1",
+        "created_at": "2026-10-14T07:40:00",
+        "transcript": "In Boston, slept badly in the hotel. Running on coffee.",
+        "mood": 2,
+        "energy": 2,
+        "stress": 4,
+        "sleep_quality": 2,
+        "symptoms": [
+          "fatigue"
+        ],
+        "cycle_phase": "luteal",
+        "em_reply": "Travel weeks are hard on sleep. Water and an early night tonight will help more than another coffee.",
+        "insight": null,
+        "urgent": false,
+        "escalation_message": null
+      },
+      {
+        "id": "chk-maya-2",
+        "created_at": "2026-10-15T07:40:00",
+        "transcript": "Back to back client meetings, skipped my run. Exhausted.",
+        "mood": 2,
+        "energy": 1,
+        "stress": 5,
+        "sleep_quality": 2,
+        "symptoms": [
+          "fatigue",
+          "headache"
+        ],
+        "cycle_phase": "luteal",
+        "em_reply": "That is a lot in one day. Skipping a run when you are this drained is a smart call, not a setback.",
+        "insight": "Energy dips on travel and heavy work days.",
+        "urgent": false,
+        "escalation_message": null
+      },
+      {
+        "id": "chk-maya-3",
+        "created_at": "2026-10-17T07:40:00",
+        "transcript": "Long run felt flat again, legs heavy the whole way.",
+        "mood": 3,
+        "energy": 2,
+        "stress": 3,
+        "sleep_quality": 3,
+        "symptoms": [
+          "soreness",
+          "fatigue"
+        ],
+        "cycle_phase": "menstrual",
+        "em_reply": "Thanks for flagging this. Feeling flat on long runs is worth a closer look. Your bloodwork may help.",
+        "insight": "Long runs felt flat 2 weekends in a row.",
+        "urgent": false,
+        "escalation_message": null
+      },
+      {
+        "id": "chk-maya-4",
+        "created_at": "2026-10-20T07:40:00",
+        "transcript": "Heavy work week, quarter end close. Tired but okay.",
+        "mood": 3,
+        "energy": 2,
+        "stress": 4,
+        "sleep_quality": 3,
+        "symptoms": [
+          "soreness"
+        ],
+        "cycle_phase": "follicular",
+        "em_reply": "Quarter end is a grind. Keep tomorrow's run easy and get some protein in early.",
+        "insight": null,
+        "urgent": false,
+        "escalation_message": null
+      },
+      {
+        "id": "chk-maya-5",
+        "created_at": "2026-10-22T07:40:00",
+        "transcript": "Late night at work, easy run felt harder than it should.",
+        "mood": 3,
+        "energy": 2,
+        "stress": 4,
+        "sleep_quality": 3,
+        "symptoms": [
+          "fatigue"
+        ],
+        "cycle_phase": "follicular",
+        "em_reply": "Late nights add up. Let's keep the next few days gentle so you are fresh for the long run.",
+        "insight": "Energy has been 2 out of 5 on most heavy work days.",
+        "urgent": false,
+        "escalation_message": null
+      }
+    ],
+    "labs": {
+      "panels": [
+        {
+          "id": "lab-maya-1",
+          "date": "2026-10-16",
+          "source": "Midtown Lab Services",
+          "results": [
+            {
+              "marker": "Ferritin",
+              "value": 14,
+              "unit": "ng/mL",
+              "ref_low": 20,
+              "ref_high": 200,
+              "flag": "low"
+            },
+            {
+              "marker": "Iron",
+              "value": 68,
+              "unit": "ug/dL",
+              "ref_low": 60,
+              "ref_high": 170,
+              "flag": "normal"
+            },
+            {
+              "marker": "Hemoglobin",
+              "value": 12.6,
+              "unit": "g/dL",
+              "ref_low": 12.0,
+              "ref_high": 15.5,
+              "flag": "normal"
+            },
+            {
+              "marker": "Vitamin D",
+              "value": 34,
+              "unit": "ng/mL",
+              "ref_low": 30,
+              "ref_high": 100,
+              "flag": "normal"
+            },
+            {
+              "marker": "Vitamin B12",
+              "value": 480,
+              "unit": "pg/mL",
+              "ref_low": 200,
+              "ref_high": 900,
+              "flag": "normal"
+            },
+            {
+              "marker": "TSH",
+              "value": 1.8,
+              "unit": "mIU/L",
+              "ref_low": 0.4,
+              "ref_high": 4.0,
+              "flag": "normal"
+            }
+          ],
+          "available_after_record": null
+        }
+      ],
+      "upcoming": [
+        "Ferritin recheck in 8 weeks, before race month"
+      ]
+    },
+    "appointments": [
+      {
+        "id": "appt-maya-1",
+        "for_person": "self",
+        "provider": "Midtown Lab Services",
+        "specialty": "Lab work",
+        "datetime": "2026-10-16T07:15:00",
+        "location": "350 Madison Ave, New York, NY",
+        "status": "completed",
+        "prep_questions": [],
+        "visit_summary": {
+          "summary": "Baseline endurance bloodwork drawn. Results are in.",
+          "action_items": [
+            "Review results with a doctor"
+          ],
+          "follow_up": null
+        }
+      }
+    ],
+    "suggested_appointments": [
+      {
+        "specialty": "Primary care",
+        "reason": "No annual physical in over 2 years.",
+        "urgency": "soon"
+      },
+      {
+        "specialty": "Sports medicine",
+        "reason": "Check in before peak mileage starts in December.",
+        "urgency": "routine"
+      },
+      {
+        "specialty": "Lab work",
+        "reason": "Ferritin recheck in 8 weeks, before race month.",
+        "urgency": "routine"
+      }
+    ],
+    "providers": [
+      {
+        "id": "prov-m1",
+        "name": "Dr. Elena Ortiz",
+        "specialty": "Primary care",
+        "distance_mi": 0.4,
+        "in_network": true,
+        "rating": 4.8
+      },
+      {
+        "id": "prov-m2",
+        "name": "Dr. Sam Whitaker",
+        "specialty": "Primary care",
+        "distance_mi": 1.1,
+        "in_network": true,
+        "rating": 4.6
+      },
+      {
+        "id": "prov-m3",
+        "name": "Dr. Nina Patel",
+        "specialty": "Sports medicine",
+        "distance_mi": 0.9,
+        "in_network": true,
+        "rating": 4.9
+      },
+      {
+        "id": "prov-m4",
+        "name": "Hudson Physical Therapy",
+        "specialty": "Physical therapy",
+        "distance_mi": 1.6,
+        "in_network": false,
+        "rating": 4.7
+      },
+      {
+        "id": "prov-m5",
+        "name": "Midtown Lab Services",
+        "specialty": "Lab work",
+        "distance_mi": 0.3,
+        "in_network": true,
+        "rating": 4.4
+      }
+    ],
+    "slots": [
+      {
+        "id": "slot-m1",
+        "provider": "Dr. Elena Ortiz",
+        "specialty": "Primary care",
+        "datetime": "2026-10-26T07:30:00"
+      },
+      {
+        "id": "slot-m2",
+        "provider": "Dr. Elena Ortiz",
+        "specialty": "Primary care",
+        "datetime": "2026-10-30T07:00:00"
+      },
+      {
+        "id": "slot-m3",
+        "provider": "Dr. Nina Patel",
+        "specialty": "Sports medicine",
+        "datetime": "2026-11-02T07:00:00"
+      },
+      {
+        "id": "slot-m4",
+        "provider": "Midtown Lab Services",
+        "specialty": "Lab work",
+        "datetime": "2026-12-18T07:15:00"
+      }
+    ],
+    "records": [],
+    "care_team": null,
+    "home": {
+      "greeting": "Good morning, Maya",
+      "quote": "Rest is part of the training plan, not a break from it.",
+      "nutrition_tip": "Pair iron-rich foods like spinach or lean beef with vitamin C to absorb more iron.",
+      "readiness": {
+        "score": 68,
+        "sleep_hours": 6.9,
+        "hrv_ms": 58,
+        "resting_hr": 53,
+        "summary": "Recovering well. Keep today easy, the long run is tomorrow."
+      },
+      "alerts": [
+        {
+          "type": "travel",
+          "title": "Chicago Tue to Thu",
+          "detail": "Your tempo run falls on a travel day. Em can adjust your plan.",
+          "severity": "info"
+        },
+        {
+          "type": "lab",
+          "title": "Ferritin is low",
+          "detail": "Your bloodwork from last week shows low ferritin. Review with your doctor.",
+          "severity": "warning"
+        },
+        {
+          "type": "appointment",
+          "title": "Annual physical overdue",
+          "detail": "It has been over 2 years. Early morning slots are open near your office.",
+          "severity": "info"
+        }
+      ]
+    },
+    "mock": {
+      "checkin": {
+        "transcript": "Slept okay, a little sore from yesterday, stressed about a deadline.",
+        "mood": 3,
+        "energy": 3,
+        "stress": 4,
+        "sleep_quality": 3,
+        "symptoms": [
+          "soreness"
+        ],
+        "cycle_phase": "follicular",
+        "em_reply": "Thanks for checking in. A sore, stressful day is a good day for an easy run and an early dinner.",
+        "insight": "Stress tends to run high midweek for you."
+      },
+      "prep_questions": [
+        "My ferritin came back low. What could be causing it, and should we recheck it?",
+        "My long runs have felt flat for 2 weekends. Could that be related to my iron levels?",
+        "Is there anything I should change in training before peak mileage?",
+        "Which screenings am I due for since my last physical over 2 years ago?"
+      ],
+      "visit_note": {
+        "summary": "Doctor recommended an iron supplement and a ferritin recheck in 8 weeks.",
+        "action_items": [
+          "Take iron supplement as prescribed",
+          "Book ferritin recheck lab"
+        ],
+        "follow_up": "Recheck ferritin in 8 weeks"
+      },
+      "lab_explanation": {
+        "plain_summary": "Most of your results are in range. Your ferritin, which measures stored iron, is low.",
+        "flags": [
+          {
+            "marker": "Ferritin",
+            "meaning": "Your iron stores are lower than typical.",
+            "why_it_matters_for_you": "Low ferritin can cause fatigue on long runs, which may explain why your recent long runs felt flat."
+          }
+        ],
+        "plan_changes": [
+          "Add iron-rich meals",
+          "Soften next 2 weeks of training"
+        ],
+        "follow_up": "Recheck ferritin in 8 weeks",
+        "disclaimer": "This is general information, not a diagnosis. Review these results with your doctor before making changes."
+      },
+      "policy_answer": {
+        "answer": "Your plan covers one preventive physical per year with no copay when you see an in-network provider.",
+        "covered": "yes",
+        "relevant_clause": "Section 4.1 Preventive care: annual wellness exam covered at 100% in-network."
+      },
+      "adapted_plan": [
+        {
+          "date": "2026-10-23",
+          "activity": "Easy 5 mi run",
+          "duration_min": 50,
+          "intensity": "easy",
+          "adjusted": false,
+          "adjustment_reason": null
+        },
+        {
+          "date": "2026-10-24",
+          "activity": "Long run 12 mi, easy pace",
+          "duration_min": 118,
+          "intensity": "moderate",
+          "adjusted": true,
+          "adjustment_reason": "Low ferritin. Softening long runs for the next 2 weeks."
+        },
+        {
+          "date": "2026-10-25",
+          "activity": "Rest or mobility",
+          "duration_min": 20,
+          "intensity": "rest",
+          "adjusted": false,
+          "adjustment_reason": null
+        },
+        {
+          "date": "2026-10-26",
+          "activity": "Easy 4 mi run plus strength",
+          "duration_min": 60,
+          "intensity": "easy",
+          "adjusted": false,
+          "adjustment_reason": null
+        },
+        {
+          "date": "2026-10-27",
+          "activity": "Easy 4 mi hotel treadmill",
+          "duration_min": 40,
+          "intensity": "easy",
+          "adjusted": true,
+          "adjustment_reason": "Travel day in Chicago and early meetings."
+        },
+        {
+          "date": "2026-10-28",
+          "activity": "Easy 4 mi hotel treadmill",
+          "duration_min": 40,
+          "intensity": "easy",
+          "adjusted": true,
+          "adjustment_reason": "Tempo swapped for easy run. In Chicago and sleep usually drops on travel days."
+        },
+        {
+          "date": "2026-10-29",
+          "activity": "Rest and 15 min mobility",
+          "duration_min": 15,
+          "intensity": "rest",
+          "adjusted": true,
+          "adjustment_reason": "Flying home tonight. Recovery before the weekend long run."
+        }
+      ],
+      "suggestions": {
+        "nutrition": [
+          {
+            "title": "Iron-rich power bowl",
+            "description": "Lentils, spinach, quinoa, and peppers with lemon.",
+            "reason": "Supports iron stores while your ferritin is low.",
+            "duration_min": 15
+          },
+          {
+            "title": "Airport fueling pack",
+            "description": "Nut butter, a banana, and a protein bar for Chicago.",
+            "reason": "You fly Tuesday and tend to skip meals on travel days.",
+            "duration_min": null
+          },
+          {
+            "title": "Long run carb plan",
+            "description": "Oatmeal with honey 2 hours before, gels every 45 minutes.",
+            "reason": "Steady fuel can help on runs that have felt flat.",
+            "duration_min": null
+          }
+        ],
+        "workouts": [
+          {
+            "title": "Hotel treadmill easy run",
+            "description": "4 miles at conversation pace.",
+            "reason": "Fits your Chicago schedule.",
+            "duration_min": 40
+          },
+          {
+            "title": "Runner strength circuit",
+            "description": "Glute bridges, split squats, calf raises, planks.",
+            "reason": "Injury prevention before peak mileage.",
+            "duration_min": 25
+          }
+        ],
+        "classes": [
+          {
+            "title": "Early bird yoga for runners",
+            "description": "Hip and hamstring mobility, 6:30 AM near your office.",
+            "reason": "Your mornings are mostly free.",
+            "duration_min": 45
+          }
+        ],
+        "sleep": [
+          {
+            "title": "Travel wind-down",
+            "description": "Screens off 30 minutes before bed and a cool room.",
+            "reason": "Your sleep drops about 1.5 hours on travel nights.",
+            "duration_min": 30
+          }
+        ]
+      },
+      "insights": [
+        {
+          "text": "Your sleep drops on travel nights.",
+          "evidence": "Average 5.4 hours in Boston vs 7.0 hours at home."
+        },
+        {
+          "text": "Energy dips on heavy work weeks.",
+          "evidence": "Energy was 2 out of 5 or lower on every check-in after a 12+ hour workday."
+        },
+        {
+          "text": "Your long runs have felt flat lately.",
+          "evidence": "2 of your last 3 long runs were marked low effort on Strava."
+        }
+      ]
+    }
+  },
+  "jasmine": {
+    "profile": {
+      "id": "jasmine",
+      "name": "Jasmine",
+      "age": 34,
+      "tagline": "20 weeks pregnant, rebuilding her care team after a move",
+      "life_stage": "pregnant",
+      "pregnancy": {
+        "week": 20,
+        "due_date": "2027-03-12",
+        "pregnancy_number": 2
+      },
+      "primary_goal": "Care transition",
+      "connections": [
+        {
+          "source": "Oura",
+          "kind": "wearable",
+          "connected": true
+        },
+        {
+          "source": "Fitbit",
+          "kind": "wearable",
+          "connected": false
+        },
+        {
+          "source": "Pregnancy tracker",
+          "kind": "pregnancy",
+          "connected": true
+        },
+        {
+          "source": "Google Calendar",
+          "kind": "calendar",
+          "connected": true
+        },
+        {
+          "source": "Previous providers",
+          "kind": "records",
+          "connected": true
+        }
+      ],
+      "address": "Maplewood, NJ"
+    },
+    "goals": {
+      "primary_goal": "Care transition",
+      "focus_areas": [
+        "care transition",
+        "sleep",
+        "walking"
+      ],
+      "target_date": "2027-03-12",
+      "dietary_prefs": [
+        "pregnancy-safe",
+        "iron-rich",
+        "easy family meals"
+      ],
+      "activity_level": "low",
+      "notes": "Recently moved from Brooklyn. Second pregnancy. Toddler Leo, age 3."
+    },
+    "family": [
+      {
+        "id": "leo",
+        "name": "Leo",
+        "relation": "toddler",
+        "age": 3
+      }
+    ],
+    "wearables": [
+      {
+        "date": "2026-10-10",
+        "source": "Oura",
+        "sleep_hours": 6.6,
+        "hrv_ms": 38,
+        "resting_hr": 74,
+        "steps": 6350,
+        "walk_min": 35,
+        "night_wakings": 2,
+        "travel": false
+      },
+      {
+        "date": "2026-10-11",
+        "source": "Oura",
+        "sleep_hours": 5.1,
+        "hrv_ms": 31,
+        "resting_hr": 78,
+        "steps": 3600,
+        "walk_min": 10,
+        "night_wakings": 4,
+        "travel": false
+      },
+      {
+        "date": "2026-10-12",
+        "source": "Oura",
+        "sleep_hours": 6.8,
+        "hrv_ms": 40,
+        "resting_hr": 73,
+        "steps": 6900,
+        "walk_min": 40,
+        "night_wakings": 2,
+        "travel": false
+      },
+      {
+        "date": "2026-10-13",
+        "source": "Oura",
+        "sleep_hours": 4.9,
+        "hrv_ms": 29,
+        "resting_hr": 79,
+        "steps": 2500,
+        "walk_min": 0,
+        "night_wakings": 5,
+        "travel": false
+      },
+      {
+        "date": "2026-10-14",
+        "source": "Oura",
+        "sleep_hours": 6.4,
+        "hrv_ms": 37,
+        "resting_hr": 74,
+        "steps": 5800,
+        "walk_min": 30,
+        "night_wakings": 2,
+        "travel": false
+      },
+      {
+        "date": "2026-10-15",
+        "source": "Oura",
+        "sleep_hours": 5.3,
+        "hrv_ms": 32,
+        "resting_hr": 77,
+        "steps": 4150,
+        "walk_min": 15,
+        "night_wakings": 4,
+        "travel": false
+      },
+      {
+        "date": "2026-10-16",
+        "source": "Oura",
+        "sleep_hours": 6.9,
+        "hrv_ms": 41,
+        "resting_hr": 72,
+        "steps": 7450,
+        "walk_min": 45,
+        "night_wakings": 1,
+        "travel": false
+      },
+      {
+        "date": "2026-10-17",
+        "source": "Oura",
+        "sleep_hours": 5.0,
+        "hrv_ms": 30,
+        "resting_hr": 78,
+        "steps": 2500,
+        "walk_min": 0,
+        "night_wakings": 4,
+        "travel": false
+      },
+      {
+        "date": "2026-10-18",
+        "source": "Oura",
+        "sleep_hours": 6.5,
+        "hrv_ms": 38,
+        "resting_hr": 74,
+        "steps": 6350,
+        "walk_min": 35,
+        "night_wakings": 2,
+        "travel": false
+      },
+      {
+        "date": "2026-10-19",
+        "source": "Oura",
+        "sleep_hours": 5.4,
+        "hrv_ms": 33,
+        "resting_hr": 76,
+        "steps": 4700,
+        "walk_min": 20,
+        "night_wakings": 3,
+        "travel": false
+      },
+      {
+        "date": "2026-10-20",
+        "source": "Oura",
+        "sleep_hours": 6.3,
+        "hrv_ms": 36,
+        "resting_hr": 75,
+        "steps": 5800,
+        "walk_min": 30,
+        "night_wakings": 2,
+        "travel": false
+      },
+      {
+        "date": "2026-10-21",
+        "source": "Oura",
+        "sleep_hours": 5.2,
+        "hrv_ms": 31,
+        "resting_hr": 77,
+        "steps": 3600,
+        "walk_min": 10,
+        "night_wakings": 4,
+        "travel": false
+      },
+      {
+        "date": "2026-10-22",
+        "source": "Oura",
+        "sleep_hours": 6.7,
+        "hrv_ms": 39,
+        "resting_hr": 73,
+        "steps": 6900,
+        "walk_min": 40,
+        "night_wakings": 2,
+        "travel": false
+      },
+      {
+        "date": "2026-10-23",
+        "source": "Oura",
+        "sleep_hours": 6.4,
+        "hrv_ms": 37,
+        "resting_hr": 74,
+        "steps": 6020,
+        "walk_min": 32,
+        "night_wakings": 2,
+        "travel": false
+      }
+    ],
+    "runs": [],
+    "calendar": {
+      "trips": [],
+      "free_windows": [
+        "Weekdays 12:00-1:00 PM",
+        "Weekdays after 5:00 PM",
+        "Saturday mornings"
+      ],
+      "busy_weeks": [],
+      "work_location": "Home (remote)"
+    },
+    "cycle": null,
+    "training_plan": [
+      {
+        "date": "2026-10-23",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-24",
+        "activity": "25 min walk plus gentle strength",
+        "duration_min": 25,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-25",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-26",
+        "activity": "Rest and prenatal stretches",
+        "duration_min": 15,
+        "intensity": "rest",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-27",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-28",
+        "activity": "25 min walk plus gentle strength",
+        "duration_min": 25,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-29",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-30",
+        "activity": "25 min walk plus gentle strength",
+        "duration_min": 25,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-10-31",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-01",
+        "activity": "25 min walk plus gentle strength",
+        "duration_min": 25,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-02",
+        "activity": "Rest and prenatal stretches",
+        "duration_min": 15,
+        "intensity": "rest",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-03",
+        "activity": "25 min walk plus gentle strength",
+        "duration_min": 25,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-04",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-05",
+        "activity": "25 min walk plus gentle strength",
+        "duration_min": 25,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-06",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-07",
+        "activity": "25 min walk plus gentle strength",
+        "duration_min": 25,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-08",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-09",
+        "activity": "Rest and prenatal stretches",
+        "duration_min": 15,
+        "intensity": "rest",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-10",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-11",
+        "activity": "25 min walk plus gentle strength",
+        "duration_min": 25,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      },
+      {
+        "date": "2026-11-12",
+        "activity": "30 min neighborhood walk",
+        "duration_min": 30,
+        "intensity": "easy",
+        "adjusted": false,
+        "adjustment_reason": null
+      }
+    ],
+    "medications": [
+      {
+        "name": "Prenatal vitamin",
+        "schedule": "Daily with breakfast"
+      }
+    ],
+    "checkins": [
+      {
+        "id": "chk-jasmine-1",
+        "created_at": "2026-10-12T21:15:00",
+        "transcript": "Up twice with Leo, then couldn't get comfortable. So tired.",
+        "mood": 3,
+        "energy": 2,
+        "stress": 3,
+        "sleep_quality": 2,
+        "symptoms": [
+          "fatigue"
+        ],
+        "cycle_phase": null,
+        "em_reply": "Broken sleep with a toddler and a growing bump is a lot. A short walk and an early night may help.",
+        "insight": null,
+        "urgent": false,
+        "escalation_message": null
+      },
+      {
+        "id": "chk-jasmine-2",
+        "created_at": "2026-10-15T21:15:00",
+        "transcript": "Ankles a little puffy by the end of the day. Boxes everywhere still.",
+        "mood": 3,
+        "energy": 2,
+        "stress": 4,
+        "sleep_quality": 2,
+        "symptoms": [
+          "mild swelling"
+        ],
+        "cycle_phase": null,
+        "em_reply": "Mild swelling at the end of the day is common. Feet up for a bit tonight. If it gets severe or sudden, call your OB.",
+        "insight": null,
+        "urgent": false,
+        "escalation_message": null
+      },
+      {
+        "id": "chk-jasmine-3",
+        "created_at": "2026-10-17T21:15:00",
+        "transcript": "Nice long walk with Leo in the stroller. Slept a bit better.",
+        "mood": 4,
+        "energy": 3,
+        "stress": 3,
+        "sleep_quality": 3,
+        "symptoms": [
+          "mild swelling"
+        ],
+        "cycle_phase": null,
+        "em_reply": "That is great. Your sleep tends to be better on days you walk 30 minutes or more.",
+        "insight": "You sleep better on days you walk 30+ minutes.",
+        "urgent": false,
+        "escalation_message": null
+      },
+      {
+        "id": "chk-jasmine-4",
+        "created_at": "2026-10-19T21:15:00",
+        "transcript": "Still no records from my old OB. Stressed about the new appointment.",
+        "mood": 3,
+        "energy": 2,
+        "stress": 4,
+        "sleep_quality": 2,
+        "symptoms": [
+          "mild swelling",
+          "back pain"
+        ],
+        "cycle_phase": null,
+        "em_reply": "That makes sense. Em can help you follow up with your old office today so it is one less thing to carry.",
+        "insight": null,
+        "urgent": false,
+        "escalation_message": null
+      },
+      {
+        "id": "chk-jasmine-5",
+        "created_at": "2026-10-21T21:15:00",
+        "transcript": "Rough night, a bit of nausea in the morning. Work was steady.",
+        "mood": 3,
+        "energy": 2,
+        "stress": 3,
+        "sleep_quality": 2,
+        "symptoms": [
+          "nausea",
+          "mild swelling"
+        ],
+        "cycle_phase": null,
+        "em_reply": "Sorry about the rough night. Small snacks and water through the day may help with nausea.",
+        "insight": null,
+        "urgent": false,
+        "escalation_message": null
+      }
+    ],
+    "care_team": {
+      "items": [
+        {
+          "role": "OB",
+          "provider": "Dr. Priya Raman, Maplewood Women's Health",
+          "done": true
+        },
+        {
+          "role": "Primary care",
+          "provider": "Dr. Alan Brooks, Maplewood Family Medicine",
+          "done": true
+        },
+        {
+          "role": "Pediatrician (Leo)",
+          "provider": null,
+          "done": false
+        },
+        {
+          "role": "Perinatal mental health therapist",
+          "provider": null,
+          "done": false
+        }
+      ]
+    },
+    "records": [
+      {
+        "id": "rec-1",
+        "item": "Prenatal records",
+        "from_provider": "Brooklyn Heights OB/GYN",
+        "status": "requested",
+        "requested_on": "2026-10-05",
+        "needed_by": "2026-10-30",
+        "overdue": true
+      },
+      {
+        "id": "rec-2",
+        "item": "Vaccine history",
+        "from_provider": "Park Slope Pediatrics",
+        "status": "received",
+        "requested_on": "2026-10-03",
+        "needed_by": null,
+        "overdue": false
+      },
+      {
+        "id": "rec-3",
+        "item": "Lab results",
+        "from_provider": "Brooklyn Heights OB/GYN",
+        "status": "not_requested",
+        "requested_on": null,
+        "needed_by": "2026-10-30",
+        "overdue": false
+      }
+    ],
+    "labs": {
+      "panels": [
+        {
+          "id": "lab-jasmine-1",
+          "date": "2026-08-28",
+          "source": "Brooklyn Heights OB/GYN",
+          "results": [
+            {
+              "marker": "Hemoglobin",
+              "value": 11.2,
+              "unit": "g/dL",
+              "ref_low": 11.0,
+              "ref_high": 15.0,
+              "flag": "normal"
+            },
+            {
+              "marker": "Ferritin",
+              "value": 28,
+              "unit": "ng/mL",
+              "ref_low": 15,
+              "ref_high": 150,
+              "flag": "normal"
+            },
+            {
+              "marker": "TSH",
+              "value": 2.1,
+              "unit": "mIU/L",
+              "ref_low": 0.5,
+              "ref_high": 3.0,
+              "flag": "normal"
+            },
+            {
+              "marker": "Fasting glucose",
+              "value": 84,
+              "unit": "mg/dL",
+              "ref_low": 65,
+              "ref_high": 95,
+              "flag": "normal"
+            }
+          ],
+          "available_after_record": "rec-3"
+        }
+      ],
+      "upcoming": [
+        "Glucose screening at 24 to 28 weeks"
+      ]
+    },
+    "appointments": [
+      {
+        "id": "appt-jasmine-1",
+        "for_person": "self",
+        "provider": "Dr. Priya Raman",
+        "specialty": "OB",
+        "datetime": "2026-10-30T10:00:00",
+        "location": "Maplewood Women's Health, 12 Valley St, Maplewood, NJ",
+        "status": "upcoming",
+        "prep_questions": [],
+        "visit_summary": null
+      },
+      {
+        "id": "appt-jasmine-2",
+        "for_person": "self",
+        "provider": "Dr. Alan Brooks",
+        "specialty": "Primary care",
+        "datetime": "2026-10-14T12:15:00",
+        "location": "Maplewood Family Medicine, 40 Ridgewood Rd, Maplewood, NJ",
+        "status": "completed",
+        "prep_questions": [],
+        "visit_summary": {
+          "summary": "New patient visit. Blood pressure normal. Reviewed vaccine history.",
+          "action_items": [
+            "Bring prenatal records to OB visit"
+          ],
+          "follow_up": null
+        }
+      }
+    ],
+    "suggested_appointments": [
+      {
+        "specialty": "Pediatrics",
+        "reason": "Leo (age 3) needs a new pediatrician and his 3 year well visit.",
+        "urgency": "soon"
+      },
+      {
+        "specialty": "Perinatal mental health",
+        "reason": "A therapist on your care team makes support easy to reach.",
+        "urgency": "routine"
+      },
+      {
+        "specialty": "Lab work",
+        "reason": "Glucose screening is due at 24 to 28 weeks.",
+        "urgency": "routine"
+      }
+    ],
+    "providers": [
+      {
+        "id": "prov-j1",
+        "name": "Dr. Priya Raman",
+        "specialty": "OB",
+        "distance_mi": 1.2,
+        "in_network": true,
+        "rating": 4.9
+      },
+      {
+        "id": "prov-j2",
+        "name": "Dr. Alan Brooks",
+        "specialty": "Primary care",
+        "distance_mi": 0.8,
+        "in_network": true,
+        "rating": 4.7
+      },
+      {
+        "id": "prov-j3",
+        "name": "Maplewood Kids Pediatrics",
+        "specialty": "Pediatrics",
+        "distance_mi": 1.0,
+        "in_network": true,
+        "rating": 4.8
+      },
+      {
+        "id": "prov-j4",
+        "name": "South Orange Pediatric Group",
+        "specialty": "Pediatrics",
+        "distance_mi": 2.3,
+        "in_network": false,
+        "rating": 4.6
+      },
+      {
+        "id": "prov-j5",
+        "name": "Dr. Maria Chen, LCSW",
+        "specialty": "Perinatal mental health",
+        "distance_mi": 1.5,
+        "in_network": true,
+        "rating": 4.9
+      }
+    ],
+    "slots": [
+      {
+        "id": "slot-j1",
+        "provider": "Maplewood Kids Pediatrics",
+        "specialty": "Pediatrics",
+        "datetime": "2026-10-28T17:15:00"
+      },
+      {
+        "id": "slot-j2",
+        "provider": "Maplewood Kids Pediatrics",
+        "specialty": "Pediatrics",
+        "datetime": "2026-10-31T12:00:00"
+      },
+      {
+        "id": "slot-j3",
+        "provider": "Dr. Maria Chen, LCSW",
+        "specialty": "Perinatal mental health",
+        "datetime": "2026-11-04T12:00:00"
+      },
+      {
+        "id": "slot-j4",
+        "provider": "Maplewood Women's Health Lab",
+        "specialty": "Lab work",
+        "datetime": "2026-11-20T08:00:00"
+      }
+    ],
+    "home": {
+      "greeting": "Good evening, Jasmine",
+      "quote": "You do not have to do it all today. One small step is enough.",
+      "nutrition_tip": "Add a protein and iron-rich snack like Greek yogurt with berries, or hummus with veggies.",
+      "readiness": {
+        "score": 61,
+        "sleep_hours": 6.4,
+        "hrv_ms": 37,
+        "resting_hr": 74,
+        "summary": "Better sleep after yesterday's walk. A 30 minute walk today could help again."
+      },
+      "alerts": [
+        {
+          "type": "records",
+          "title": "Prenatal records not received",
+          "detail": "Requested from Brooklyn Heights OB/GYN 18 days ago. Your first visit with Dr. Raman is in 7 days.",
+          "severity": "warning"
+        },
+        {
+          "type": "appointment",
+          "title": "First OB visit in 7 days",
+          "detail": "Dr. Priya Raman will need your earlier lab results.",
+          "severity": "info"
+        },
+        {
+          "type": "medication",
+          "title": "Prenatal vitamin",
+          "detail": "Daily with breakfast.",
+          "severity": "info"
+        }
+      ]
+    },
+    "mock": {
+      "checkin": {
+        "transcript": "Slept about six hours, a little swelling in my ankles, feeling okay.",
+        "mood": 3,
+        "energy": 3,
+        "stress": 3,
+        "sleep_quality": 3,
+        "symptoms": [
+          "mild swelling"
+        ],
+        "cycle_phase": null,
+        "em_reply": "Thanks for checking in. Feet up for a bit tonight and a short walk tomorrow may help.",
+        "insight": "You sleep better on days you walk 30+ minutes."
+      },
+      "prep_questions": [
+        "My prenatal records from my old OB have not arrived yet. Can your office request them directly?",
+        "Do you need my earlier prenatal lab results before scheduling the glucose screening?",
+        "I have had mild ankle swelling in the evenings. What should I watch for?",
+        "What walking and exercise is safe for me in the second and third trimester?"
+      ],
+      "visit_note": {
+        "summary": "Next visit at 24 weeks. Glucose screening scheduled.",
+        "action_items": [
+          "Book glucose screening",
+          "Follow up on prenatal records"
+        ],
+        "follow_up": "Next prenatal visit at 24 weeks"
+      },
+      "lab_explanation": {
+        "plain_summary": "Your earlier prenatal labs are all in the typical range for this stage of pregnancy.",
+        "flags": [
+          {
+            "marker": "Hemoglobin",
+            "meaning": "In range, but near the lower end.",
+            "why_it_matters_for_you": "Iron needs rise in pregnancy, so your OB may want to keep an eye on it."
+          }
+        ],
+        "plan_changes": [
+          "Keep iron and protein-rich meals in your week"
+        ],
+        "follow_up": "Glucose screening at 24 to 28 weeks",
+        "disclaimer": "This is general information, not a diagnosis. Review these results with your OB."
+      },
+      "policy_answer": {
+        "answer": "Prenatal visits and the glucose screening are covered as preventive maternity care in-network.",
+        "covered": "yes",
+        "relevant_clause": "Section 6.2 Maternity care: routine prenatal visits and screenings covered at 100% in-network."
+      },
+      "adapted_plan": [
+        {
+          "date": "2026-10-23",
+          "activity": "30 min neighborhood walk",
+          "duration_min": 30,
+          "intensity": "easy",
+          "adjusted": false,
+          "adjustment_reason": null
+        },
+        {
+          "date": "2026-10-24",
+          "activity": "20 min easy walk",
+          "duration_min": 20,
+          "intensity": "easy",
+          "adjusted": true,
+          "adjustment_reason": "Broken sleep last night. Shorter walk, same daily habit."
+        },
+        {
+          "date": "2026-10-25",
+          "activity": "30 min walk on the park loop",
+          "duration_min": 30,
+          "intensity": "easy",
+          "adjusted": true,
+          "adjustment_reason": "You sleep better on days you walk 30+ minutes."
+        },
+        {
+          "date": "2026-10-26",
+          "activity": "Rest and prenatal stretches",
+          "duration_min": 15,
+          "intensity": "rest",
+          "adjusted": false,
+          "adjustment_reason": null
+        },
+        {
+          "date": "2026-10-27",
+          "activity": "30 min neighborhood walk",
+          "duration_min": 30,
+          "intensity": "easy",
+          "adjusted": false,
+          "adjustment_reason": null
+        },
+        {
+          "date": "2026-10-28",
+          "activity": "25 min walk plus gentle strength",
+          "duration_min": 25,
+          "intensity": "easy",
+          "adjusted": false,
+          "adjustment_reason": null
+        },
+        {
+          "date": "2026-10-29",
+          "activity": "30 min neighborhood walk",
+          "duration_min": 30,
+          "intensity": "easy",
+          "adjusted": false,
+          "adjustment_reason": null
+        }
+      ],
+      "suggestions": {
+        "nutrition": [
+          {
+            "title": "Sheet pan chicken and sweet potato",
+            "description": "One pan, ready in 30 minutes, toddler friendly.",
+            "reason": "Easy family meal with protein and iron.",
+            "duration_min": 30
+          },
+          {
+            "title": "Hydration reminder",
+            "description": "A big glass of water with each meal and snack.",
+            "reason": "Helps with swelling and energy.",
+            "duration_min": null
+          },
+          {
+            "title": "Ginger and crackers",
+            "description": "Keep plain crackers by the bed for mornings.",
+            "reason": "You mentioned morning nausea.",
+            "duration_min": null
+          }
+        ],
+        "workouts": [
+          {
+            "title": "Park loop walk",
+            "description": "Flat 1.5 mile loop at Memorial Park, stroller friendly.",
+            "reason": "You sleep better on 30+ minute walk days.",
+            "duration_min": 30
+          },
+          {
+            "title": "Prenatal stretch routine",
+            "description": "Cat cow, side stretches, supported squats.",
+            "reason": "Pregnancy-safe and eases back pain.",
+            "duration_min": 15
+          }
+        ],
+        "classes": [
+          {
+            "title": "Prenatal yoga",
+            "description": "Thursday 6 PM at Maplewood Community Center.",
+            "reason": "After work hours and close to home.",
+            "duration_min": 60
+          }
+        ],
+        "sleep": [
+          {
+            "title": "Side sleeping setup",
+            "description": "A pillow between knees and one behind your back.",
+            "reason": "Pregnancy-friendly comfort for broken sleep.",
+            "duration_min": null
+          },
+          {
+            "title": "Wind-down at 9:30",
+            "description": "Dim lights, no screens, a warm shower.",
+            "reason": "Helps you fall back asleep after Leo wakes.",
+            "duration_min": 20
+          }
+        ]
+      },
+      "insights": [
+        {
+          "text": "You sleep better on days you walk 30+ minutes.",
+          "evidence": "6.6 hours on walk days vs 5.2 hours on other days."
+        },
+        {
+          "text": "Stress rises when care tasks are pending.",
+          "evidence": "Stress was 4 out of 5 on days you mentioned records or appointments."
+        }
+      ]
+    }
+  }
+}
