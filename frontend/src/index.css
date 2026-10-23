@@ -115,6 +115,33 @@ body {
 .profile-chip .persona { font-size: 0.8rem; font-weight: 600; }
 .profile-chip .persona select { border: none; background: transparent; font-weight: 600; padding: 2px 0; cursor: pointer; }
 .avatar-btn { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--logo); color: #fff; }
+button.avatar-btn { border: none; padding: 0; cursor: pointer; }
+button.avatar-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.ask-orders { align-self: flex-start; margin-top: 4px; }
+
+/* ---------- Data settings popover ---------- */
+.data-menu { position: relative; }
+.data-pop {
+  position: absolute; top: calc(100% + 10px); right: 0; z-index: 30; width: min(340px, calc(100vw - 24px));
+  display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 20px;
+  background: var(--surface); border: 1px solid var(--border); box-shadow: 0 16px 40px rgba(43, 35, 48, 0.14);
+}
+.data-pop-head { display: flex; gap: 10px; align-items: flex-start; }
+.data-pop-head > div { display: flex; flex-direction: column; gap: 2px; }
+.data-pop-icon { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--logo); }
+.data-choices { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.data-choices li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px; border-radius: 14px; background: var(--tile); }
+.data-choices li > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.data-choices strong { font-size: 0.88rem; }
+.data-note { margin: 0; font-size: 0.72rem; line-height: 1.45; }
+.switch { flex: none; position: relative; width: 42px; height: 24px; border-radius: 999px; border: none; padding: 0; cursor: pointer; background: #e2d6d6; transition: background 0.15s ease; }
+.switch.on { background: var(--ok); }
+.switch:disabled { opacity: 0.6; cursor: default; }
+.switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.switch-thumb { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); transition: transform 0.15s ease; }
+.switch.on .switch-thumb { transform: translateX(18px); }
+@media (prefers-reduced-motion: reduce) { .switch, .switch-thumb { transition: none; } }
 .page { flex: 1; width: 100%; max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
 .page-msg { text-align: center; margin-top: 80px; }
 .site-footer {

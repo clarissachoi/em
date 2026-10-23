@@ -530,3 +530,16 @@ class Coverage(BaseModel):
     employer_benefits: list[EmployerBenefit]
     ask_suggestions: list[str]
     disclaimer: str
+
+
+# ---------- Data settings ----------
+
+class DataSettingsUpdate(BaseModel):
+    """PUT /data-settings body. Both are opt in."""
+    model_training: bool = False
+    third_party_sharing: bool = False
+
+
+class DataSettings(DataSettingsUpdate):
+    """Her data use choices, with when she last changed them."""
+    updated_at: datetime | None = None

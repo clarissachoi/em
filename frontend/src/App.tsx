@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import DataMenu from './components/DataMenu'
 import Icon from './components/Icon'
 import PersonaProvider from './components/PersonaProvider'
 import PersonaSwitcher from './components/PersonaSwitcher'
@@ -94,7 +95,7 @@ function Shell() {
         </nav>
         <div className="profile-chip">
           <PersonaSwitcher />
-          <span className="avatar-btn" aria-hidden><Icon name="user" size={16} /></span>
+          <DataMenu />
         </div>
       </header>
 

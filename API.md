@@ -293,6 +293,19 @@ Cost rules: `copay` is a fixed amount, `free` is $0 (preventive), `deductible` i
 
 Em's voice agent has a `get_coverage` tool that returns this same data.
 
+## Data settings
+
+### GET /data-settings  /  PUT /data-settings
+Per persona. Opened from the profile icon. Both choices are **off by default** (opt in). The demo only stores the choice; nothing is trained on or shared.
+```
+DataSettings {
+  model_training: bool        # use her data to train and improve EmCare's AI models
+  third_party_sharing: bool   # share or sell her data to third parties for tailored offers
+  updated_at: datetime | null # set by the server on PUT
+}
+```
+PUT takes `{ model_training, third_party_sharing }` and returns `DataSettings`.
+
 ## Voice (live Em, Gemini Live API)
 
 The browser never talks to Gemini. It streams audio to our backend, which relays to Gemini Live.
