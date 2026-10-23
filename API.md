@@ -170,6 +170,45 @@ Suggestion { title: str, description: str, reason: str, duration_min: int | null
 Cross-data patterns. `list[Insight]`, Insight { text: str, evidence: str }
 e.g. "You sleep better on days you walk 30+ minutes" / "Energy dips on heavy travel weeks".
 
+## Voice (live Em, Gemini Live API)
+
+The browser never talks to Gemini. It streams audio to our backend, which relays to Gemini Live.
+
+### WS /voice?user_id=maya
+WebSocket. Browsers cannot set headers on a WebSocket, so the persona comes as the `user_id` query param (same values as `X-User-Id`, unknown ids close with code 4404).
+
+Client to server:
+- Binary frame: raw mic audio, 16-bit PCM, little endian, mono, 16 kHz. Send continuously while the mic is on (~40 ms chunks).
+- `{ "type": "text", "text": str }`: typed message instead of speech.
+- `{ "type": "end" }`: end the session. The server closes the socket.
+
+Server to client:
+- Binary frame: Em's voice, 16-bit PCM, little endian, mono, 24 kHz. Play in order.
+- `VoiceEvent` JSON, one of:
+```
+{ type: "ready", model: str }                               # Gemini session open, start sending audio
+{ type: "transcript", role: "user" | "em", text: str }      # incremental chunk, append to the current turn
+{ type: "turn_complete" }                                   # Em finished speaking
+{ type: "interrupted" }                                     # user talked over Em, drop queued audio now
+{ type: "tool", name: str, summary: str, changed: bool }    # Em looked something up or changed data (changed=true: refresh views)
+{ type: "checkin", checkin: CheckinResult }                 # Em saved a check-in from the conversation
+{ type: "urgent", message: str, speak: bool }               # fixed prompts.URGENT_ESCALATION text; Em's audio is muted until the user speaks again
+{ type: "error", message: str }
+```
+`speak` is the persona's `voice_alerts` setting when the session opened. The client uses its current toggle (so a mid-session change applies) and, when on, plays `GET /voice/urgent-audio`. The urgent wording is never model-written: Em's own speech is dropped and only the fixed text is shown and read.
+
+Tools Em can call during the conversation (confirms out loud before anything marked *changes data*):
+`log_checkin` (*changes data*, saves a CheckinResult), `flag_urgent`, `get_appointments`, `find_slots(specialty?)`, `book_slot(slot_id, for_person)` (*changes data*, also updates the care checklist), `get_records`, `update_record_status(record_id, status)` (*changes data*, receiving lab records unlocks their panel), `get_labs`, `get_plan`, `adjust_plan_day(date, activity, duration_min, intensity, reason)` (*changes data*).
+
+### GET /voice/settings  /  PUT /voice/settings
+Per persona.
+```
+VoiceSettings { voice_alerts: bool }   # read urgent alerts aloud, default true
+```
+
+### GET /voice/urgent-audio
+`audio/wav` of `URGENT_ESCALATION` read aloud (cached after first call). 503 if speech generation fails; the client then falls back to the browser's speech synthesis.
+
 ## Health
 
 ### GET /health
