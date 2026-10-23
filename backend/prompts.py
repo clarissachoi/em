@@ -109,3 +109,29 @@ def lab_disclaimer(pregnant: bool) -> str:
     """Fixed disclaimer for lab explanations; never model-written."""
     who = "your OB" if pregnant else "your doctor"
     return f"This is general information, not a diagnosis. Review these results with {who} before making any changes."
+
+
+WELLNESS_PROMPT = """Suggest today's and this week's wellness ideas for {name} for the em.well page, using her context below.
+
+Return exactly: {counts}.
+
+Rules:
+- Plain, warm language. No medical jargon and no claims about what something does inside the body.
+- reason: one sentence tying it to her own data (labs, recent runs or walks, check-ins, sleep, travel, goals, pregnancy).
+- nutrition is food and drink only. Never suggest supplements, pills, capsules, powders, or doses.
+- Never suggest starting, stopping, or changing any medication.
+- workouts and classes fit her plan and energy this week; classes are group or guided sessions.
+- when: a short day and time that fits her free calendar windows and plan, e.g. "Today · 6:30 AM" or "Sat · 9:00 AM", or null.
+- where: generic places only ("Home", "Hotel gym", "Neighborhood park", "Local yoga studio"), or a named place that
+  appears in her context. Never invent business or brand names.
+- tag: one or two words for the card label, e.g. "Recovery", "Iron-rich", "Travel-friendly", "Pregnancy-safe", "Wind-down".
+- duration_min: minutes, or null for food.
+{pregnancy_rules}
+Her context (JSON):
+{context}
+"""
+
+WELLNESS_PREGNANCY_RULES = """- She is pregnant. Every item must be pregnancy-safe: no saunas, hot tubs, hot yoga, contact or fall-risk sports,
+  lying flat on her back after the first trimester, heavy lifting, or raw fish, unpasteurized foods, high-mercury fish,
+  or alcohol. Prefer walking, prenatal yoga, gentle strength, and side-lying stretches.
+"""

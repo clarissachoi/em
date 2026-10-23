@@ -170,15 +170,26 @@ Response: list[PlanDay]
 Re-plans using latest sleep, travel, cycle/pregnancy week, labs, check-ins. Returns `list[PlanDay]` with `adjusted` / `adjustment_reason` set.
 
 ### GET /suggestions
+Powers the em.well page. Gemini, personalized from goals, labs, recent check-ins, plan, calendar, and pregnancy. Cached per persona until her data changes.
 ```
 Suggestions {
-  nutrition: list[Suggestion]
+  headline: str                # focus line from her data, e.g. "Low ferritin · Marathon in 16 weeks" (not model-written)
+  nutrition: list[Suggestion]  # food only, never supplements
   workouts: list[Suggestion]
   classes: list[Suggestion]
   sleep: list[Suggestion]      # mainly for Jasmine
 }
-Suggestion { title: str, description: str, reason: str, duration_min: int | null }
+Suggestion {
+  title: str
+  description: str             # plain language
+  reason: str                  # why this is for her, from her own data
+  duration_min: int | null
+  tag: str                     # short card label, e.g. "Recovery", "Iron-rich", "Pregnancy-safe"
+  when: str | null             # e.g. "Today · 6:30 AM", fits her free calendar windows
+  where: str | null            # generic ("Hotel gym") or a place from her seed data, never invented business names
+}
 ```
+Pregnancy-safe for Jasmine and no supplements are enforced in code as well as in the prompt (unsafe items are dropped).
 
 ### GET /insights
 Cross-data patterns. `list[Insight]`, Insight { text: str, evidence: str }

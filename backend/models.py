@@ -295,6 +295,36 @@ class PlanDay(BaseModel):
     adjustment_reason: str | None
 
 
+class Suggestion(BaseModel):
+    """One em.well card."""
+    title: str
+    description: str
+    reason: str
+    duration_min: int | None
+    tag: str
+    when: str | None
+    where: str | None
+
+
+class SuggestionDraft(BaseModel):
+    """What Gemini returns for GET /suggestions; headline is added in code."""
+    nutrition: list[Suggestion]
+    workouts: list[Suggestion]
+    classes: list[Suggestion]
+    sleep: list[Suggestion]
+
+
+class Suggestions(SuggestionDraft):
+    """Response for GET /suggestions."""
+    headline: str
+
+
+class Insight(BaseModel):
+    """A cross-data pattern Em noticed."""
+    text: str
+    evidence: str
+
+
 # ---------- Voice ----------
 
 class VoiceSettings(BaseModel):
