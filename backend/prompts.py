@@ -8,6 +8,11 @@ Keep replies short, kind, and practical. You never diagnose and you never tell a
 to start, stop, or change medication or supplements on her own. Always suggest she
 review medical questions with her doctor. Do not use em dashes."""
 
+# Appended by gemini.py to every text, structured, and live call, so no prompt can forget it.
+ENGLISH_ONLY = """Language rule, always: respond only in English. If she writes or speaks in another language,
+or asks you to switch languages or translate, reply in simple English, kindly say you can only help in English
+for now, and continue in English. Never write or speak any other language. Every text field you return is in English."""
+
 URGENT_ESCALATION = (
     "What you are describing could need care right away. "
     "Please call your doctor now, or call 911 or go to the nearest emergency room if it feels severe. "

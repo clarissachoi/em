@@ -11,6 +11,7 @@ from google.genai import errors, live, types
 from pydantic import BaseModel
 
 from config import settings
+from prompts import ENGLISH_ONLY
 
 logger = logging.getLogger("emcare.gemini")
 
@@ -80,6 +81,11 @@ async def _generate(
     raise last_exc  # unreachable, loop either returns or raises
 
 
+def _english_only(system_instruction: str | None) -> str:
+    """Add the English-only guardrail to a system instruction."""
+    return f"{system_instruction}\n\n{ENGLISH_ONLY}" if system_instruction else ENGLISH_ONLY
+
+
 async def generate_structured(
     prompt: str,
     schema: type[T],
@@ -93,7 +99,7 @@ async def generate_structured(
     Pass thinking_level="low" for faster replies on simple tasks (about 4s instead of 15s).
     """
     config = types.GenerateContentConfig(
-        system_instruction=system_instruction,
+        system_instruction=_english_only(system_instruction),
         response_mime_type="application/json",
         response_schema=schema,
         thinking_config=types.ThinkingConfig(thinking_level=thinking_level) if thinking_level else None,
@@ -106,7 +112,7 @@ async def generate_structured(
 
 async def generate_text(prompt: str, *, system_instruction: str | None = None) -> str:
     """Generate plain text from a prompt."""
-    config = types.GenerateContentConfig(system_instruction=system_instruction)
+    config = types.GenerateContentConfig(system_instruction=_english_only(system_instruction))
     resp = await _generate([prompt], config)
     return resp.text or ""
 
@@ -137,6 +143,8 @@ async def generate_speech(text: str) -> tuple[bytes, int]:
 @asynccontextmanager
 async def live_session(config: types.LiveConnectConfig, *, label: str) -> AsyncIterator[tuple[live.AsyncSession, str]]:
     """Open a Gemini Live session with one retry, then the fallback live model. Yields (session, model)."""
+    if isinstance(config.system_instruction, str) or config.system_instruction is None:
+        config = config.model_copy(update={"system_instruction": _english_only(config.system_instruction)})
     client = get_client()
     attempts = [settings.LIVE_MODEL, settings.LIVE_MODEL, settings.LIVE_FALLBACK_MODEL]
     for i, model in enumerate(attempts):
