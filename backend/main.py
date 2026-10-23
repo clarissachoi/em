@@ -1,9 +1,13 @@
 """EmCare FastAPI app. Run from backend/: uvicorn main:app --reload --port 8000"""
 
+import logging
+
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import appointments, goals, plan, records, users
+from routers import appointments, goals, plan, records, users, voice
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
 app = FastAPI(title="EmCare API")
 
@@ -29,3 +33,4 @@ app.include_router(records.router, prefix="/api")
 app.include_router(appointments.router, prefix="/api")
 app.include_router(goals.router, prefix="/api")
 app.include_router(plan.router, prefix="/api")
+app.include_router(voice.router, prefix="/api")

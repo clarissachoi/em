@@ -72,3 +72,38 @@ export interface PlanDay {
 export const getGoals = () => request<Goals>('/goals')
 export const putGoals = (goals: Goals) => request<Goals>('/goals', { method: 'PUT', body: JSON.stringify(goals) })
 export const getPlan = () => request<PlanDay[]>('/plan')
+
+// ---------- Voice ----------
+
+export interface CheckinResult {
+  id: string
+  created_at: string
+  transcript: string
+  mood: number
+  energy: number
+  stress: number
+  sleep_quality: number | null
+  symptoms: string[]
+  cycle_phase: string | null
+  em_reply: string
+  insight: string | null
+  urgent: boolean
+  escalation_message: string | null
+}
+export interface VoiceSettings { voice_alerts: boolean }
+export type VoiceEvent =
+  | { type: 'ready'; model: string }
+  | { type: 'transcript'; role: 'user' | 'em'; text: string }
+  | { type: 'turn_complete' }
+  | { type: 'interrupted' }
+  | { type: 'tool'; name: string; summary: string; changed: boolean }
+  | { type: 'checkin'; checkin: CheckinResult }
+  | { type: 'urgent'; message: string; speak: boolean }
+  | { type: 'error'; message: string }
+
+export const getVoiceSettings = () => request<VoiceSettings>('/voice/settings')
+export const putVoiceSettings = (settings: VoiceSettings) =>
+  request<VoiceSettings>('/voice/settings', { method: 'PUT', body: JSON.stringify(settings) })
+/** WebSocket URL for live voice. Persona goes in the query since sockets cannot send headers. */
+export const voiceSocketUrl = () => `${BASE.replace(/^http/, 'ws')}/voice?user_id=${encodeURIComponent(currentUserId)}`
+export const urgentAudioUrl = `${BASE}/voice/urgent-audio`
