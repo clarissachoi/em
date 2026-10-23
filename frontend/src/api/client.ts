@@ -181,3 +181,63 @@ export interface HomeData {
 }
 
 export const getHome = () => request<HomeData>('/home')
+
+// ---------- Appointments ----------
+
+export interface DoctorNote {
+  author: string
+  written_on: string
+  reason_for_visit: string
+  subjective: string
+  objective: string[]
+  assessment: string[]
+  plan: string[]
+}
+export interface SuggestedActivity { title: string; detail: string; category: 'training' | 'nutrition' | 'recovery' | 'self_care'; based_on: string }
+export interface VisitSummary { summary: string; action_items: string[]; follow_up: string | null; suggested_activities: SuggestedActivity[] }
+export interface Appointment {
+  id: string
+  for_person: string
+  provider: string
+  specialty: string
+  datetime: string
+  location: string
+  status: 'upcoming' | 'completed'
+  prep_questions: string[]
+  visit_summary: VisitSummary | null
+  doctor_notes: DoctorNote | null
+}
+export interface SuggestedAppointment { specialty: string; reason: string; urgency: 'soon' | 'routine' }
+export interface AppointmentList { upcoming: Appointment[]; past: Appointment[]; suggested: SuggestedAppointment[] }
+export interface Slot { id: string; provider: string; specialty: string; datetime: string; description: string | null }
+export interface ScribeNote {
+  id: string
+  appointment_id: string
+  provider: string
+  specialty: string
+  created_at: string
+  duration_sec: number | null
+  summary: string
+  key_points: string[]
+  doctor_instructions: string[]
+  follow_ups: string[]
+  transcript: string
+  disclaimer: string
+}
+
+export const getAppointments = () => request<AppointmentList>('/appointments')
+export const getSlots = (specialty?: string) =>
+  request<Slot[]>(`/appointments/slots${specialty ? `?specialty=${encodeURIComponent(specialty)}` : ''}`)
+export const bookSlot = (slot_id: string, for_person = 'self') =>
+  request<Appointment>('/appointments/book', { method: 'POST', body: JSON.stringify({ slot_id, for_person }) })
+/** Calls Gemini on the backend; a few seconds. */
+export const prepAppointment = (id: string) => request<Appointment>(`/appointments/${id}/prep`, { method: 'POST' })
+/** Uploads a visit recording; Gemini transcribes and saves the note. Can take 10-30s for long visits. */
+export function scribeVisit(id: string, audio: Blob, duration_sec: number) {
+  const form = new FormData()
+  const ext = audio.type.includes('mp4') ? 'mp4' : audio.type.includes('ogg') ? 'ogg' : 'webm'
+  form.append('audio', audio, `visit.${ext}`)
+  form.append('duration_sec', String(Math.round(duration_sec)))
+  return request<ScribeNote>(`/appointments/${id}/scribe`, { method: 'POST', body: form })
+}
+export const getScribeNotes = () => request<ScribeNote[]>('/scribe-notes')

@@ -45,11 +45,41 @@ class UserProfile(BaseModel):
 
 # ---------- Appointments ----------
 
+class DoctorNote(BaseModel):
+    """Clinician's note from a completed visit (mocked records)."""
+    author: str
+    written_on: date
+    reason_for_visit: str
+    subjective: str
+    objective: list[str]
+    assessment: list[str]
+    plan: list[str]
+
+
+class SuggestedActivity(BaseModel):
+    """An activity Em suggests after a visit, tied to one line of the doctor's plan."""
+    title: str
+    detail: str
+    category: Literal["training", "nutrition", "recovery", "self_care"]
+    based_on: str
+
+
+class SuggestedActivityList(BaseModel):
+    """Gemini response schema for POST /appointments/{id}/activities."""
+    activities: list[SuggestedActivity]
+
+
+class VisitSummaryText(BaseModel):
+    """Gemini response schema for the one-off visit summary script."""
+    summary: str
+
+
 class VisitSummary(BaseModel):
     """What happened at a completed visit."""
     summary: str
     action_items: list[str]
     follow_up: str | None
+    suggested_activities: list[SuggestedActivity] = []
 
 
 class Appointment(BaseModel):
@@ -63,6 +93,7 @@ class Appointment(BaseModel):
     status: Literal["upcoming", "completed"]
     prep_questions: list[str]
     visit_summary: VisitSummary | None
+    doctor_notes: DoctorNote | None = None
 
 
 class SuggestedAppointment(BaseModel):
@@ -107,6 +138,36 @@ class BookRequest(BaseModel):
 class SuggestedAppointmentList(BaseModel):
     """Gemini response schema for POST /appointments/suggestions."""
     suggested: list[SuggestedAppointment]
+
+
+class PrepQuestionList(BaseModel):
+    """Gemini response schema for POST /appointments/{id}/prep."""
+    questions: list[str]
+
+
+class ScribeResult(BaseModel):
+    """Gemini response schema for POST /appointments/{id}/scribe."""
+    transcript: str
+    summary: str
+    key_points: list[str]
+    doctor_instructions: list[str]
+    follow_ups: list[str]
+
+
+class ScribeNote(BaseModel):
+    """A saved ambient scribe note from a visit."""
+    id: str
+    appointment_id: str
+    provider: str
+    specialty: str
+    created_at: datetime
+    duration_sec: int | None
+    summary: str
+    key_points: list[str]
+    doctor_instructions: list[str]
+    follow_ups: list[str]
+    transcript: str
+    disclaimer: str
 
 
 # ---------- Records ----------

@@ -421,22 +421,6 @@
         "end": "2026-10-23T19:00:00",
         "location": "Union Square Dental",
         "detail": null
-      },
-      {
-        "title": "Eye exam, Dr. Marcus Lee",
-        "type": "appointment",
-        "start": "2026-10-28T07:15:00",
-        "end": "2026-10-28T08:00:00",
-        "location": "Midtown Eye Care",
-        "detail": null
-      },
-      {
-        "title": "Skin check, Dr. Hannah Cho",
-        "type": "appointment",
-        "start": "2026-11-14T10:00:00",
-        "end": "2026-11-14T10:45:00",
-        "location": "Park Slope Dermatology",
-        "detail": null
       }
     ],
     "free_windows": [
@@ -715,28 +699,6 @@
         "status": "upcoming",
         "prep_questions": [],
         "visit_summary": null
-      },
-      {
-        "id": "maya_appt_eye",
-        "for_person": "self",
-        "provider": "Dr. Marcus Lee",
-        "specialty": "Optometry",
-        "datetime": "2026-10-28T07:15:00",
-        "location": "Midtown Eye Care, 515 Madison Ave, New York, NY",
-        "status": "upcoming",
-        "prep_questions": [],
-        "visit_summary": null
-      },
-      {
-        "id": "maya_appt_derm",
-        "for_person": "self",
-        "provider": "Dr. Hannah Cho",
-        "specialty": "Dermatology",
-        "datetime": "2026-11-14T10:00:00",
-        "location": "Park Slope Dermatology, 120 7th Ave, Brooklyn, NY",
-        "status": "upcoming",
-        "prep_questions": [],
-        "visit_summary": null
       }
     ],
     "past": [
@@ -750,11 +712,83 @@
         "status": "completed",
         "prep_questions": [],
         "visit_summary": {
-          "summary": "Baseline endurance bloodwork drawn before marathon build.",
+          "summary": "This review was completed for baseline bloodwork ordered before your marathon training block after you reported increased fatigue on long runs. Your blood tests checked your ferritin, iron, hemoglobin, vitamin D, vitamin B12, and thyroid levels. Your ferritin was below the reference range, your iron and hemoglobin were at the low end of normal, your vitamin D was near the lower limit of normal, and your vitamin B12 and thyroid levels were within normal ranges.",
           "action_items": [
-            "Review results when they post"
+            "Book a visit with Dr. Reyes to review results",
+            "Recheck ferritin, iron, and CBC in 8 to 12 weeks"
           ],
-          "follow_up": null
+          "follow_up": "Office visit to review results and complete annual physical"
+        },
+        "doctor_notes": {
+          "author": "Dr. Alana Reyes, MD, Internal Medicine",
+          "written_on": "2026-10-19",
+          "reason_for_visit": "Result note for baseline bloodwork ordered via patient portal before marathon training block (race 2027-02-11). Patient reported more fatigue on long runs over the past 4 weeks.",
+          "subjective": "Running 30 to 35 miles per week, building toward marathon. Reports heavier legs on long runs and lower energy late in the week. Periods regular, moderate to heavy flow on days 1 and 2. Mostly plant-forward diet, eats red meat rarely. No supplements. Sleep 6.5 to 7 hours on weeknights.",
+          "objective": [
+            "Ferritin 11 ng/mL (ref 15 to 150), below range",
+            "Iron 58 ug/dL (ref 50 to 170), low end of range",
+            "Hemoglobin 12.4 g/dL (ref 12.0 to 15.5), low end of range",
+            "Vitamin D 34 ng/mL (ref 30 to 100)",
+            "Vitamin B12 512 pg/mL, TSH 1.9 mIU/L, Free T4 1.2 ng/dL, all within range"
+          ],
+          "assessment": [
+            "Ferritin below reference range with hemoglobin and iron at the low end of normal",
+            "Thyroid function and B12 within range",
+            "Vitamin D within range but near the lower limit"
+          ],
+          "plan": [
+            "Book an office visit to review results and complete the overdue annual physical",
+            "Discuss iron intake and whether iron supplementation is appropriate at that visit",
+            "Include iron-rich foods paired with vitamin C; avoid tea or coffee with iron-rich meals",
+            "Recheck ferritin, iron, and CBC in 8 to 12 weeks",
+            "Consider keeping long runs conversational until results are reviewed",
+            "Call sooner for shortness of breath at rest, chest pain, dizziness, or fainting"
+          ]
+        }
+      },
+      {
+        "id": "maya_appt_physical_2024",
+        "for_person": "self",
+        "provider": "Dr. Alana Reyes",
+        "specialty": "Primary care",
+        "datetime": "2024-06-09T09:30:00",
+        "location": "Flatiron Internal Medicine, 156 5th Ave, New York, NY",
+        "status": "completed",
+        "prep_questions": [],
+        "visit_summary": {
+          "summary": "You attended an annual preventive exam to review your general health. Your blood pressure, heart rate, body mass index, heart, lungs, abdomen, right knee, and routine blood tests were checked, and a Pap smear was performed. All physical exam findings and lab results were within normal limits, with your right knee showing full range of motion and no swelling.",
+          "action_items": [
+            "Keep up regular exercise",
+            "Book a dental cleaning"
+          ],
+          "follow_up": "Annual physical in 12 months"
+        },
+        "doctor_notes": {
+          "author": "Dr. Alana Reyes, MD, Internal Medicine",
+          "written_on": "2024-06-09",
+          "reason_for_visit": "Annual preventive exam.",
+          "subjective": "Feels well. Runs 3 to 4 times per week, 15 to 20 miles total, ran a half marathon in April. Occasional mild right knee soreness after runs over 10 miles, resolves within a day. Periods regular every 28 to 30 days. Sleep about 7 hours. Social alcohol use, no tobacco. No medications or supplements. Last dental cleaning over a year ago.",
+          "objective": [
+            "BP 108/66, HR 54, BMI 21.3",
+            "Heart, lungs, abdomen normal on exam",
+            "Right knee: full range of motion, no swelling, no joint line tenderness",
+            "CBC, CMP, lipid panel, TSH within normal limits",
+            "Pap smear done today, result normal",
+            "Vaccines up to date; flu shot recommended in the fall"
+          ],
+          "assessment": [
+            "Healthy adult, preventive exam with no abnormal findings",
+            "Low resting heart rate consistent with endurance training",
+            "Intermittent knee soreness after long runs, exam normal"
+          ],
+          "plan": [
+            "Continue current exercise; add strength work for hips and quads twice a week",
+            "Increase weekly mileage by no more than about 10 percent per week",
+            "Consider sports medicine or physical therapy evaluation if knee soreness persists or worsens",
+            "Book dental cleaning",
+            "Flu vaccine in the fall",
+            "Return for annual physical in 12 months"
+          ]
         }
       }
     ],

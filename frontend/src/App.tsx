@@ -5,6 +5,7 @@ import PersonaSwitcher from './components/PersonaSwitcher'
 import VoicePanel from './components/VoicePanel'
 import { usePersona } from './hooks/usePersona'
 import AppointmentsDebug from './pages/AppointmentsDebug'
+import CareHub from './pages/CareHub'
 import Home from './pages/Home'
 
 /** Slide-over drawer holding the live Em voice panel. */
@@ -35,14 +36,14 @@ function EmDrawer({ open, prompt, session, onClose }: { open: boolean; prompt?: 
 /** App shell: header with nav and persona switcher, the page, Em drawer, footer. */
 function Shell() {
   const [em, setEm] = useState<{ open: boolean; prompt?: string; session: number }>({ open: false, session: 0 })
-  const [page, setPage] = useState<'home' | 'appointments-debug'>('home')
+  const [page, setPage] = useState<'home' | 'care' | 'appointments-debug'>('home')
   const openEm = (prompt?: string) => setEm((s) => ({ open: true, prompt, session: s.session + 1 }))
   const closeEm = () => setEm((s) => ({ ...s, open: false }))
 
   return (
     <div className="shell">
       <header className="topbar">
-        <span className="logo">EmCare</span>
+        <span className="logo">em.care</span>
         <nav className="tabs" aria-label="Main">
           <a
             className={`tab ${page === 'home' ? 'active' : ''}`}
@@ -55,7 +56,17 @@ function Shell() {
           >
             Home
           </a>
-          <span className="tab" aria-disabled title="Coming soon">Doctor Buddy</span>
+          <a
+            className={`tab ${page === 'care' ? 'active' : ''}`}
+            aria-current={page === 'care' ? 'page' : undefined}
+            href="/care"
+            onClick={(e) => {
+              e.preventDefault()
+              setPage('care')
+            }}
+          >
+            em.doc
+          </a>
           <span className="tab" aria-disabled title="Coming soon">Wellness Synthesis</span>
         </nav>
         <div className="profile-chip">
@@ -65,15 +76,15 @@ function Shell() {
       </header>
 
       <main className="page">
-        {page === 'home' ? <Home onAsk={openEm} /> : <AppointmentsDebug />}
+        {page === 'home' ? <Home onAsk={openEm} /> : page === 'care' ? <CareHub onAsk={openEm} /> : <AppointmentsDebug />}
       </main>
 
       <footer className="site-footer">
-        <span><span className="logo small">EmCare</span> · Mindful Clinical Synthesis</span>
+        <span><span className="logo small">em.care</span> · Mindful Clinical Synthesis</span>
         <span>
           {/* Temporary: the appointments test page stays reachable until it has a real screen */}
           <button className="link-btn" onClick={() => setPage('appointments-debug')}>Appointments (test)</button>
-          {' · '}© 2026 EmCare Health. Ethereal, compassionate care.
+          {' · '}© 2026 em.care Health. Ethereal, compassionate care.
         </span>
       </footer>
 

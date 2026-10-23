@@ -178,7 +178,7 @@ export default function Home({ onAsk }: { onAsk: (prompt?: string) => void }) {
       </div>
 
       <nav className="shortcuts" aria-label="Other sections">
-        <span className="shortcut" aria-disabled title="Coming soon"><Icon name="chat" /> Doctor Buddy</span>
+        <span className="shortcut" aria-disabled title="Coming soon"><Icon name="chat" /> em.doc</span>
         <span className="divider" aria-hidden />
         <span className="shortcut" aria-disabled title="Coming soon"><Icon name="globe" /> Whole-Body Synthesis</span>
         <button className="ask-send coral" onClick={() => onAsk()} aria-label="Talk to Em"><Icon name="arrow" size={16} /></button>
