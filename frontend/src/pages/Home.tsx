@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { getHome, type FocusItem, type HomeData } from '../api/client'
+import EmNoticed from '../components/EmNoticed'
 import Icon, { MoodFace } from '../components/Icon'
 import TrendChart from '../components/TrendChart'
 import { usePersona } from '../hooks/usePersona'
@@ -116,6 +117,8 @@ export default function Home({
           <Icon name="arrow" size={16} />
         </button>
       </form>
+
+      <EmNoticed onAsk={onAsk} />
 
       <div className="cards">
         <section className="card glass focus">

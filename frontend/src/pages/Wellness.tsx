@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getInsights, getSuggestions, type Insight, type Suggestion, type Suggestions } from '../api/client'
+import { getSuggestions, type Suggestion, type Suggestions } from '../api/client'
+import EmNoticed from '../components/EmNoticed'
 import Icon from '../components/Icon'
 import { usePersona } from '../hooks/usePersona'
 
@@ -73,8 +74,6 @@ export default function Wellness({ onAsk }: { onAsk: (prompt?: string) => void }
   const [attempt, setAttempt] = useState(0)
   const [added, setAdded] = useState<Set<string>>(new Set())
   const suggestions = usePersonaLoad(getSuggestions, persona, attempt)
-  const insights = usePersonaLoad<Insight[]>(getInsights, persona, 0)
-  const top = insights?.data?.[0]
 
   const toggle = (title: string) =>
     setAdded((prev) => {
@@ -97,6 +96,8 @@ export default function Wellness({ onAsk }: { onAsk: (prompt?: string) => void }
           <strong>{suggestions?.data?.headline ?? '...'}</strong>
         </div>
       </header>
+
+      <EmNoticed onAsk={onAsk} />
 
       {suggestions?.error && (
         <div className="well-error glass">
@@ -138,20 +139,6 @@ export default function Wellness({ onAsk }: { onAsk: (prompt?: string) => void }
       })}
       {!suggestions && <p className="muted well-loading">Em is putting together ideas for you...</p>}
 
-      <section className="well-noticed glass">
-        <span className="noticed-icon"><Icon name="spark" size={20} /></span>
-        <div className="noticed-text">
-          <span className="eyebrow accent-text">Em noticed</span>
-          <strong>{top?.text ?? 'Em is looking at your week...'}</strong>
-          {top && <span className="muted">{top.evidence}</span>}
-        </div>
-        <div className="noticed-actions">
-          <button className="tag" onClick={() => onAsk("I'm feeling good today. Can you log a quick check-in?")}>Feeling good</button>
-          <button className="btn-coral" onClick={() => onAsk("I'd like to tell you how I'm feeling today.")}>
-            Tell Em how you feel <Icon name="chat" size={14} />
-          </button>
-        </div>
-      </section>
     </div>
   )
 }
