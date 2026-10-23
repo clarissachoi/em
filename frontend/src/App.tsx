@@ -1,75 +1,84 @@
 import { useEffect, useState } from 'react'
-import { getHealth, getMe, type UserProfile } from './api/client'
+import Icon from './components/Icon'
 import PersonaProvider from './components/PersonaProvider'
 import PersonaSwitcher from './components/PersonaSwitcher'
 import VoicePanel from './components/VoicePanel'
 import { usePersona } from './hooks/usePersona'
 import AppointmentsDebug from './pages/AppointmentsDebug'
+import Home from './pages/Home'
 
-/** Current persona's profile, re-fetched when the persona changes. */
-function Profile() {
+/** Slide-over drawer holding the live Em voice panel. */
+function EmDrawer({ open, prompt, session, onClose }: { open: boolean; prompt?: string; session: number; onClose: () => void }) {
   const { persona } = usePersona()
-  const [me, setMe] = useState<{ persona: string; profile: UserProfile } | null>(null)
-  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    let cancelled = false
-    getMe()
-      .then((profile) => !cancelled && setMe({ persona, profile }))
-      .catch((err: unknown) => !cancelled && setError(String(err)))
-    return () => {
-      cancelled = true
-    }
-  }, [persona])
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open, onClose])
 
-  if (error) return <p className="error">{error}</p>
-  if (me?.persona !== persona) return <p className="muted">Loading...</p>
-  const { profile } = me
+  if (!open) return null
   return (
-    <section>
-      <h1>Hi, {profile.name}</h1>
-      <p>{profile.primary_goal}</p>
-      {profile.pregnancy && <p>Week {profile.pregnancy.week} of pregnancy</p>}
-    </section>
+    <div className="drawer-backdrop" onClick={onClose}>
+      <aside className="drawer" role="dialog" aria-label="Talk to Em" onClick={(e) => e.stopPropagation()}>
+        <button className="drawer-close" onClick={onClose} aria-label="Close">
+          <Icon name="close" />
+        </button>
+        {/* key starts a fresh session per open and per persona */}
+        <VoicePanel key={`${persona}-${session}`} autoStart prompt={prompt} />
+      </aside>
+    </div>
   )
 }
 
-/** App shell: header with persona switcher, then the page. */
+/** App shell: header with nav and persona switcher, the page, Em drawer, footer. */
 function Shell() {
-  const { persona } = usePersona()
-  const [backend, setBackend] = useState('checking...')
-  const [page, setPage] = useState<'profile' | 'appointments'>('profile')
-
-  useEffect(() => {
-    getHealth()
-      .then((data) => setBackend(data.ok ? 'ok' : 'not ok'))
-      .catch(() => setBackend('unreachable'))
-  }, [])
+  const [em, setEm] = useState<{ open: boolean; prompt?: string; session: number }>({ open: false, session: 0 })
+  const [page, setPage] = useState<'home' | 'appointments-debug'>('home')
+  const openEm = (prompt?: string) => setEm((s) => ({ open: true, prompt, session: s.session + 1 }))
+  const closeEm = () => setEm((s) => ({ ...s, open: false }))
 
   return (
-    <>
-      <header className="header">
-        <strong>EmCare</strong>
-        {/* Temporary nav until the mockup lands */}
-        <nav>
-          <button disabled={page === 'profile'} onClick={() => setPage('profile')}>Profile</button>{' '}
-          <button disabled={page === 'appointments'} onClick={() => setPage('appointments')}>Appointments</button>
+    <div className="shell">
+      <header className="topbar">
+        <span className="logo">EmCare</span>
+        <nav className="tabs" aria-label="Main">
+          <a
+            className={`tab ${page === 'home' ? 'active' : ''}`}
+            aria-current={page === 'home' ? 'page' : undefined}
+            href="/"
+            onClick={(e) => {
+              e.preventDefault()
+              setPage('home')
+            }}
+          >
+            Home
+          </a>
+          <span className="tab" aria-disabled title="Coming soon">Doctor Buddy</span>
+          <span className="tab" aria-disabled title="Coming soon">Wellness Synthesis</span>
         </nav>
-        <PersonaSwitcher />
+        <div className="profile-chip">
+          <PersonaSwitcher />
+          <span className="avatar-btn" aria-hidden><Icon name="user" size={16} /></span>
+        </div>
       </header>
-      <main className="app">
-        {page === 'profile' ? (
-          <>
-            <Profile />
-            {/* key resets the voice session when switching persona */}
-            <VoicePanel key={persona} />
-          </>
-        ) : (
-          <AppointmentsDebug />
-        )}
-        <p className="muted">Backend: {backend}</p>
+
+      <main className="page">
+        {page === 'home' ? <Home onAsk={openEm} /> : <AppointmentsDebug />}
       </main>
-    </>
+
+      <footer className="site-footer">
+        <span><span className="logo small">EmCare</span> · Mindful Clinical Synthesis</span>
+        <span>
+          {/* Temporary: the appointments test page stays reachable until it has a real screen */}
+          <button className="link-btn" onClick={() => setPage('appointments-debug')}>Appointments (test)</button>
+          {' · '}© 2026 EmCare Health. Ethereal, compassionate care.
+        </span>
+      </footer>
+
+      <EmDrawer open={em.open} prompt={em.prompt} session={em.session} onClose={closeEm} />
+    </div>
   )
 }
 

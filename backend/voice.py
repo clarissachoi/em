@@ -331,7 +331,8 @@ def live_config(user_id: str) -> types.LiveConnectConfig:
     return types.LiveConnectConfig(
         response_modalities=[types.Modality.AUDIO],
         speech_config=types.SpeechConfig(
-            voice_config=types.VoiceConfig(prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name=settings.EM_VOICE))
+            voice_config=types.VoiceConfig(prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name=settings.EM_VOICE)),
+            language_code="en-US",  # English-only guardrail; the prompt rule is added in gemini.live_session
         ),
         system_instruction=build_system_prompt(user_id),
         tools=[types.Tool(function_declarations=TOOL_DECLARATIONS)],

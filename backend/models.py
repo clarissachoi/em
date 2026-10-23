@@ -193,6 +193,86 @@ class CheckinResult(BaseModel):
     escalation_message: str | None
 
 
+class Alert(BaseModel):
+    """Dashboard alert."""
+    type: Literal["appointment", "medication", "travel", "records", "lab"]
+    title: str
+    detail: str
+    severity: Literal["info", "warning"]
+
+
+class Readiness(BaseModel):
+    """Recovery snapshot from wearable data."""
+    score: int = Field(ge=0, le=100)
+    label: str
+    sleep_hours: float
+    hrv_ms: int | None
+    resting_hr: int | None
+    summary: str
+
+
+class CareItem(BaseModel):
+    """One role in the care transition checklist."""
+    role: str
+    provider: str | None
+    done: bool
+
+
+class CareChecklist(BaseModel):
+    """Care team progress, e.g. 2 of 4 providers found."""
+    found: int
+    total: int
+    items: list[CareItem]
+
+
+class FocusItem(BaseModel):
+    """One task in Today's Focus."""
+    kind: Literal["workout", "nutrition", "appointment", "records", "lab", "checkin"]
+    title: str
+    detail: str
+    time: str | None
+
+
+class TrendPoint(BaseModel):
+    """One day of the readiness trend."""
+    date: date
+    readiness: int
+
+
+class Metric(BaseModel):
+    """A tile under the trend chart."""
+    label: str
+    value: str
+    unit: str | None
+
+
+class CareNote(BaseModel):
+    """Latest clinician note, or Em's note on a flagged lab."""
+    author: str
+    text: str
+    source: Literal["visit", "em"]
+
+
+class HomeData(BaseModel):
+    """Everything the Home dashboard needs."""
+    user_name: str
+    greeting: str
+    alerts: list[Alert]
+    quote: str
+    readiness: Readiness | None
+    today_plan: str | None
+    nutrition_tip: str | None
+    pregnancy_week: int | None
+    care_checklist: CareChecklist | None
+    recent_checkins: list[CheckinResult]
+    mood: int | None
+    focus: list[FocusItem]
+    trend: list[TrendPoint]
+    metrics: list[Metric]
+    care_note: CareNote | None
+    ask_suggestions: list[str]
+
+
 # ---------- Next steps ----------
 
 class Goals(BaseModel):

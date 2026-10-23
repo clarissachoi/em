@@ -133,3 +133,51 @@ export const getLabs = () => request<LabsResponse>('/labs')
 /** Calls Gemini on the backend; takes a few seconds the first time per panel. */
 export const explainLabs = (panel_id: string) =>
   request<LabExplanation>('/labs/explain', { method: 'POST', body: JSON.stringify({ panel_id }) })
+
+// ---------- Home ----------
+
+export interface Alert {
+  type: 'appointment' | 'medication' | 'travel' | 'records' | 'lab'
+  title: string
+  detail: string
+  severity: 'info' | 'warning'
+}
+export interface Readiness {
+  score: number
+  label: string
+  sleep_hours: number
+  hrv_ms: number | null
+  resting_hr: number | null
+  summary: string
+}
+export interface CareItem { role: string; provider: string | null; done: boolean }
+export interface CareChecklist { found: number; total: number; items: CareItem[] }
+export interface FocusItem {
+  kind: 'workout' | 'nutrition' | 'appointment' | 'records' | 'lab' | 'checkin'
+  title: string
+  detail: string
+  time: string | null
+}
+export interface TrendPoint { date: string; readiness: number }
+export interface Metric { label: string; value: string; unit: string | null }
+export interface CareNote { author: string; text: string; source: 'visit' | 'em' }
+export interface HomeData {
+  user_name: string
+  greeting: string
+  alerts: Alert[]
+  quote: string
+  readiness: Readiness | null
+  today_plan: string | null
+  nutrition_tip: string | null
+  pregnancy_week: number | null
+  care_checklist: CareChecklist | null
+  recent_checkins: CheckinResult[]
+  mood: number | null
+  focus: FocusItem[]
+  trend: TrendPoint[]
+  metrics: Metric[]
+  care_note: CareNote | null
+  ask_suggestions: string[]
+}
+
+export const getHome = () => request<HomeData>('/home')

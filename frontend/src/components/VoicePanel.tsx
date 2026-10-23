@@ -2,12 +2,32 @@ import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { getVoiceSettings, putVoiceSettings } from '../api/client'
 import { useVoiceSession } from '../hooks/useVoiceSession'
 
-/** "Talk to Em" card: live voice conversation, typed fallback, actions, and the urgent banner. */
-export default function VoicePanel() {
+/**
+ * "Talk to Em" card: live voice conversation, typed fallback, actions, and the urgent banner.
+ * autoStart opens the session on mount; prompt is sent as a typed message once Em is ready.
+ */
+export default function VoicePanel({ autoStart = false, prompt }: { autoStart?: boolean; prompt?: string }) {
   const [voiceAlerts, setVoiceAlerts] = useState(true)
   const [draft, setDraft] = useState('')
   const voice = useVoiceSession(voiceAlerts)
   const transcriptEnd = useRef<HTMLDivElement>(null)
+  const pendingPrompt = useRef(prompt)
+
+  useEffect(() => {
+    if (!autoStart && !pendingPrompt.current) return
+    // Deferred and cancelled on cleanup so React StrictMode's mount/unmount/mount in dev
+    // starts exactly one Gemini Live session. The parent remounts the panel (via key) to start again.
+    const id = window.setTimeout(() => voice.start(), 0)
+    return () => window.clearTimeout(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if (voice.status === 'live' && pendingPrompt.current) {
+      voice.sendText(pendingPrompt.current)
+      pendingPrompt.current = undefined
+    }
+  }, [voice.status, voice])
 
   useEffect(() => {
     getVoiceSettings().then((s) => setVoiceAlerts(s.voice_alerts)).catch(() => {})

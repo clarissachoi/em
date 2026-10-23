@@ -52,14 +52,25 @@ HomeData {
   greeting: str
   alerts: list[Alert]          # Alert { type: "appointment" | "medication" | "travel" | "records" | "lab", title: str, detail: str, severity: "info" | "warning" }
   quote: str
-  readiness: Readiness | null  # Readiness { score: int (0-100), sleep_hours: float, hrv_ms: int | null, resting_hr: int | null, summary: str }
+  readiness: Readiness | null  # Readiness { score: int (0-100), label: str, sleep_hours: float, hrv_ms: int | null, resting_hr: int | null, summary: str }
   today_plan: str | null       # "Easy 5 mi run" / "30 min walk"
   nutrition_tip: str | null
   pregnancy_week: int | null
   care_checklist: CareChecklist | null   # CareChecklist { found: int, total: int, items: list[CareItem] }, CareItem { role: str, provider: str | null, done: bool }
   recent_checkins: list[CheckinResult]   # last 7
+  mood: int | null             # 1-5, from the latest check-in
+  focus: list[FocusItem]       # "Today's Focus"
+  trend: list[TrendPoint]      # last 7 days of readiness, oldest first
+  metrics: list[Metric]        # 3 tiles under the trend chart
+  care_note: CareNote | null   # latest visit summary, or Em's note on a flagged lab
+  ask_suggestions: list[str]   # short questions for the "Ask Em" chips
 }
+FocusItem { kind: "workout" | "nutrition" | "appointment" | "records" | "lab" | "checkin", title: str, detail: str, time: str | null }
+TrendPoint { date: date, readiness: int }
+Metric { label: str, value: str, unit: str | null }
+CareNote { author: str, text: str, source: "visit" | "em" }
 ```
+Computed from seed data, no Gemini. Readiness blends last night's sleep score with HRV and resting HR against the persona's own 14-day baseline.
 
 ## Appointments, labs, records (Dev 2)
 
