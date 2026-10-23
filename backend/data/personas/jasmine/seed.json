@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-26",
+  "as_of": "2026-10-23",
   "summary": {
     "id": "jasmine",
     "name": "Jasmine",
@@ -13,7 +13,7 @@
     "life_stage": "pregnant",
     "pregnancy": {
       "week": 20,
-      "due_date": "2027-03-15",
+      "due_date": "2027-03-12",
       "pregnancy_number": 2
     },
     "primary_goal": "Care transition",
@@ -41,7 +41,7 @@
     ],
     "home_location": "White Plains, NY",
     "previous_location": "Astoria, Queens, NY",
-    "moved_on": "2026-09-18",
+    "moved_on": "2026-09-15",
     "work": "Remote IT assistant, 9 to 5",
     "prior_pregnancies": [
       {
@@ -68,7 +68,7 @@
       "walking",
       "healthy pregnancy"
     ],
-    "target_date": "2027-03-15",
+    "target_date": "2027-03-12",
     "dietary_prefs": [
       "pregnancy-safe",
       "iron-rich",
@@ -82,7 +82,7 @@
     "week": 20,
     "day": 0,
     "trimester": 2,
-    "due_date": "2027-03-15",
+    "due_date": "2027-03-12",
     "baby_size": "banana",
     "prenatal_schedule": [
       {
@@ -119,7 +119,7 @@
   },
   "wearable": [
     {
-      "date": "2026-10-12",
+      "date": "2026-10-09",
       "source": "Oura",
       "sleep_hours": 6.8,
       "sleep_score": 74,
@@ -130,7 +130,7 @@
       "walk_minutes": 35
     },
     {
-      "date": "2026-10-13",
+      "date": "2026-10-10",
       "source": "Oura",
       "sleep_hours": 5.6,
       "sleep_score": 61,
@@ -141,7 +141,7 @@
       "walk_minutes": 10
     },
     {
-      "date": "2026-10-14",
+      "date": "2026-10-11",
       "source": "Oura",
       "sleep_hours": 5.4,
       "sleep_score": 59,
@@ -152,7 +152,7 @@
       "walk_minutes": 12
     },
     {
-      "date": "2026-10-15",
+      "date": "2026-10-12",
       "source": "Oura",
       "sleep_hours": 6.9,
       "sleep_score": 75,
@@ -163,7 +163,7 @@
       "walk_minutes": 40
     },
     {
-      "date": "2026-10-16",
+      "date": "2026-10-13",
       "source": "Oura",
       "sleep_hours": 7.0,
       "sleep_score": 77,
@@ -174,7 +174,7 @@
       "walk_minutes": 42
     },
     {
-      "date": "2026-10-17",
+      "date": "2026-10-14",
       "source": "Oura",
       "sleep_hours": 5.8,
       "sleep_score": 63,
@@ -185,7 +185,7 @@
       "walk_minutes": 15
     },
     {
-      "date": "2026-10-18",
+      "date": "2026-10-15",
       "source": "Oura",
       "sleep_hours": 6.7,
       "sleep_score": 72,
@@ -196,7 +196,7 @@
       "walk_minutes": 32
     },
     {
-      "date": "2026-10-19",
+      "date": "2026-10-16",
       "source": "Oura",
       "sleep_hours": 5.2,
       "sleep_score": 56,
@@ -207,7 +207,7 @@
       "walk_minutes": 0
     },
     {
-      "date": "2026-10-20",
+      "date": "2026-10-17",
       "source": "Oura",
       "sleep_hours": 5.5,
       "sleep_score": 60,
@@ -218,7 +218,7 @@
       "walk_minutes": 14
     },
     {
-      "date": "2026-10-21",
+      "date": "2026-10-18",
       "source": "Oura",
       "sleep_hours": 6.9,
       "sleep_score": 76,
@@ -229,7 +229,7 @@
       "walk_minutes": 36
     },
     {
-      "date": "2026-10-22",
+      "date": "2026-10-19",
       "source": "Oura",
       "sleep_hours": 6.6,
       "sleep_score": 71,
@@ -240,7 +240,7 @@
       "walk_minutes": 31
     },
     {
-      "date": "2026-10-23",
+      "date": "2026-10-20",
       "source": "Oura",
       "sleep_hours": 5.7,
       "sleep_score": 62,
@@ -251,7 +251,7 @@
       "walk_minutes": 18
     },
     {
-      "date": "2026-10-24",
+      "date": "2026-10-21",
       "source": "Oura",
       "sleep_hours": 5.3,
       "sleep_score": 58,
@@ -262,7 +262,7 @@
       "walk_minutes": 8
     },
     {
-      "date": "2026-10-25",
+      "date": "2026-10-22",
       "source": "Oura",
       "sleep_hours": 6.8,
       "sleep_score": 74,
@@ -308,8 +308,8 @@
       {
         "title": "First visit, Dr. Elena Ortiz (OB)",
         "type": "appointment",
-        "start": "2026-11-02T12:15:00",
-        "end": "2026-11-02T13:15:00",
+        "start": "2026-10-30T12:15:00",
+        "end": "2026-10-30T13:15:00",
         "location": "Westchester Women's Health",
         "detail": null
       }
@@ -373,7 +373,7 @@
   ],
   "plan": [
     {
-      "date": "2026-10-26",
+      "date": "2026-10-23",
       "activity": "30 min neighborhood walk",
       "duration_min": 30,
       "intensity": "easy",
@@ -381,7 +381,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-10-27",
+      "date": "2026-10-24",
       "activity": "25 min walk + 10 min prenatal stretches",
       "duration_min": 35,
       "intensity": "easy",
@@ -389,7 +389,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-10-28",
+      "date": "2026-10-25",
       "activity": "30 min walk (Saxon Woods loop)",
       "duration_min": 30,
       "intensity": "easy",
@@ -397,7 +397,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-10-29",
+      "date": "2026-10-26",
       "activity": "Gentle strength: wall push-ups, squats to chair, side-lying leg lifts",
       "duration_min": 20,
       "intensity": "easy",
@@ -405,7 +405,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-10-30",
+      "date": "2026-10-27",
       "activity": "30 min walk",
       "duration_min": 30,
       "intensity": "easy",
@@ -413,7 +413,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-10-31",
+      "date": "2026-10-28",
       "activity": "Family stroller walk",
       "duration_min": 40,
       "intensity": "easy",
@@ -421,7 +421,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-01",
+      "date": "2026-10-29",
       "activity": "Rest + 10 min prenatal stretches",
       "duration_min": 10,
       "intensity": "rest",
@@ -461,7 +461,7 @@
         "unlocked_by_record": "rec_j3",
         "panel": {
           "id": "jas_panel_prenatal_1",
-          "date": "2026-08-10",
+          "date": "2026-08-07",
           "source": "Astoria OB-GYN Associates",
           "results": [
             {
@@ -520,7 +520,7 @@
         "for_person": "self",
         "provider": "Dr. Elena Ortiz",
         "specialty": "OB-GYN",
-        "datetime": "2026-11-02T12:15:00",
+        "datetime": "2026-10-30T12:15:00",
         "location": "Westchester Women's Health, 210 Westchester Ave, White Plains, NY",
         "status": "upcoming",
         "prep_questions": [],
@@ -533,7 +533,7 @@
         "for_person": "self",
         "provider": "Dr. Nadia Petrova",
         "specialty": "OB-GYN",
-        "datetime": "2026-09-14T10:00:00",
+        "datetime": "2026-09-11T10:00:00",
         "location": "Astoria OB-GYN Associates, Astoria, NY",
         "status": "completed",
         "prep_questions": [],
@@ -631,43 +631,43 @@
       "id": "slot_j1",
       "provider": "Dr. Aisha Grant",
       "specialty": "Pediatrics",
-      "datetime": "2026-10-29T17:15:00"
+      "datetime": "2026-10-26T17:15:00"
     },
     {
       "id": "slot_j2",
       "provider": "Dr. Aisha Grant",
       "specialty": "Pediatrics",
-      "datetime": "2026-11-07T09:30:00"
+      "datetime": "2026-11-04T09:30:00"
     },
     {
       "id": "slot_j3",
       "provider": "Little Steps Pediatrics",
       "specialty": "Pediatrics",
-      "datetime": "2026-10-31T10:00:00"
+      "datetime": "2026-10-28T10:00:00"
     },
     {
       "id": "slot_j4",
       "provider": "Westchester Imaging Center",
       "specialty": "Maternal-fetal ultrasound",
-      "datetime": "2026-11-04T12:00:00"
+      "datetime": "2026-11-01T12:00:00"
     },
     {
       "id": "slot_j5",
       "provider": "Bright Smile Dental",
       "specialty": "Dentistry",
-      "datetime": "2026-11-14T09:00:00"
+      "datetime": "2026-11-11T09:00:00"
     },
     {
       "id": "slot_j6",
       "provider": "Dr. Elena Ortiz",
       "specialty": "Glucose screening",
-      "datetime": "2026-11-30T08:00:00"
+      "datetime": "2026-11-27T08:00:00"
     },
     {
       "id": "slot_j7",
       "provider": "Dr. Elena Ortiz",
       "specialty": "Glucose screening",
-      "datetime": "2026-12-02T12:00:00"
+      "datetime": "2026-11-29T12:00:00"
     }
   ],
   "records": [
@@ -676,8 +676,8 @@
       "item": "Prenatal records",
       "from_provider": "Astoria OB-GYN Associates",
       "status": "requested",
-      "requested_on": "2026-10-05",
-      "needed_by": "2026-10-31",
+      "requested_on": "2026-10-02",
+      "needed_by": "2026-10-28",
       "overdue": true
     },
     {
@@ -685,7 +685,7 @@
       "item": "Vaccine history (Leo)",
       "from_provider": "Queens Kids Pediatrics",
       "status": "received",
-      "requested_on": "2026-09-26",
+      "requested_on": "2026-09-23",
       "needed_by": null,
       "overdue": false
     },
@@ -695,14 +695,14 @@
       "from_provider": "Astoria OB-GYN Associates",
       "status": "not_requested",
       "requested_on": null,
-      "needed_by": "2026-10-31",
+      "needed_by": "2026-10-28",
       "overdue": false
     }
   ],
   "checkins": [
     {
       "id": "ci_j1",
-      "created_at": "2026-10-13T21:00:00",
+      "created_at": "2026-10-10T21:00:00",
       "transcript": "Leo was up three times last night and my hips ache. Barely slept.",
       "mood": 3,
       "energy": 2,
@@ -720,7 +720,7 @@
     },
     {
       "id": "ci_j2",
-      "created_at": "2026-10-16T21:00:00",
+      "created_at": "2026-10-13T21:00:00",
       "transcript": "Better day. Did a long walk around the new neighborhood. Feet a little puffy tonight.",
       "mood": 4,
       "energy": 3,
@@ -737,7 +737,7 @@
     },
     {
       "id": "ci_j3",
-      "created_at": "2026-10-19T22:00:00",
+      "created_at": "2026-10-16T22:00:00",
       "transcript": "Stressed about finding a pediatrician and the old OB office still has not sent anything. Tired.",
       "mood": 2,
       "energy": 2,
@@ -754,7 +754,7 @@
     },
     {
       "id": "ci_j4",
-      "created_at": "2026-10-22T21:00:00",
+      "created_at": "2026-10-19T21:00:00",
       "transcript": "Okay day. Walked 30 minutes. Ankles a bit swollen by evening.",
       "mood": 3,
       "energy": 3,
@@ -771,7 +771,7 @@
     },
     {
       "id": "ci_j5",
-      "created_at": "2026-10-24T22:00:00",
+      "created_at": "2026-10-21T22:00:00",
       "transcript": "Rough night again, and work was busy. Feeling a little overwhelmed with the move and everything.",
       "mood": 2,
       "energy": 2,

@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-26",
+  "as_of": "2026-10-23",
   "summary": {
     "id": "maya",
     "name": "Maya",
@@ -12,7 +12,7 @@
     "age": 27,
     "life_stage": "general",
     "pregnancy": null,
-    "primary_goal": "Marathon on 2027-02-14",
+    "primary_goal": "Marathon on 2027-02-11",
     "connections": [
       {
         "source": "Garmin",
@@ -42,18 +42,18 @@
     ],
     "home_location": "Brooklyn, NY",
     "work_location": "Midtown Manhattan, NY",
-    "last_physical": "2024-06-12",
+    "last_physical": "2024-06-09",
     "usage": "Short phone check-ins between meetings, longer laptop review on Sundays"
   },
   "goals": {
-    "primary_goal": "Marathon on 2027-02-14",
+    "primary_goal": "Marathon on 2027-02-11",
     "focus_areas": [
       "marathon",
       "energy",
       "injury prevention",
       "stay on top of health tasks"
     ],
-    "target_date": "2027-02-14",
+    "target_date": "2027-02-11",
     "dietary_prefs": [
       "no restrictions",
       "quick and portable",
@@ -64,7 +64,7 @@
   },
   "wearable": [
     {
-      "date": "2026-10-12",
+      "date": "2026-10-09",
       "source": "Garmin",
       "sleep_hours": 7.2,
       "sleep_score": 78,
@@ -76,7 +76,7 @@
       "workload": "normal"
     },
     {
-      "date": "2026-10-13",
+      "date": "2026-10-10",
       "source": "Garmin",
       "sleep_hours": 5.4,
       "sleep_score": 58,
@@ -88,7 +88,7 @@
       "workload": "heavy"
     },
     {
-      "date": "2026-10-14",
+      "date": "2026-10-11",
       "source": "Garmin",
       "sleep_hours": 5.1,
       "sleep_score": 54,
@@ -100,7 +100,7 @@
       "workload": "heavy"
     },
     {
-      "date": "2026-10-15",
+      "date": "2026-10-12",
       "source": "Garmin",
       "sleep_hours": 6.6,
       "sleep_score": 71,
@@ -112,7 +112,7 @@
       "workload": "normal"
     },
     {
-      "date": "2026-10-16",
+      "date": "2026-10-13",
       "source": "Garmin",
       "sleep_hours": 7.0,
       "sleep_score": 76,
@@ -124,7 +124,7 @@
       "workload": "normal"
     },
     {
-      "date": "2026-10-17",
+      "date": "2026-10-14",
       "source": "Garmin",
       "sleep_hours": 7.6,
       "sleep_score": 82,
@@ -136,7 +136,7 @@
       "workload": "light"
     },
     {
-      "date": "2026-10-18",
+      "date": "2026-10-15",
       "source": "Garmin",
       "sleep_hours": 7.1,
       "sleep_score": 75,
@@ -148,7 +148,7 @@
       "workload": "light"
     },
     {
-      "date": "2026-10-19",
+      "date": "2026-10-16",
       "source": "Garmin",
       "sleep_hours": 6.8,
       "sleep_score": 73,
@@ -160,7 +160,7 @@
       "workload": "normal"
     },
     {
-      "date": "2026-10-20",
+      "date": "2026-10-17",
       "source": "Garmin",
       "sleep_hours": 6.4,
       "sleep_score": 69,
@@ -172,7 +172,7 @@
       "workload": "heavy"
     },
     {
-      "date": "2026-10-21",
+      "date": "2026-10-18",
       "source": "Garmin",
       "sleep_hours": 5.2,
       "sleep_score": 55,
@@ -184,7 +184,7 @@
       "workload": "heavy"
     },
     {
-      "date": "2026-10-22",
+      "date": "2026-10-19",
       "source": "Garmin",
       "sleep_hours": 4.9,
       "sleep_score": 51,
@@ -196,7 +196,7 @@
       "workload": "heavy"
     },
     {
-      "date": "2026-10-23",
+      "date": "2026-10-20",
       "source": "Garmin",
       "sleep_hours": 6.3,
       "sleep_score": 67,
@@ -208,7 +208,7 @@
       "workload": "normal"
     },
     {
-      "date": "2026-10-24",
+      "date": "2026-10-21",
       "source": "Garmin",
       "sleep_hours": 7.4,
       "sleep_score": 80,
@@ -220,7 +220,7 @@
       "workload": "light"
     },
     {
-      "date": "2026-10-25",
+      "date": "2026-10-22",
       "source": "Garmin",
       "sleep_hours": 7.0,
       "sleep_score": 74,
@@ -235,7 +235,7 @@
   "strava_runs": [
     {
       "id": "run_01",
-      "date": "2026-10-06",
+      "date": "2026-10-03",
       "name": "Easy run",
       "distance_mi": 4.0,
       "duration_min": 38,
@@ -248,7 +248,7 @@
     },
     {
       "id": "run_02",
-      "date": "2026-10-08",
+      "date": "2026-10-05",
       "name": "Tempo",
       "distance_mi": 5.0,
       "duration_min": 42,
@@ -261,7 +261,7 @@
     },
     {
       "id": "run_03",
-      "date": "2026-10-09",
+      "date": "2026-10-06",
       "name": "Shakeout",
       "distance_mi": 3.0,
       "duration_min": 29,
@@ -274,7 +274,7 @@
     },
     {
       "id": "run_04",
-      "date": "2026-10-11",
+      "date": "2026-10-08",
       "name": "Long run",
       "distance_mi": 10.0,
       "duration_min": 97,
@@ -287,7 +287,7 @@
     },
     {
       "id": "run_05",
-      "date": "2026-10-13",
+      "date": "2026-10-10",
       "name": "Hotel treadmill easy",
       "distance_mi": 3.0,
       "duration_min": 30,
@@ -300,7 +300,7 @@
     },
     {
       "id": "run_06",
-      "date": "2026-10-16",
+      "date": "2026-10-13",
       "name": "Tempo",
       "distance_mi": 5.0,
       "duration_min": 44,
@@ -313,7 +313,7 @@
     },
     {
       "id": "run_07",
-      "date": "2026-10-18",
+      "date": "2026-10-15",
       "name": "Long run",
       "distance_mi": 11.0,
       "duration_min": 112,
@@ -326,7 +326,7 @@
     },
     {
       "id": "run_08",
-      "date": "2026-10-20",
+      "date": "2026-10-17",
       "name": "Easy run",
       "distance_mi": 4.0,
       "duration_min": 40,
@@ -339,7 +339,7 @@
     },
     {
       "id": "run_09",
-      "date": "2026-10-23",
+      "date": "2026-10-20",
       "name": "Easy run",
       "distance_mi": 3.0,
       "duration_min": 31,
@@ -352,7 +352,7 @@
     },
     {
       "id": "run_10",
-      "date": "2026-10-25",
+      "date": "2026-10-22",
       "name": "Long run",
       "distance_mi": 10.5,
       "duration_min": 109,
@@ -366,51 +366,51 @@
   ],
   "cycle": {
     "source": "Cycle app",
-    "last_period_start": "2026-10-05",
+    "last_period_start": "2026-10-02",
     "avg_cycle_length": 29,
     "cycle_day": 22,
     "phase": "luteal",
-    "next_period_expected": "2026-11-03"
+    "next_period_expected": "2026-10-31"
   },
   "calendar": {
     "events": [
       {
         "title": "Client meetings, Chicago",
         "type": "travel",
-        "start": "2026-10-27T06:00:00",
-        "end": "2026-10-29T20:00:00",
+        "start": "2026-10-24T06:00:00",
+        "end": "2026-10-26T20:00:00",
         "location": "Chicago, IL",
-        "detail": "Flight out Tue 6:00am, back Thu evening. Client dinner Wed 7:30pm."
+        "detail": "Flight out Sat 6:00am, back Mon evening. Client dinner Sun 7:30pm."
       },
       {
         "title": "Quarter-end close",
         "type": "work",
-        "start": "2026-11-02T09:00:00",
-        "end": "2026-11-06T21:00:00",
+        "start": "2026-10-30T09:00:00",
+        "end": "2026-11-03T21:00:00",
         "location": "Office",
         "detail": "Late nights expected"
       },
       {
         "title": "Client meetings, Dallas",
         "type": "travel",
-        "start": "2026-11-11T07:00:00",
-        "end": "2026-11-12T19:00:00",
+        "start": "2026-11-08T07:00:00",
+        "end": "2026-11-09T19:00:00",
         "location": "Dallas, TX",
         "detail": null
       },
       {
         "title": "Past trip: Boston",
         "type": "travel",
-        "start": "2026-10-13T06:30:00",
-        "end": "2026-10-14T21:00:00",
+        "start": "2026-10-10T06:30:00",
+        "end": "2026-10-11T21:00:00",
         "location": "Boston, MA",
         "detail": null
       },
       {
         "title": "Past trip: Charlotte",
         "type": "travel",
-        "start": "2026-10-21T07:00:00",
-        "end": "2026-10-22T22:00:00",
+        "start": "2026-10-18T07:00:00",
+        "end": "2026-10-19T22:00:00",
         "location": "Charlotte, NC",
         "detail": null
       }
@@ -438,15 +438,39 @@
       }
     ],
     "busy_weeks": [
-      "2026-11-02"
+      "2026-10-30"
     ]
   },
   "plan": [
     {
-      "date": "2026-10-26",
+      "date": "2026-10-23",
       "activity": "Rest + 20 min mobility",
       "duration_min": 20,
       "intensity": "rest",
+      "adjusted": false,
+      "adjustment_reason": null
+    },
+    {
+      "date": "2026-10-24",
+      "activity": "Easy 4 mi run",
+      "duration_min": 40,
+      "intensity": "easy",
+      "adjusted": false,
+      "adjustment_reason": null
+    },
+    {
+      "date": "2026-10-25",
+      "activity": "Tempo 6 mi (2 warm-up, 3 at tempo, 1 cool-down)",
+      "duration_min": 55,
+      "intensity": "hard",
+      "adjusted": false,
+      "adjustment_reason": null
+    },
+    {
+      "date": "2026-10-26",
+      "activity": "Strength + mobility (glutes, calves, core)",
+      "duration_min": 30,
+      "intensity": "easy",
       "adjusted": false,
       "adjustment_reason": null
     },
@@ -460,30 +484,6 @@
     },
     {
       "date": "2026-10-28",
-      "activity": "Tempo 6 mi (2 warm-up, 3 at tempo, 1 cool-down)",
-      "duration_min": 55,
-      "intensity": "hard",
-      "adjusted": false,
-      "adjustment_reason": null
-    },
-    {
-      "date": "2026-10-29",
-      "activity": "Strength + mobility (glutes, calves, core)",
-      "duration_min": 30,
-      "intensity": "easy",
-      "adjusted": false,
-      "adjustment_reason": null
-    },
-    {
-      "date": "2026-10-30",
-      "activity": "Easy 4 mi run",
-      "duration_min": 40,
-      "intensity": "easy",
-      "adjusted": false,
-      "adjustment_reason": null
-    },
-    {
-      "date": "2026-10-31",
       "activity": "Rest",
       "duration_min": 0,
       "intensity": "rest",
@@ -491,7 +491,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-01",
+      "date": "2026-10-29",
       "activity": "Long run 13 mi",
       "duration_min": 125,
       "intensity": "moderate",
@@ -499,7 +499,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-02",
+      "date": "2026-10-30",
       "activity": "Rest + 20 min mobility",
       "duration_min": 20,
       "intensity": "rest",
@@ -507,7 +507,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-03",
+      "date": "2026-10-31",
       "activity": "Easy 5 mi run",
       "duration_min": 50,
       "intensity": "easy",
@@ -515,7 +515,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-04",
+      "date": "2026-11-01",
       "activity": "Intervals 6 x 800m",
       "duration_min": 55,
       "intensity": "hard",
@@ -523,7 +523,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-05",
+      "date": "2026-11-02",
       "activity": "Strength + mobility",
       "duration_min": 35,
       "intensity": "easy",
@@ -531,7 +531,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-06",
+      "date": "2026-11-03",
       "activity": "Easy 4 mi run",
       "duration_min": 40,
       "intensity": "easy",
@@ -539,7 +539,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-07",
+      "date": "2026-11-04",
       "activity": "Cross-train (bike or swim)",
       "duration_min": 30,
       "intensity": "easy",
@@ -547,7 +547,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-08",
+      "date": "2026-11-05",
       "activity": "Long run 14 mi",
       "duration_min": 135,
       "intensity": "moderate",
@@ -555,7 +555,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-09",
+      "date": "2026-11-06",
       "activity": "Rest",
       "duration_min": 0,
       "intensity": "rest",
@@ -563,7 +563,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-10",
+      "date": "2026-11-07",
       "activity": "Easy 5 mi run",
       "duration_min": 50,
       "intensity": "easy",
@@ -571,7 +571,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-11",
+      "date": "2026-11-08",
       "activity": "Tempo 7 mi (2 warm-up, 4 at tempo, 1 cool-down)",
       "duration_min": 60,
       "intensity": "hard",
@@ -579,7 +579,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-12",
+      "date": "2026-11-09",
       "activity": "Strength + mobility",
       "duration_min": 30,
       "intensity": "easy",
@@ -587,7 +587,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-13",
+      "date": "2026-11-10",
       "activity": "Easy 4 mi run",
       "duration_min": 40,
       "intensity": "easy",
@@ -595,7 +595,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-14",
+      "date": "2026-11-11",
       "activity": "Rest",
       "duration_min": 0,
       "intensity": "rest",
@@ -603,7 +603,7 @@
       "adjustment_reason": null
     },
     {
-      "date": "2026-11-15",
+      "date": "2026-11-12",
       "activity": "Long run 12 mi (cutback week)",
       "duration_min": 115,
       "intensity": "moderate",
@@ -615,7 +615,7 @@
     "panels": [
       {
         "id": "maya_panel_2026_10",
-        "date": "2026-10-19",
+        "date": "2026-10-16",
         "source": "Quest Diagnostics, Midtown",
         "results": [
           {
@@ -687,7 +687,7 @@
         "for_person": "self",
         "provider": "Quest Diagnostics, Midtown",
         "specialty": "Lab work",
-        "datetime": "2026-10-19T07:30:00",
+        "datetime": "2026-10-16T07:30:00",
         "location": "500 5th Ave, New York, NY",
         "status": "completed",
         "prep_questions": [],
@@ -765,50 +765,50 @@
       "id": "slot_m1",
       "provider": "Dr. Rachel Kim",
       "specialty": "Primary care",
-      "datetime": "2026-10-30T07:30:00"
+      "datetime": "2026-10-27T07:30:00"
     },
     {
       "id": "slot_m2",
       "provider": "Dr. Rachel Kim",
       "specialty": "Primary care",
-      "datetime": "2026-11-03T07:00:00"
+      "datetime": "2026-10-31T07:00:00"
     },
     {
       "id": "slot_m3",
       "provider": "Dr. Omar Haddad",
       "specialty": "Primary care",
-      "datetime": "2026-10-28T08:00:00"
+      "datetime": "2026-10-25T08:00:00"
     },
     {
       "id": "slot_m4",
       "provider": "Dr. Lauren Becker",
       "specialty": "Sports medicine",
-      "datetime": "2026-11-05T07:15:00"
+      "datetime": "2026-11-02T07:15:00"
     },
     {
       "id": "slot_m5",
       "provider": "Stride Physical Therapy",
       "specialty": "Physical therapy",
-      "datetime": "2026-11-10T06:45:00"
+      "datetime": "2026-11-07T06:45:00"
     },
     {
       "id": "slot_m6",
       "provider": "Quest Diagnostics, Midtown",
       "specialty": "Lab work",
-      "datetime": "2026-12-18T07:00:00"
+      "datetime": "2026-12-15T07:00:00"
     },
     {
       "id": "slot_m7",
       "provider": "Quest Diagnostics, Midtown",
       "specialty": "Lab work",
-      "datetime": "2026-12-21T07:15:00"
+      "datetime": "2026-12-18T07:15:00"
     }
   ],
   "records": [],
   "checkins": [
     {
       "id": "ci_m1",
-      "created_at": "2026-10-13T22:00:00",
+      "created_at": "2026-10-10T22:00:00",
       "transcript": "Long day in Boston, back to back meetings and a late dinner. Slept badly at the hotel. Running on coffee.",
       "mood": 3,
       "energy": 2,
@@ -825,7 +825,7 @@
     },
     {
       "id": "ci_m2",
-      "created_at": "2026-10-16T21:00:00",
+      "created_at": "2026-10-13T21:00:00",
       "transcript": "Tempo felt way harder than it should. Work was crazy this week too.",
       "mood": 3,
       "energy": 2,
@@ -842,7 +842,7 @@
     },
     {
       "id": "ci_m3",
-      "created_at": "2026-10-18T13:00:00",
+      "created_at": "2026-10-15T13:00:00",
       "transcript": "Long run was rough. Legs were heavy from mile 6 and I just felt flat.",
       "mood": 2,
       "energy": 2,
@@ -860,7 +860,7 @@
     },
     {
       "id": "ci_m4",
-      "created_at": "2026-10-22T23:00:00",
+      "created_at": "2026-10-19T23:00:00",
       "transcript": "Charlotte trip. Barely slept, ate airport food twice. Exhausted.",
       "mood": 2,
       "energy": 1,
@@ -878,7 +878,7 @@
     },
     {
       "id": "ci_m5",
-      "created_at": "2026-10-25T14:00:00",
+      "created_at": "2026-10-22T14:00:00",
       "transcript": "Had to cut the long run short at 10.5. Felt drained and out of breath on hills. Not sure what's going on.",
       "mood": 2,
       "energy": 1,
