@@ -258,6 +258,75 @@ body {
 .cov-left small { font-size: 0.72rem; font-weight: 600; color: var(--muted); margin-left: 4px; }
 .cov-account p { margin: 8px 0 0; font-size: 0.75rem; color: var(--muted); }
 .cov-account .cov-bar { margin-top: 10px; }
+/* ---------- em.well ---------- */
+.shortcut.link { font: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+.page:has(.well) { max-width: 1100px; }
+.well { display: flex; flex-direction: column; gap: 8px; }
+.well-hero { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 8px; }
+.eyebrow-pill { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.62rem; }
+.well-title { font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 5vw, 2.8rem); margin: 10px 0 6px; letter-spacing: -0.01em; }
+.well-sub { margin: 0; color: var(--muted); max-width: 480px; line-height: 1.5; }
+.well-focus { display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 18px; min-width: 240px; }
+.well-focus strong { font-family: var(--serif); font-weight: 500; font-size: 1.1rem; }
+
+.well-section { margin-top: 28px; }
+.well-h2 { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin: 0; }
+.well-blurb { margin: 4px 0 16px; font-size: 0.85rem; }
+.well-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+
+.well-card {
+  display: flex; flex-direction: column; border-radius: 22px; overflow: hidden;
+  background: var(--glass); backdrop-filter: blur(10px); box-shadow: 0 12px 40px rgba(178, 57, 45, 0.06); min-height: 360px;
+}
+.well-card.skeleton { background: linear-gradient(100deg, rgba(255,255,255,0.5) 30%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.5) 70%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .well-card.skeleton { animation: none; } }
+.well-art { position: relative; height: 120px; margin: 12px 12px 0; border-radius: 16px; display: grid; place-items: center; color: rgba(255, 255, 255, 0.95); }
+.well-card.workouts .well-art { background: linear-gradient(135deg, #f4a988, #e9796a); }
+.well-card.classes .well-art { background: linear-gradient(135deg, #b9a8ef, #7d68d8); }
+.well-card.nutrition .well-art { background: linear-gradient(135deg, #b9d39a, #6fa36a); }
+.well-art.photo { overflow: hidden; background: #eee; }
+.well-art.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.well-art { height: 150px; }
+.well-tag { z-index: 1; }
+.well-dur { z-index: 1; }
+.well-card.doctor .well-tag { background: var(--violet); color: #fff; }
+.near-tag {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 999px;
+  background: var(--accent-soft); color: #b4502f; font-size: 0.68rem; font-weight: 700;
+}
+.well-tag { position: absolute; top: 10px; left: 10px; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.92); color: var(--text); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.well-dur { position: absolute; bottom: 10px; right: 10px; display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px; background: rgba(43,35,48,0.55); font-size: 0.68rem; font-weight: 600; }
+.well-body { padding: 14px 18px 0; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.well-where { display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; color: var(--muted); }
+.well-body h3 { font-family: var(--serif); font-weight: 500; font-size: 1.12rem; margin: 0; line-height: 1.3; }
+.well-desc { margin: 0; font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+.well-why { margin: 6px 0 0; padding: 8px 10px; border-radius: 10px; background: var(--tile); font-size: 0.75rem; line-height: 1.45; }
+.well-foot { display: flex; flex-direction: column; align-items: stretch; gap: 10px; padding: 14px 18px 18px; }
+.well-foot > div:first-child { display: flex; flex-direction: column; gap: 2px; }
+.well-when { font-size: 0.82rem; font-weight: 700; white-space: nowrap; }
+.well-actions { display: flex; align-items: center; gap: 6px; }
+.well-actions .tag { background: #f4ecec; white-space: nowrap; }
+.well-actions { justify-content: space-between; }
+.btn-dark.small { padding: 7px 12px; font-size: 0.75rem; gap: 6px; }
+.btn-dark.added { background: var(--ok); }
+.btn-coral { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: none; background: var(--accent); color: #fff; font: inherit; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.well-loading { text-align: center; margin: 4px 0 0; font-size: 0.85rem; }
+.well-error { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; border-radius: 18px; margin-top: 20px; }
+.well-error p { margin: 0; }
+
+.well-noticed { display: flex; align-items: center; gap: 16px; margin-top: 36px; padding: 20px 24px; border-radius: 22px; flex-wrap: wrap; }
+.noticed-icon { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.noticed-text { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 4px; }
+.noticed-text strong { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; }
+.noticed-text .muted { font-size: 0.8rem; }
+.noticed-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.noticed-actions .tag { background: #fff; padding: 9px 14px; font-size: 0.78rem; border: 1px solid var(--border); }
+
+@media (max-width: 520px) {
+  .well-focus { min-width: 0; width: 100%; }
+  .well-noticed { padding: 18px; }
+}
 
 /* ---------- Em drawer ---------- */
 .drawer-backdrop { position: fixed; inset: 0; z-index: 20; background: rgba(43, 35, 48, 0.25); display: flex; justify-content: flex-end; }
@@ -317,6 +386,19 @@ body {
 .slot-chip { display: inline-flex; align-items: center; gap: 4px; font: inherit; font-size: 0.75rem; font-weight: 700; padding: 6px 12px; border-radius: 999px; border: 1px solid transparent; background: #f4ecec; color: var(--text); cursor: pointer; }
 .slot-chip.on { border-color: var(--logo); background: var(--accent-soft); }
 .slot-chip.violet { background: var(--violet-soft); color: var(--violet); }
+.sug-row { display: flex; flex-direction: column; gap: 6px; }
+.sug { position: relative; display: inline-flex; }
+.sug-chip { gap: 6px; }
+.sug-pop {
+  position: absolute; z-index: 4; left: 0; top: calc(100% + 8px); width: 260px; max-width: 80vw;
+  display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 14px;
+  background: var(--ink); color: #fff; font-size: 0.8rem; line-height: 1.45; box-shadow: 0 12px 30px rgba(43, 35, 48, 0.2);
+  opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+.sug-pop .eyebrow { color: #f3c9bc; }
+.sug-pop::before { content: ''; position: absolute; top: -5px; left: 18px; width: 10px; height: 10px; background: var(--ink); transform: rotate(45deg); }
+.sug:hover .sug-pop, .sug:focus-within .sug-pop { opacity: 1; visibility: visible; transform: none; }
+@media (prefers-reduced-motion: reduce) { .sug-pop { transition: none; } }
 .book-confirm { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.85rem; }
 .book-confirm span { flex: 1; min-width: 200px; }
 .empty { margin: 0; padding: 18px; border-radius: 14px; background: rgba(255, 255, 255, 0.6); color: var(--muted); font-size: 0.88rem; line-height: 1.5; }

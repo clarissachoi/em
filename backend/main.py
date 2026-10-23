@@ -5,7 +5,7 @@ import logging
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import appointments, goals, home, insurance, labs, plan, records, users, voice
+from routers import appointments, goals, home, insights, insurance, labs, plan, records, suggestions, users, voice
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
@@ -36,4 +36,6 @@ app.include_router(plan.router, prefix="/api")
 app.include_router(labs.router, prefix="/api")
 app.include_router(home.router, prefix="/api")
 app.include_router(insurance.router, prefix="/api")
+app.include_router(suggestions.router, prefix="/api")
+app.include_router(insights.router, prefix="/api")
 app.include_router(voice.router, prefix="/api")
