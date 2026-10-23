@@ -278,6 +278,80 @@ def tool_get_coverage(user_id: str, args: dict[str, Any]) -> ToolOutcome:
     return ToolOutcome(coverage, "Checked your coverage")
 
 
+def _matches_query(appt: dict[str, Any], query: str) -> bool:
+    """True when the query is empty or appears in the provider or specialty."""
+    q = query.strip().casefold()
+    return not q or q in appt["provider"].casefold() or q in appt["specialty"].casefold()
+
+
+def tool_get_visit_notes(user_id: str, args: dict[str, Any]) -> ToolOutcome:
+    """What her doctors said at past visits: summaries, doctor's plan, scribe notes, follow-ups."""
+    appts = store.get(user_id, "appointments", {})
+    scribe = store.get(user_id, "scribe_notes", [])  # newest first
+    scribed_ids = {n["appointment_id"] for n in scribe}
+    visits = [a for a in [*appts.get("past", []), *appts.get("upcoming", [])] if a["status"] == "completed" or a["id"] in scribed_ids]
+    visits = sorted((a for a in visits if _matches_query(a, args.get("query") or "")), key=lambda a: a["datetime"], reverse=True)[:4]
+    out = []
+    for a in visits:
+        doctor = a.get("doctor_notes") or {}
+        summary = a.get("visit_summary") or {}
+        note = next((n for n in scribe if n["appointment_id"] == a["id"]), None)
+        out.append({
+            "appointment_id": a["id"], "date": a["datetime"][:10], "specialty": a["specialty"], "provider": a["provider"],
+            "summary": (note or {}).get("summary") or summary.get("summary"),
+            "doctor_assessment": doctor.get("assessment", []),
+            "doctor_plan": (note or {}).get("doctor_instructions") or doctor.get("plan") or summary.get("action_items", []),
+            "follow_ups": (note or {}).get("follow_ups") or ([summary["follow_up"]] if summary.get("follow_up") else []),
+            "source": "Em scribe recording" if note else "visit records",
+        })
+    result = {
+        "visits": out,
+        "reminder": "Say what the doctor said and name the doctor. Add no advice of your own, especially about medication. "
+                    "For anything not in the notes, suggest she ask that doctor.",
+    }
+    return ToolOutcome(result, f"Checked notes from {len(out)} visit{'s' if len(out) != 1 else ''}")
+
+
+def _upcoming_appts(user_id: str) -> list[dict[str, Any]]:
+    """Upcoming appointments, soonest first."""
+    return sorted(store.get(user_id, "appointments", {}).get("upcoming", []), key=lambda a: a["datetime"])
+
+
+def tool_get_visit_prep(user_id: str, args: dict[str, Any]) -> ToolOutcome:
+    """Prep questions for an upcoming visit (the next one if no id or query is given)."""
+    upcoming = _upcoming_appts(user_id)
+    wanted = args.get("appointment_id")
+    if wanted:
+        picked = [a for a in upcoming if a["id"] == wanted]
+    else:
+        picked = [a for a in upcoming if _matches_query(a, args.get("query") or "")][:1]
+    if not picked:
+        raise ToolError("No matching upcoming visit. Call get_appointments to see what is booked.")
+    a = picked[0]
+    result = {
+        "appointment_id": a["id"], "when": _when(a["datetime"]), "specialty": a["specialty"], "provider": a["provider"],
+        "prep_questions": a.get("prep_questions", []),
+        "note": "If prep_questions is empty, help her come up with two or three from her recent check-ins and labs." if not a.get("prep_questions") else None,
+    }
+    return ToolOutcome(result, f"Opened prep for {a['specialty']} with {a['provider']}")
+
+
+def tool_add_prep_question(user_id: str, args: dict[str, Any]) -> ToolOutcome:
+    """Save a question she wants to ask at an upcoming visit."""
+    question = " ".join(str(args.get("question") or "").replace("\u2014", ", ").split())
+    if not question:
+        raise ToolError("The question is empty.")
+    appts = store.get(user_id, "appointments", {})
+    a = next((x for x in appts.get("upcoming", []) if x["id"] == args.get("appointment_id")), None)
+    if a is None:
+        raise ToolError(f"No upcoming visit with id {args.get('appointment_id')!r}. Call get_visit_prep first.")
+    questions = a.setdefault("prep_questions", [])
+    if question.casefold() not in (q.casefold() for q in questions):
+        questions.append(question)
+        store.save(user_id, "appointments", appts)
+    return ToolOutcome({"saved": question, "prep_questions": questions}, f"Added a question for {a['provider']}", True)
+
+
 ToolFn = Callable[[str, dict[str, Any]], ToolOutcome]
 
 TOOLS: dict[str, ToolFn] = {
@@ -290,6 +364,9 @@ TOOLS: dict[str, ToolFn] = {
     "get_plan": tool_get_plan,
     "adjust_plan_day": tool_adjust_plan_day,
     "get_coverage": tool_get_coverage,
+    "get_visit_notes": tool_get_visit_notes,
+    "get_visit_prep": tool_get_visit_prep,
+    "add_prep_question": tool_add_prep_question,
 }
 
 _SCORE = {"type": "integer", "minimum": 1, "maximum": 5}
@@ -329,6 +406,14 @@ TOOL_DECLARATIONS = [
           ["record_id", "status"]),
     _decl("get_labs", "Her lab panels and upcoming labs."),
     _decl("get_coverage", "Her insurance: what visits cost, upcoming visit estimates, what she has paid this year and last, FSA or HSA balance, and employer benefits."),
+    _decl("get_visit_notes", "What her doctors said at past visits: summary, the doctor's plan and instructions, and follow-ups.",
+          {"query": {"type": "string", "description": "Doctor name or specialty to narrow it, e.g. Reyes or sports medicine. Omit for recent visits."}}),
+    _decl("get_visit_prep", "The questions she plans to ask at an upcoming visit. Defaults to her next visit.",
+          {"appointment_id": {"type": "string"},
+           "query": {"type": "string", "description": "Doctor name or specialty, e.g. OB-GYN"}}),
+    _decl("add_prep_question", "Save a question for an upcoming visit. Read it back and get her yes first.",
+          {"appointment_id": {"type": "string"}, "question": {"type": "string", "description": "In her words, as one short question"}},
+          ["appointment_id", "question"]),
     _decl("get_plan", "Her activity or training plan from today.", {"days": {"type": "integer", "minimum": 1, "maximum": 21}}),
     _decl("adjust_plan_day", "Replace one day of her plan, e.g. swap a tempo run for an easy run. Only after she confirms. Pregnancy-safe if pregnant.",
           {"date": {"type": "string", "description": "YYYY-MM-DD"},

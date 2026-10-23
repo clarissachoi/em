@@ -354,3 +354,11 @@ export interface Insight { text: string; evidence: string }
 /** Calls Gemini on the backend; about 10 seconds the first time, cached after. */
 export const getSuggestions = () => request<Suggestions>('/suggestions')
 export const getInsights = () => request<Insight[]>('/insights')
+
+// ---------- Data settings ----------
+
+export interface DataSettings { model_training: boolean; third_party_sharing: boolean; updated_at: string | null }
+
+export const getDataSettings = () => request<DataSettings>('/data-settings')
+export const putDataSettings = (s: Pick<DataSettings, 'model_training' | 'third_party_sharing'>) =>
+  request<DataSettings>('/data-settings', { method: 'PUT', body: JSON.stringify(s) })

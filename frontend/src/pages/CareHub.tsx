@@ -63,7 +63,7 @@ function pickMime() {
 // ---------- Appointments ----------
 
 /** One appointment with calendar and prep actions. The first upcoming one is featured. */
-function AppointmentItem({ a, featured, onPrepped }: { a: Appointment; featured: boolean; onPrepped: (a: Appointment) => void }) {
+function AppointmentItem({ a, featured, onPrepped, onAsk }: { a: Appointment; featured: boolean; onPrepped: (a: Appointment) => void; onAsk: (prompt?: string) => void }) {
   const [prepping, setPrepping] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const upcoming = a.status === 'upcoming'
@@ -100,6 +100,9 @@ function AppointmentItem({ a, featured, onPrepped }: { a: Appointment; featured:
             </button>
             <button className="btn-pill primary" onClick={prep} disabled={prepping}>
               <Icon name="sparkle" /> {prepping ? 'Preparing...' : a.prep_questions.length ? 'Refresh prep' : 'Prepare with Em'}
+            </button>
+            <button className="btn-pill" onClick={() => onAsk(`Help me practice for my ${a.specialty} visit with ${a.provider} on ${fmtDay(a.datetime)}.`)}>
+              <Icon name="mic" /> Practice out loud
             </button>
           </div>
         )}
@@ -248,7 +251,7 @@ function BookNext({ slots, booked, suggested, onBooked, onSuggested, onAsk }: {
 // ---------- Physician orders ----------
 
 /** Pick a past visit (or one with a scribe note) and see its summary and the doctor's instructions. */
-function PhysicianOrders({ notes, appointments, onBook }: { notes: ScribeNote[]; appointments: Appointment[]; onBook: () => void }) {
+function PhysicianOrders({ notes, appointments, onBook, onAsk }: { notes: ScribeNote[]; appointments: Appointment[]; onBook: () => void; onAsk: (prompt?: string) => void }) {
   const [picked, setPicked] = useState<string | null>(null)
   // notes arrive newest first, so find() gets the latest recording per visit
   const visits = appointments
@@ -299,6 +302,9 @@ function PhysicianOrders({ notes, appointments, onBook }: { notes: ScribeNote[];
               <button className="btn-pill" onClick={onBook}><Icon name="bolt" /> Book next session</button>
             </div>
           )}
+          <button className="btn-pill ask-orders" onClick={() => onAsk(`What did ${appt.provider} tell me at my ${appt.specialty} visit on ${fmtDate(appt.datetime)}?`)}>
+            <Icon name="chat" /> Ask Em about this visit
+          </button>
           <p className="disclaimer">These are your doctor's words as recorded. Review anything about medication or treatment with {appt.provider} before acting on it.</p>
         </>
       ) : (
@@ -605,7 +611,7 @@ export default function CareHub({ onAsk }: { onAsk: (prompt?: string) => void })
         </header>
         {shown.length ? (
           <ul className="appt-list">
-            {shown.map((a, i) => <AppointmentItem key={a.id} a={a} featured={tab === 'upcoming' && i === 0} onPrepped={replaceAppt} />)}
+            {shown.map((a, i) => <AppointmentItem key={a.id} a={a} featured={tab === 'upcoming' && i === 0} onPrepped={replaceAppt} onAsk={onAsk} />)}
           </ul>
         ) : (
           <p className="empty">{tab === 'upcoming' ? 'No upcoming visits. Book one below.' : 'No past visits yet.'}</p>
@@ -623,7 +629,7 @@ export default function CareHub({ onAsk }: { onAsk: (prompt?: string) => void })
       </section>
 
       <div className="hub-grid">
-        <PhysicianOrders notes={notes} appointments={[...upcoming, ...past]} onBook={goToBooking} />
+        <PhysicianOrders notes={notes} appointments={[...upcoming, ...past]} onBook={goToBooking} onAsk={onAsk} />
         <AmbientScribe
           appointments={[...upcoming, ...past]}
           notes={notes}
