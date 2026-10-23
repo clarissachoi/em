@@ -6,6 +6,7 @@ import VoicePanel from './components/VoicePanel'
 import { usePersona } from './hooks/usePersona'
 import AppointmentsDebug from './pages/AppointmentsDebug'
 import CareHub from './pages/CareHub'
+import Coverage from './pages/Coverage'
 import Home from './pages/Home'
 import Wellness from './pages/Wellness'
 
@@ -37,7 +38,7 @@ function EmDrawer({ open, prompt, session, onClose }: { open: boolean; prompt?: 
 /** App shell: header with nav and persona switcher, the page, Em drawer, footer. */
 function Shell() {
   const [em, setEm] = useState<{ open: boolean; prompt?: string; session: number }>({ open: false, session: 0 })
-  const [page, setPage] = useState<'home' | 'care' | 'wellness' | 'appointments-debug'>('home')
+  const [page, setPage] = useState<'home' | 'care' | 'coverage' | 'wellness' | 'appointments-debug'>('home')
   const openEm = (prompt?: string) => setEm((s) => ({ open: true, prompt, session: s.session + 1 }))
   const closeEm = () => setEm((s) => ({ ...s, open: false }))
 
@@ -69,6 +70,17 @@ function Shell() {
             em.doc
           </a>
           <a
+            className={`tab ${page === 'coverage' ? 'active' : ''}`}
+            aria-current={page === 'coverage' ? 'page' : undefined}
+            href="/coverage"
+            onClick={(e) => {
+              e.preventDefault()
+              setPage('coverage')
+            }}
+          >
+            Coverage
+          </a>
+          <a
             className={`tab ${page === 'wellness' ? 'active' : ''}`}
             aria-current={page === 'wellness' ? 'page' : undefined}
             href="#em-well"
@@ -89,6 +101,7 @@ function Shell() {
       <main className="page">
         {page === 'home' && <Home onAsk={openEm} onOpenCare={() => setPage('care')} onOpenWellness={() => setPage('wellness')} />}
         {page === 'care' && <CareHub onAsk={openEm} />}
+        {page === 'coverage' && <Coverage onAsk={openEm} />}
         {page === 'wellness' && <Wellness onAsk={openEm} />}
         {page === 'appointments-debug' && <AppointmentsDebug />}
       </main>

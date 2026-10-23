@@ -998,7 +998,7 @@
       "description": "Alternate warm and cool pools, then unwind in an infrared sauna. A calm way to recover between hard training days.",
       "tag": "Recovery",
       "image": "/wellness/kensho.png",
-      "where": "Kenshō Recovery Spa",
+      "where": "Kensh\u014d Recovery Spa",
       "distance_mi": 0.8,
       "distance_from": "office",
       "duration_min": 45,
@@ -1081,5 +1081,245 @@
       "default_reason": null,
       "requires_medication": "iron"
     }
-  ]
+  ],
+  "insurance": {
+    "plan": {
+      "insurer": "Willowmere Health",
+      "name": "Willowmere Choice HSA Plan",
+      "type": "HDHP",
+      "employer": "Halcyon Capital",
+      "member_id": "WMH-2208-5560",
+      "group_number": "41077",
+      "plan_year": 2026,
+      "resets_on": "2027-01-01",
+      "covered": [
+        "self"
+      ],
+      "coverage": {
+        "medical": true,
+        "dental": true,
+        "vision": true
+      },
+      "deductible": 1700,
+      "out_of_pocket_max": 4000,
+      "coinsurance_pct": 20,
+      "out_of_network_estimate": 240,
+      "premiums_paid": {
+        "2025": 1296,
+        "2026": 1080
+      }
+    },
+    "cost_rules": [
+      {
+        "services": [
+          "Primary care"
+        ],
+        "visit_name": "Annual physical",
+        "plan": "medical",
+        "kind": "free",
+        "label": "Preventive care is free",
+        "preventive": true
+      },
+      {
+        "services": [
+          "Dentistry"
+        ],
+        "visit_name": "Dental cleaning",
+        "plan": "dental",
+        "kind": "free",
+        "label": "Preventive dental is free",
+        "preventive": true
+      },
+      {
+        "services": [
+          "Optometry"
+        ],
+        "visit_name": "Eye exam",
+        "plan": "vision",
+        "kind": "copay",
+        "amount": 10,
+        "label": "Vision plan copay"
+      },
+      {
+        "services": [
+          "Dermatology"
+        ],
+        "visit_name": "Dermatology visit",
+        "plan": "medical",
+        "kind": "deductible",
+        "rate": 165,
+        "label": "Deductible applies"
+      },
+      {
+        "services": [
+          "Sports medicine"
+        ],
+        "visit_name": "Sports medicine visit",
+        "plan": "medical",
+        "kind": "deductible",
+        "rate": 190,
+        "label": "Deductible applies"
+      },
+      {
+        "services": [
+          "Physical therapy"
+        ],
+        "visit_name": "Physical therapy",
+        "plan": "medical",
+        "kind": "deductible",
+        "rate": 120,
+        "label": "Deductible applies"
+      },
+      {
+        "services": [
+          "Lab work"
+        ],
+        "visit_name": "Lab work",
+        "plan": "medical",
+        "kind": "deductible",
+        "rate": 230,
+        "label": "Deductible applies"
+      }
+    ],
+    "claims": [
+      {
+        "date": "2026-10-16",
+        "provider": "Quest Diagnostics, Midtown",
+        "service": "Endurance blood panel",
+        "for_person": "self",
+        "category": "deductible",
+        "you_paid": 230,
+        "plan_paid": 0
+      },
+      {
+        "date": "2026-08-05",
+        "provider": "Duane Reade",
+        "service": "Allergy medicine",
+        "for_person": "self",
+        "category": "prescription",
+        "you_paid": 20,
+        "plan_paid": 10
+      },
+      {
+        "date": "2026-06-17",
+        "provider": "Willowmere Telehealth",
+        "service": "Video visit while traveling",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 10,
+        "plan_paid": 40
+      },
+      {
+        "date": "2026-06-17",
+        "provider": "Duane Reade",
+        "service": "Antibiotic",
+        "for_person": "self",
+        "category": "prescription",
+        "you_paid": 15,
+        "plan_paid": 12
+      },
+      {
+        "date": "2026-03-26",
+        "provider": "CityMD Midtown",
+        "service": "Urgent care, ankle sprain",
+        "for_person": "self",
+        "category": "deductible",
+        "you_paid": 180,
+        "plan_paid": 0
+      },
+      {
+        "date": "2026-03-04",
+        "provider": "Midtown Dental Group",
+        "service": "Filling",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 50,
+        "plan_paid": 180
+      },
+      {
+        "date": "2025-07-21",
+        "provider": "Union Square Dermatology",
+        "service": "Dermatology visits (2)",
+        "for_person": "self",
+        "category": "deductible",
+        "you_paid": 350,
+        "plan_paid": 0
+      },
+      {
+        "date": "2025-05-30",
+        "provider": "Duane Reade",
+        "service": "Prescriptions",
+        "for_person": "self",
+        "category": "prescription",
+        "you_paid": 70,
+        "plan_paid": 40
+      },
+      {
+        "date": "2025-04-09",
+        "provider": "NYU Sports Imaging",
+        "service": "Knee X-ray",
+        "for_person": "self",
+        "category": "deductible",
+        "you_paid": 640,
+        "plan_paid": 0
+      },
+      {
+        "date": "2025-02-12",
+        "provider": "Midtown Dental Group",
+        "service": "Fillings (2)",
+        "for_person": "self",
+        "category": "copay",
+        "you_paid": 120,
+        "plan_paid": 340
+      }
+    ],
+    "accounts": [
+      {
+        "type": "hsa",
+        "name": "Health Savings Account (HSA)",
+        "balance": 2340,
+        "contributed": {
+          "you": 1500,
+          "employer": 750
+        },
+        "annual_limit": 4400,
+        "note": "Yours to keep. It rolls over every year."
+      }
+    ],
+    "employer_benefits": [
+      {
+        "name": "Fitness stipend",
+        "detail": "$600 a year for races, gear, gyms",
+        "status": "in_use",
+        "used": 250,
+        "limit": 600,
+        "unit": "dollars"
+      },
+      {
+        "name": "Physical reward",
+        "detail": "$100 into your HSA after your annual physical",
+        "status": "not_started",
+        "status_text": "Not earned yet",
+        "linked_service": "Primary care"
+      },
+      {
+        "name": "Free counseling",
+        "detail": "6 sessions a year, private",
+        "status": "in_use",
+        "used": 1,
+        "limit": 6,
+        "unit": "sessions"
+      },
+      {
+        "name": "Travel health line",
+        "detail": "24/7 nurse line when you travel",
+        "status": "available"
+      }
+    ],
+    "ask_suggestions": [
+      "What would a sports medicine visit cost me?",
+      "Is my physical free?",
+      "How much of my fitness stipend is left?"
+    ]
+  }
 }
