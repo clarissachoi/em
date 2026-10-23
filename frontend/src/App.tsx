@@ -4,6 +4,7 @@ import PersonaProvider from './components/PersonaProvider'
 import PersonaSwitcher from './components/PersonaSwitcher'
 import VoicePanel from './components/VoicePanel'
 import { usePersona } from './hooks/usePersona'
+import AppointmentsDebug from './pages/AppointmentsDebug'
 
 /** Current persona's profile, re-fetched when the persona changes. */
 function Profile() {
@@ -37,6 +38,7 @@ function Profile() {
 function Shell() {
   const { persona } = usePersona()
   const [backend, setBackend] = useState('checking...')
+  const [page, setPage] = useState<'profile' | 'appointments'>('profile')
 
   useEffect(() => {
     getHealth()
@@ -48,12 +50,23 @@ function Shell() {
     <>
       <header className="header">
         <strong>EmCare</strong>
+        {/* Temporary nav until the mockup lands */}
+        <nav>
+          <button disabled={page === 'profile'} onClick={() => setPage('profile')}>Profile</button>{' '}
+          <button disabled={page === 'appointments'} onClick={() => setPage('appointments')}>Appointments</button>
+        </nav>
         <PersonaSwitcher />
       </header>
       <main className="app">
-        <Profile />
-        {/* key resets the voice session when switching persona */}
-        <VoicePanel key={persona} />
+        {page === 'profile' ? (
+          <>
+            <Profile />
+            {/* key resets the voice session when switching persona */}
+            <VoicePanel key={persona} />
+          </>
+        ) : (
+          <AppointmentsDebug />
+        )}
         <p className="muted">Backend: {backend}</p>
       </main>
     </>
