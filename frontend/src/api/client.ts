@@ -241,3 +241,32 @@ export function scribeVisit(id: string, audio: Blob, duration_sec: number) {
   return request<ScribeNote>(`/appointments/${id}/scribe`, { method: 'POST', body: form })
 }
 export const getScribeNotes = () => request<ScribeNote[]>('/scribe-notes')
+
+// ---------- em.well ----------
+
+export interface Suggestion {
+  title: string
+  description: string
+  reason: string
+  duration_min: number | null
+  tag: string
+  when: string | null
+  where: string | null
+  image: string | null
+  distance_mi: number | null
+  near_tag: string | null
+  /** 'doctor' = her clinician's instruction (e.g. prescribed iron), not Em's idea */
+  source: 'em' | 'doctor'
+}
+export interface Suggestions {
+  headline: string
+  nutrition: Suggestion[]
+  workouts: Suggestion[]
+  classes: Suggestion[]
+  sleep: Suggestion[]
+}
+export interface Insight { text: string; evidence: string }
+
+/** Calls Gemini on the backend; about 10 seconds the first time, cached after. */
+export const getSuggestions = () => request<Suggestions>('/suggestions')
+export const getInsights = () => request<Insight[]>('/insights')

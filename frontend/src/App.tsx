@@ -7,6 +7,7 @@ import { usePersona } from './hooks/usePersona'
 import AppointmentsDebug from './pages/AppointmentsDebug'
 import CareHub from './pages/CareHub'
 import Home from './pages/Home'
+import Wellness from './pages/Wellness'
 
 /** Slide-over drawer holding the live Em voice panel. */
 function EmDrawer({ open, prompt, session, onClose }: { open: boolean; prompt?: string; session: number; onClose: () => void }) {
@@ -36,7 +37,7 @@ function EmDrawer({ open, prompt, session, onClose }: { open: boolean; prompt?: 
 /** App shell: header with nav and persona switcher, the page, Em drawer, footer. */
 function Shell() {
   const [em, setEm] = useState<{ open: boolean; prompt?: string; session: number }>({ open: false, session: 0 })
-  const [page, setPage] = useState<'home' | 'care' | 'appointments-debug'>('home')
+  const [page, setPage] = useState<'home' | 'care' | 'wellness' | 'appointments-debug'>('home')
   const openEm = (prompt?: string) => setEm((s) => ({ open: true, prompt, session: s.session + 1 }))
   const closeEm = () => setEm((s) => ({ ...s, open: false }))
 
@@ -67,7 +68,17 @@ function Shell() {
           >
             em.doc
           </a>
-          <span className="tab" aria-disabled title="Coming soon">Wellness Synthesis</span>
+          <a
+            className={`tab ${page === 'wellness' ? 'active' : ''}`}
+            aria-current={page === 'wellness' ? 'page' : undefined}
+            href="#em-well"
+            onClick={(e) => {
+              e.preventDefault()
+              setPage('wellness')
+            }}
+          >
+            em.well
+          </a>
         </nav>
         <div className="profile-chip">
           <PersonaSwitcher />
@@ -76,7 +87,10 @@ function Shell() {
       </header>
 
       <main className="page">
-        {page === 'home' ? <Home onAsk={openEm} /> : page === 'care' ? <CareHub onAsk={openEm} /> : <AppointmentsDebug />}
+        {page === 'home' && <Home onAsk={openEm} onOpenCare={() => setPage('care')} onOpenWellness={() => setPage('wellness')} />}
+        {page === 'care' && <CareHub onAsk={openEm} />}
+        {page === 'wellness' && <Wellness onAsk={openEm} />}
+        {page === 'appointments-debug' && <AppointmentsDebug />}
       </main>
 
       <footer className="site-footer">
